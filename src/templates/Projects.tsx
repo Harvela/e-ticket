@@ -1,38 +1,59 @@
 import Link from 'next/link';
+import type { ReactNode } from 'react';
+import { FaBook, FaHeart, FaLeaf } from 'react-icons/fa';
 
 import { projects } from '@/utils/projects';
 
+type ProjectType = 'Health Tech' | 'Education' | 'Agrobusiness';
+
+const projectIcons: Record<ProjectType, ReactNode> = {
+  'Health Tech': <FaHeart height={2} width={2} />,
+  Education: <FaBook height={2} width={2} />,
+  Agrobusiness: <FaLeaf height={2} width={2} />,
+};
+
 const Projects = () => {
   return (
-    <div
-      id="projects"
-      className="relative z-20 bg-secondary-200 px-4 py-8 lg:px-[100px]"
-    >
-      <h1 className="mb-2 mt-5 text-lg font-bold text-blue lg:text-2xl">
-        Nos projets recents
-      </h1>
-      <hr className="mb-8 h-[4px] w-[100px] bg-blue" />
-      <div className="mt-12 flex flex-col gap-16">
-        {projects.map((project, index) => (
+    <div className="mt-12 text-[#002240]" id="projects">
+      {projects.map((project, index) => (
+        <div
+          key={index}
+          className="flex flex-row gap-16 p-16"
+          style={{ backgroundColor: `${project.backgroundColor}` }}
+        >
           <div
-            key={index}
-            className="rounded-xl  bg-black  p-8 text-white lg:h-[250px]"
+            className="flex h-[250px] w-[25%] flex-row items-center justify-center rounded-xl p-8 text-white"
+            style={{ backgroundColor: `${project.logoColor}` }}
           >
-            <div className="flex flex-row items-center gap-4">
-              <h2 className="font-semibold">{project.name}</h2>
-              <hr className="h-[20px] w-[2px] bg-white" />
-              <h4 className="text-secondary-900">{project.type}</h4>
+            <img
+              src={project.logo}
+              alt={`${project.name} Logo`}
+              className="h-30 w-30 m-auto rounded-full"
+            />
+          </div>
+          <div className="w-[60%]">
+            <div
+              className="flex w-[16%] flex-row items-center justify-center gap-2 rounded-[5px] px-2 py-1"
+              style={{ backgroundColor: `${project.badgeColor}` }}
+            >
+              {projectIcons[project.type as ProjectType] && (
+                <div className="">
+                  {projectIcons[project.type as ProjectType]}
+                </div>
+              )}
+              <h4 className="text-[10px] font-semibold">{project.type}</h4>
             </div>
-            <p className="my-8 text-sm">{project.description}</p>
+            <h2 className="my-6 font-bold">{project.name}</h2>
+            <p className="mb-8 text-sm">{project.description}</p>
             <Link
               href={project.link}
-              className="border-1 rounded-lg border border-dashed border-secondary-900 px-6 py-2 text-secondary-900"
+              className="border-1 rounded-lg border border-dashed border-[#002240] px-6 py-2 font-semibold text-[#002240]"
             >
               Visiter le projet
             </Link>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };

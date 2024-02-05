@@ -1,24 +1,46 @@
+import Link from 'next/link';
+import { FaLinkedin } from 'react-icons/fa';
+import { FaSquareXTwitter } from 'react-icons/fa6';
+import { MdEmail } from 'react-icons/md';
+
 import { team } from '@/utils/team';
 
 const Team = () => {
   return (
-    <div id="team" className="relative z-20 px-4 py-8 lg:px-[100px]">
-      <div className="rounded-md p-8 shadow-md shadow-blue/30">
-        <h1 className="mb-2 mt-5 text-center text-lg font-bold text-blue lg:text-2xl">
-          Notre equipe
+    <div id="team" className="relative z-20 bg-[#002240] px-4 py-10 lg:px-16">
+      <div className="rounded-md p-8">
+        <h1 className="mb-2 text-lg font-bold text-[#E0F0FF] lg:text-xl">
+          NOTRE EQUIPE
         </h1>
-        <hr className="m-auto mb-8 h-[4px] w-[100px] bg-blue" />
-        <div className="mt-12 grid grid-cols-4 gap-16">
+        <div className="mt-12 grid grid-cols-3 gap-20 text-[#002240]">
           {team.map((t, index) => (
             <div
               key={index}
-              className="rounded-lg bg-white p-8 text-white shadow-md shadow-blue/30 lg:h-[200px]"
+              className="flex flex-col items-center justify-center rounded-[24px] bg-white p-8"
             >
-              <div className="flex flex-row items-center gap-4">
+              <img
+                src={t.icon}
+                alt={`${t.name}`}
+                className="h-20 w-20 rounded-full"
+              />
+              <div className="flex flex-col items-center gap-2">
                 <h2 className="font-semibold">{t.name}</h2>
-                <h4 className="text-secondary-900">{t.type}</h4>
+                <span className="rounded-[8px] bg-[#0C5ABF]/10 px-4 py-1 text-[8px] text-[#0C5ABF]">
+                  {t.role}
+                </span>
               </div>
-              <p className="my-8 text-sm">{t.description}</p>
+              <p className="my-8 text-center text-[10px]">{t.description}</p>
+              <div className="flex flex-row items-center gap-4">
+                <Link href={t.linkedin}>
+                  <FaLinkedin />
+                </Link>
+                <Link href={t.twitter}>
+                  <FaSquareXTwitter />
+                </Link>
+                <Link href={t.gmail}>
+                  <MdEmail />
+                </Link>
+              </div>
             </div>
           ))}
         </div>

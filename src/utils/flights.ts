@@ -1,0 +1,38 @@
+export const flights = [
+  {
+    id: '1',
+    name: '51-IFB',
+    number: '900',
+    departure: 'KINSHASA',
+    arrival: 'GOMA',
+    depTime: '14:00',
+    arrTime: '16:00',
+  },
+  {
+    id: '2',
+    name: '51-IFB',
+    number: '900',
+    departure: 'KINSHASA',
+    arrival: 'GOMA',
+    depTime: '14:00',
+    arrTime: '16:00',
+  },
+  {
+    id: '3',
+    name: '51-IFB',
+    number: '900',
+    departure: 'KINSHASA',
+    arrival: 'GOMA',
+    depTime: '14:00',
+    arrTime: '16:00',
+  },
+  {
+    id: '4',
+    name: '51-IFB',
+    number: '900',
+    departure: 'KINSHASA',
+    arrival: 'GOMA',
+    depTime: '14:00',
+    arrTime: '16:00',
+  },
+];

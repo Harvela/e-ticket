@@ -1,7 +1,7 @@
 import type { CustomFlowbiteTheme } from 'flowbite-react';
 import { Flowbite, Navbar } from 'flowbite-react';
-import React, { useEffect } from 'react';
-import { Link, scroller } from 'react-scroll';
+import React from 'react';
+import { Link } from 'react-scroll';
 
 export type NavbarProps = {
   // Prop types go here
@@ -25,37 +25,35 @@ const customTheme: CustomFlowbiteTheme = {
 };
 
 const NavbarGlobal: React.FC<NavbarProps> = () => {
-  useEffect(() => {
-    scroller.scrollTo('home', {
-      duration: 800,
-      delay: 0,
-      smooth: 'easeInOutQuart',
-    });
-  }, []);
+  // useEffect(() => {
+  //   scroller.scrollTo('home', {
+  //     duration: 800,
+  //     delay: 0,
+  //     smooth: 'easeInOutQuart',
+  //   });
+  // }, []);
   return (
     <Flowbite theme={{ theme: customTheme }}>
       <Navbar
-        className="px-4 lg:px-16"
+        className="rounded-xl px-2"
         style={{
-          position: 'fixed',
           width: '100%',
           zIndex: 40,
-          top: 0,
-          backgroundColor: 'rgba(0, 34, 64, 0.9)',
+          background:
+            'linear-gradient(90deg, rgba(234, 240, 240, 0.5), rgba(234, 240, 240, 0.3))',
         }}
       >
         <Navbar.Brand href="#">
-          {/* <img
-            src="/fullLogo.png"
-            className="h-8 lg:mr-3 lg:h-16"
-            alt="Docta Mobile Logo"
-          /> */}
-          <h1 className="text-2xl font-bold text-white">Harvely</h1>
+          <img
+            src="/assets/images/home/logo.png"
+            className="h-4 rounded-lg bg-white lg:h-8"
+            alt="Logo"
+          />
         </Navbar.Brand>
         <Navbar.Collapse>
           <Link
-            activeClass="text-white font-bold border-b-2 border-white"
-            to="home"
+            activeClass="text-blue font-bold"
+            to="/"
             smooth
             spy
             offset={-200}
@@ -63,29 +61,31 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
             Accueil
           </Link>
           <Link
-            activeClass="text-white font-bold border-b-2 border-white"
-            to="projects"
+            activeClass="text-blue font-bold"
+            to="/flyhours"
             smooth
             spy
             offset={-100}
           >
-            Nos projets
+            Horaire de vol
           </Link>
+          <Link activeClass="text-blue font-bold" to="services" smooth spy>
+            A propos de nous
+          </Link>
+          <Link activeClass="text-blue font-bold" to="team" smooth spy>
+            Nos contact
+          </Link>
+        </Navbar.Collapse>
+        <Navbar.Collapse className="flex flex-row items-center">
           <Link
-            activeClass="text-white font-bold border-b-2 border-white"
-            to="services"
+            activeClass="font-bold border-secondary-900"
+            to="pricing"
             smooth
             spy
+            offset={-100}
+            className="mt-1 text-[8px] font-semibold text-blue lg:text-sm"
           >
-            Nos services
-          </Link>
-          <Link
-            activeClass="text-white font-bold border-b-2 border-white"
-            to="team"
-            smooth
-            spy
-          >
-            Notre equipe
+            Traquer mon billet
           </Link>
           <Link
             activeClass="text-secondary-900 font-bold border-b-2 border-secondary-900"
@@ -93,8 +93,9 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
             smooth
             spy
             offset={-100}
+            className="rounded-lg bg-blue px-2 py-1 text-[8px] font-semibold text-white lg:px-4 lg:text-sm"
           >
-            Contact
+            Se connecter
           </Link>
         </Navbar.Collapse>
       </Navbar>

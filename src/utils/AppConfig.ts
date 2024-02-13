@@ -1,7 +1,7 @@
 export const AppConfig = {
-  site_name: 'Harvely',
-  title: 'Harvely',
+  site_name: 'e-ticket',
+  title: 'e-ticket',
   description:
-    'Santé accessible pour tous avec Docta Mobile. Téléconsultations, consultations à domicile et suivi, médecine familiale abordable. Afrique, Tech, Experts.',
+    'reservez vos billets d’avions dans le confort de votre maison et peu importe où vous vous trouvez.',
   locale: 'fr',
 };

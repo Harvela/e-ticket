@@ -1,32 +1,40 @@
-import { Navbar } from '@/navigation/Navbar';
-
 import { Meta } from '../layout/Meta';
 import { AppConfig } from '../utils/AppConfig';
-import { Footer } from './Footer';
 import { Hero } from './Hero';
-import { Projects } from './Projects';
-import { Services } from './Services';
-import { Team } from './Team';
 
 const Base = () => {
   return (
     <div className="text-gray-600 antialiased">
       <Meta title={AppConfig.title} description={AppConfig.description} />
-      <div className="relative h-[90vh]">
+      {/* <div className="relative h-[100vh]">
         <img
           src="/assets/images/home/background.jpg"
           alt="Hero"
-          className="h-full w-full object-cover"
+          className="h-full w-full"
         />
-        <div className="absolute left-0 top-0 mt-14 h-full w-full bg-[#002240]/90">
-          <Navbar />
+        <div className="absolute left-0 top-0 h-full w-full bg-blue/20 flex flex-row">
+        <aside className="bg-blue h-full w-[20%] rounded-tr-[15px] rounded-br-[15px] py-24 px-8">
+           <AsideNav />
+        </aside>
+         <div className="w-[80%]">
+           <MyReservations />
+         </div>
+        </div>
+      </div> */}
+
+      <div className="relative h-[100vh]">
+        <img
+          src="/assets/images/home/background.jpg"
+          alt="Hero"
+          className="h-full w-full"
+        />
+        <div className="absolute left-0 top-0 h-full w-full bg-blue/20 ">
           <Hero />
         </div>
       </div>
-      <Projects />
-      <Services />
-      <Team />
-      <Footer />
+      {/* <BookingPage />
+      <Hero />
+      <FlightSchedule /> */}
     </div>
   );
 };

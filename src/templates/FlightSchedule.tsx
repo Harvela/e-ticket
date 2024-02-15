@@ -37,7 +37,7 @@ const FlightSchedule: React.FC = () => {
           <h3 className="mb-4 text-lg font-semibold text-white lg:mb-0">
             Notre horaire de vol
           </h3>
-          <div className="flex w-full flex-row items-center justify-between gap-2 rounded-[10px] bg-white px-2 py-4 lg:gap-4 lg:px-4 lg:py-2">
+          <div className="flex flex-row items-center justify-between gap-2 rounded-[10px] bg-white px-2 py-4 lg:gap-4 lg:px-4 lg:py-2">
             <h4 className="text-[14px] font-semibold text-blue lg:text-lg">
               Filtrer par :{' '}
             </h4>

@@ -15,7 +15,7 @@ export const FlyForm: React.FC<VolProps> = (props) => {
   return (
     <div className="w-full">
       <div
-        className={`flex justify-start rounded-t-[15px] bg-[#EAF0F0] p-4${
+        className={`flex justify-start rounded-t-[15px] bg-[#EAF0F0] p-4 ${
           selectedTab === 2 ? 'w-[32%]' : 'w-[38%]'
         }`}
       >

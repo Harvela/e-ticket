@@ -15,9 +15,7 @@ export const FlyForm: React.FC<VolProps> = (props) => {
   return (
     <div className="w-full">
       <div
-        className={`flex justify-start rounded-t-[15px] bg-[#EAF0F0] p-4 ${
-          selectedTab === 2 ? 'w-[100%] lg:w-[32%]' : 'w-[100%] lg:w-[38%]'
-        }`}
+        className={`flex w-full justify-start rounded-t-[15px] bg-[#EAF0F0] p-4 md:w-fit`}
       >
         <div className="flex flex-row items-center gap-4">
           <button
@@ -43,7 +41,7 @@ export const FlyForm: React.FC<VolProps> = (props) => {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-1 items-center justify-between gap-4 rounded-b-[15px] bg-[#EAF0F0] p-4 md:flex md:flex-row md:pt-4 lg:flex lg:flex-row lg:rounded-r-[15px] lg:px-4 lg:pt-4">
+      <div className="grid grid-cols-1 items-center justify-between gap-4 rounded-b-[15px] bg-[#EAF0F0] p-4 md:flex md:flex-row md:justify-evenly md:pt-4 lg:flex lg:flex-row lg:rounded-r-[15px] lg:px-4 lg:pt-4">
         <Input
           name="text"
           label="Vous venez d'ou?"
@@ -73,7 +71,7 @@ export const FlyForm: React.FC<VolProps> = (props) => {
           type="date"
           label="Date de départ"
           placeholder="Goma"
-          style="lg:border lg:border-l-2 border-blue/10 border-r-0 border-t-0 border-b-0 lg:pl-4"
+          style=" lg:pl-4"
           onChange={(e: any) => {
             props.setData({
               ...props.data,
@@ -87,7 +85,7 @@ export const FlyForm: React.FC<VolProps> = (props) => {
             type="date"
             label="Date d'arrivée"
             placeholder="Goma"
-            style="lg:border lg:border-l-2 border-blue/10 border-r-0 border-t-0 border-b-0 lg:pl-4"
+            style="lg:pl-4"
             onChange={(e: any) => {
               props.setData({
                 ...props.data,
@@ -100,9 +98,8 @@ export const FlyForm: React.FC<VolProps> = (props) => {
           name="date"
           type="number"
           label="Nombre de passagers"
-          icon={<SlArrowDown />}
           placeholder="Goma"
-          style="lg:border lg:border-l-2 border-blue/10 border-r-0 border-t-0 border-b-0 lg:pl-4"
+          style="lg:pl-4"
           onChange={(e: any) => {
             props.setData({
               ...props.data,
@@ -111,12 +108,12 @@ export const FlyForm: React.FC<VolProps> = (props) => {
           }}
         />
         <button
-          className="rounded-[5px] bg-blue px-4 py-[5px] text-sm text-white"
+          className="mt-1 h-[35px] rounded-[5px] bg-blue px-4 py-[5px] text-sm text-white"
           onClick={() => {
             console.log('form');
           }}
         >
-          Soumettre
+          Rechercher
         </button>
       </div>
     </div>

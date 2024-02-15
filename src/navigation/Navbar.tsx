@@ -5,6 +5,7 @@ import { Link } from 'react-scroll';
 
 export type NavbarProps = {
   setOpenModal?: (value: boolean) => void;
+  active?: string;
 };
 
 const customTheme: CustomFlowbiteTheme = {
@@ -29,7 +30,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
   return (
     <Flowbite theme={{ theme: customTheme }}>
       <Navbar
-        className="rounded-xl p-8 md:hidden"
+        className="rounded-xl p-3 md:hidden"
         style={{
           width: '100%',
           zIndex: 40,
@@ -49,7 +50,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
           onClick={() => setIsOpen(!isOpen)}
         />
         <Navbar.Collapse className={isOpen ? 'block' : 'hidden'}>
-          <div className="flex flex-col gap-4">
+          <div className="absolute top-[110px] ml-[5vw] flex w-[80vw] flex-col gap-4  rounded-md bg-white p-5">
             <Link
               activeClass="text-blue font-bold"
               to="/"
@@ -57,7 +58,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
               spy
               offset={-200}
               onClick={() => setIsOpen(false)}
-              className="font-semibold text-white"
+              className="font-semibold text-blue/60"
             >
               Accueil
             </Link>
@@ -68,7 +69,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
               spy
               offset={-100}
               onClick={() => setIsOpen(false)}
-              className="font-semibold text-white"
+              className="font-semibold text-blue/60"
             >
               Horaire de vol
             </Link>
@@ -78,7 +79,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
               smooth
               spy
               onClick={() => setIsOpen(false)}
-              className="font-semibold text-white"
+              className="font-semibold text-blue/60"
             >
               A propos de nous
             </Link>
@@ -88,11 +89,11 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
               smooth
               spy
               onClick={() => setIsOpen(false)}
-              className="font-semibold text-white"
+              className="font-semibold text-blue/60"
             >
               Nos contacts
             </Link>
-            <Link
+            {/* <Link
               activeClass="font-bold border-secondary-900"
               to="pricing"
               smooth
@@ -101,14 +102,14 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
               className="font-semibold text-white"
             >
               Traquer mon billet
-            </Link>
+            </Link> */}
             <Link
               activeClass="text-secondary-900 font-bold border-b-2 border-secondary-900"
               to="pricing"
               smooth
               spy
               offset={-100}
-              className="mt-4 w-[30%] rounded-lg bg-blue px-4 py-1 text-center text-sm font-semibold text-white md:mt-0"
+              className="mt-4 rounded-lg bg-blue px-4 py-1 text-center text-sm font-semibold text-white md:mt-0"
             >
               Deconnexion
             </Link>
@@ -159,7 +160,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
           </Link>
         </Navbar.Collapse>
         <Navbar.Collapse className="flex flex-row items-center">
-          <Link
+          {/* <Link
             activeClass="font-bold border-secondary-900"
             to="pricing"
             smooth
@@ -168,7 +169,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
             className="mt-1 text-[8px] font-semibold text-blue lg:text-sm"
           >
             Traquer mon billet
-          </Link>
+          </Link> */}
           <Link
             activeClass="text-secondary-900 font-bold border-b-2 border-secondary-900"
             to="pricing"

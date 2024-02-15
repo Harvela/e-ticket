@@ -46,7 +46,7 @@ const Input: React.FC<Props> = (props: Props) => {
   const [selectedDate, setSelectedDate] = React.useState<any>(null);
 
   return (
-    <div className={`sm:mb-5 ${style}`}>
+    <div className={`sm:mb-5 ${style} flex-1`}>
       {label && (
         <span className="mb-2 flex flex-row items-center gap-1 text-[12px] font-semibold text-blue">
           {label}

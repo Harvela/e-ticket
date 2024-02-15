@@ -1,6 +1,6 @@
 import { Meta } from '../layout/Meta';
 import { AppConfig } from '../utils/AppConfig';
-import { FlightSchedule } from './FlightSchedule';
+import { Hero } from './Hero';
 
 const Base = () => {
   return (
@@ -26,10 +26,10 @@ const Base = () => {
         <img
           src="/assets/images/home/background.jpg"
           alt="Hero"
-          className="h-full w-full"
+          className="size-full object-cover"
         />
-        <div className="absolute left-0 top-0 h-full w-full bg-blue/20 ">
-          <FlightSchedule />
+        <div className="absolute left-0 top-0 size-full bg-blue/40 ">
+          <Hero />
         </div>
       </div>
       {/* <BookingPage />

@@ -17,7 +17,7 @@ export const Tab: React.FC<TabProps> = ({ tabs }) => {
   return (
     <div className="h-full">
       <div className="flex w-full flex-col items-center gap-2">
-        <div className="flex w-full flex-row items-center justify-between rounded-[10px] bg-blue px-4 py-2 text-sm">
+        <div className="flex w-full flex-row items-center justify-between rounded-[10px] bg-blue px-4 py-2 text-[12px] lg:text-sm">
           {tabs.map((tab, index) => (
             <a
               key={index}
@@ -25,7 +25,7 @@ export const Tab: React.FC<TabProps> = ({ tabs }) => {
               onClick={() => handleTabClick(index)}
               className={`rounded-lg font-semibold ${
                 currentTab === index
-                  ? 'bg-white px-4 py-1 text-blue'
+                  ? 'bg-white px-2 py-1 text-blue lg:px-4'
                   : 'text-white hover:bg-white hover:px-4 hover:py-1 hover:text-blue'
               }`}
             >

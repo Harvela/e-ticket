@@ -26,10 +26,10 @@ const SearchInput: React.FC<Props> = (props: Props) => {
   // };
   // const debouncedChangeHandler = React.useMemo(() => debounce(changeHandler, 1000), []);
   return (
-    <div className={`px-2 md:px-2  ${style}`}>
+    <div className={`md:px-2 lg:px-2  ${style}`}>
       <input
         type={type || 'text'}
-        className={`${bgColor} w-full rounded-[8px] border-0 px-4 py-1 text-[12px] focus:outline-0`}
+        className={`${bgColor} w-full rounded-[8px] border-0 px-2 py-1 text-[12px] focus:outline-0 lg:px-4`}
         placeholder={placeholder}
         defaultValue={defaultValue}
         // onChange={debouncedChangeHandler}

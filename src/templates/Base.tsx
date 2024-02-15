@@ -1,6 +1,6 @@
 import { Meta } from '../layout/Meta';
 import { AppConfig } from '../utils/AppConfig';
-import { Hero } from './Hero';
+import { FlightSchedule } from './FlightSchedule';
 
 const Base = () => {
   return (
@@ -29,7 +29,7 @@ const Base = () => {
           className="h-full w-full"
         />
         <div className="absolute left-0 top-0 h-full w-full bg-blue/20 ">
-          <Hero />
+          <FlightSchedule />
         </div>
       </div>
       {/* <BookingPage />

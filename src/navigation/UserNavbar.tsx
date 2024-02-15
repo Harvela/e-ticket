@@ -4,7 +4,6 @@ import React from 'react';
 import { Link } from 'react-scroll';
 
 export type NavbarProps = {
-  // Prop types go here
   setOpenModal?: (value: boolean) => void;
 };
 

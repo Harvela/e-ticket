@@ -30,34 +30,38 @@ const FlightSchedule: React.FC = () => {
     <Background color="">
       <div
         id="home"
-        className="flex h-[100vh] flex-col items-center gap-8 p-4 lg:justify-between lg:px-16"
+        className="flex h-[100vh] flex-col items-center p-4 lg:px-16"
       >
-        <Navbar />
-        <div className="flex w-full flex-col justify-between md:flex-row md:items-center">
-          <h3 className="mb-4 text-lg font-semibold text-white lg:mb-0">
-            Notre horaire de vol
+        <div className="fixed w-[100vw] p-4 md:w-full md:px-16">
+          <Navbar />
+        </div>
+        <div className="mt-[100px] flex w-full flex-col md:flex-row  md:justify-between md:gap-10">
+          <h3 className="mb-4 text-lg font-semibold uppercase text-white lg:mb-0">
+            Nos horaires de vol
           </h3>
-          <div className="flex flex-row items-center justify-between gap-2 rounded-[10px] bg-white px-2 py-4 lg:gap-4 lg:px-4 lg:py-2">
-            <h4 className="text-[14px] font-semibold text-blue lg:text-lg">
-              Filtrer par :{' '}
+          <div className="flex flex-col rounded-[10px] bg-white px-5 py-4 lg:px-4 lg:py-2">
+            <h4 className="pb-4 text-[14px] font-semibold text-blue md:pb-0 lg:text-[16px]">
+              Filtres
             </h4>
-            <div className="flex flex-col gap-2 md:flex-row md:items-center">
-              <span className="text-sm">Ville de depart</span>
-              <SearchInput
-                placeholder={'Where are you going?'}
-                callback={undefined}
-              />
-            </div>
-            <div className="flex flex-col gap-2 md:flex-row md:items-center">
-              <span className="text-sm">Ville d arriver</span>
-              <SearchInput
-                placeholder={'Where are you going?'}
-                callback={undefined}
-              />
+            <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between lg:gap-4 ">
+              <div className="flex flex-col gap-2 md:flex-row md:items-center">
+                <span className="text-sm">Ville de depart</span>
+                <SearchInput
+                  placeholder={'Where are you going?'}
+                  callback={undefined}
+                />
+              </div>
+              <div className="flex flex-col gap-2 md:flex-row md:items-center">
+                <span className="text-sm">Ville d arriver</span>
+                <SearchInput
+                  placeholder={'Where are you going?'}
+                  callback={undefined}
+                />
+              </div>
             </div>
           </div>
         </div>
-        <div className="w-full">
+        <div className="mt-[60px] w-full">
           <Tab tabs={tabs} />
         </div>
 

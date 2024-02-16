@@ -13,7 +13,10 @@ const MyReservations: React.FC = () => {
       >
         <UserNavbar />
 
-        <div className="w-full overflow-hidden rounded-[10px]">
+        <div className="w-full overflow-hidden rounded-[5px]">
+          <h1 className="mb-5 text-[16px] font-bold text-blue">
+            Mes reservations
+          </h1>
           <table className="w-full">
             <thead className="bg-blue text-blue">
               <tr className="">

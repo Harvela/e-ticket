@@ -17,16 +17,16 @@ export const Tab: React.FC<TabProps> = ({ tabs }) => {
   return (
     <div className="h-full">
       <div className="flex w-full flex-col items-center gap-2">
-        <div className="flex w-full flex-row items-center justify-between rounded-[10px] bg-blue px-4 py-2 text-[12px] lg:text-sm">
+        <div className="flex w-full flex-row items-center gap-4  overflow-x-scroll rounded-[10px] bg-blue px-4 py-2 text-[14px] lg:text-[14px]">
           {tabs.map((tab, index) => (
             <a
               key={index}
               href="#"
               onClick={() => handleTabClick(index)}
-              className={`rounded-lg font-semibold ${
+              className={`flex-1 cursor-pointer rounded-lg px-4 font-semibold  ${
                 currentTab === index
-                  ? 'bg-white px-2 py-1 text-blue lg:px-4'
-                  : 'text-white hover:bg-white hover:px-4 hover:py-1 hover:text-blue'
+                  ? 'bg-white  text-blue '
+                  : 'text-white hover:bg-white  hover:text-blue'
               }`}
             >
               {tab.label}

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import FlightDetailsPage from '@/components/booking/flightDetails';
 import PassengerForm from '@/components/booking/passengerForm';
 import { Navbar } from '@/navigation/Navbar';
 
@@ -9,7 +8,7 @@ const BookingPage: React.FC = () => {
     <div id="home" className="flex h-[100vh] flex-col items-center px-16 py-4">
       <Navbar />
       <div className=" m-auto flex w-full flex-col gap-4">
-        <FlightDetailsPage />
+        {/* <FlightDetailsPage /> */}
         <PassengerForm />
       </div>
     </div>

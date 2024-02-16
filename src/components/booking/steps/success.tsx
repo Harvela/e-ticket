@@ -3,13 +3,13 @@ import { LuCheckCircle } from 'react-icons/lu';
 
 const BookingSuccess: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-8">
-      <h2 className="flex flex-row items-center gap-4 text-lg font-bold text-blue">
+    <div className="flex h-[60vh] flex-col items-center justify-center gap-10">
+      <h2 className="flex flex-row items-center gap-4 text-xl font-bold text-blue">
         <LuCheckCircle />
         PAIEMENT RECU
       </h2>
 
-      <p className="text-md text-center text-black lg:w-[50%]">
+      <p className="text-md text-center text-black lg:w-[40%]">
         Merci beaucoup pour votre achat, le code de votre billet est EDEDFER.
         Veuillez vous presenter avec lors de votre voyage.
       </p>

@@ -62,6 +62,7 @@ module.exports = {
         900: '#1a202c',
       },
       blue: '#124069',
+      red: '#B22500',
     },
     extend: {
       colors: {
@@ -102,6 +103,7 @@ module.exports = {
           900: '#1a202c',
         },
         blue: '#124069',
+        red: '#B22500',
       },
       lineHeight: {
         hero: '4.5rem',

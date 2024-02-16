@@ -1,6 +1,7 @@
 export const flights = [
   {
     id: '1',
+    company: 'Congo Airways',
     name: '51-IFB',
     number: '900',
     departure: 'KINSHASA',
@@ -10,6 +11,7 @@ export const flights = [
   },
   {
     id: '2',
+    company: 'CAA',
     name: '51-IFB',
     number: '900',
     departure: 'KINSHASA',
@@ -19,6 +21,7 @@ export const flights = [
   },
   {
     id: '3',
+    company: 'Jambo Jet',
     name: '51-IFB',
     number: '900',
     departure: 'KINSHASA',
@@ -28,6 +31,7 @@ export const flights = [
   },
   {
     id: '4',
+    company: 'Congo Airways',
     name: '51-IFB',
     number: '900',
     departure: 'KINSHASA',

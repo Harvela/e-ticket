@@ -13,7 +13,7 @@ const PassengerForm: React.FC = () => {
   };
 
   return (
-    <div className="w-full rounded-[15px] bg-white p-6">
+    <div className="w-full rounded-[15px] bg-[#EAF0F0] p-8">
       {step === 1 && <PassengerInfo onNextStep={handleNextStep} />}
       {step === 2 && <Payment1Step onNextStep={handleNextStep} />}
       {step === 3 && <Payment2Step onNextStep={handleNextStep} />}

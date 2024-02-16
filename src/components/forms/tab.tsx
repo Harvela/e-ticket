@@ -17,7 +17,7 @@ export const Tab: React.FC<TabProps> = ({ tabs }) => {
   return (
     <div className="h-full">
       <div className="flex w-full flex-col items-center gap-2">
-        <div className="flex w-full flex-row items-center gap-4  overflow-x-scroll rounded-[10px] bg-blue px-4 py-2 text-[14px] lg:text-[14px]">
+        <div className="flex w-full flex-col items-center gap-4 rounded-[10px] bg-blue p-2 text-[14px] lg:text-[14px]">
           {tabs.map((tab, index) => (
             <a
               key={index}

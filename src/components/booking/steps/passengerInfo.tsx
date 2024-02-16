@@ -7,11 +7,13 @@ const PassengerInfoStep: React.FC<{ onNextStep: () => void }> = ({
 }) => {
   return (
     <div>
-      <h2 className="mb-6 text-[14px] font-bold text-blue">
+      <h2 className="mb-6 text-[14px] uppercase text-blue">ETAPE 1</h2>
+
+      <h2 className="mb-6 text-[16px] font-bold uppercase text-blue">
         INFORMATIONS DU PASSAGER
       </h2>
-      <div className="flex w-full flex-col lg:flex-row lg:gap-32">
-        <div>
+      <div className="flex w-full flex-col lg:flex-row lg:gap-16">
+        <div className="w-full">
           <Input
             name="firstName"
             label="Nom"
@@ -30,7 +32,7 @@ const PassengerInfoStep: React.FC<{ onNextStep: () => void }> = ({
           />
         </div>
 
-        <div>
+        <div className="w-full">
           <Input
             name="secondName"
             label="Post-nom"
@@ -49,7 +51,7 @@ const PassengerInfoStep: React.FC<{ onNextStep: () => void }> = ({
           />
         </div>
 
-        <div>
+        <div className="w-full">
           <Input
             name="lastName"
             label="Prenom"
@@ -70,7 +72,7 @@ const PassengerInfoStep: React.FC<{ onNextStep: () => void }> = ({
         </div>
       </div>
       <button
-        className="mt-2 w-full rounded-[10px] bg-blue px-16 py-2 text-sm text-white lg:w-[17%]"
+        className="mt-2 w-full rounded-[8px] bg-blue px-16 py-2 text-sm text-white lg:w-[17%]"
         onClick={onNextStep}
       >
         Continuer

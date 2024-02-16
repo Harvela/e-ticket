@@ -3,27 +3,10 @@ import Link from 'next/link';
 import React from 'react';
 
 import SearchInput from '@/components/forms/filter';
-import type { TabProps } from '@/components/forms/tab';
-import { Tab } from '@/components/forms/tab';
 import { Navbar } from '@/navigation/Navbar';
 import { flights } from '@/utils/flights';
 
 import { Background } from '../background/Background';
-
-const daysOfWeek = [
-  'LUNDI',
-  'MARDI',
-  'MERCREDI',
-  'JEUDI',
-  'VENDREDI',
-  'SAMEDI',
-  'DIMANCHE',
-];
-
-const tabs: TabProps['tabs'] = daysOfWeek.map((day) => ({
-  label: day,
-  view: <div></div>,
-}));
 
 const FlightSchedule: React.FC = () => {
   return (
@@ -35,34 +18,44 @@ const FlightSchedule: React.FC = () => {
         <div className="fixed w-[100vw] p-4 md:w-full md:px-16">
           <Navbar />
         </div>
-        <div className="mt-[100px] flex w-full flex-col md:flex-row  md:justify-between md:gap-10">
-          <h3 className="mb-4 text-lg font-semibold uppercase text-white lg:mb-0">
+        <div className="mt-[100px] flex w-full flex-col gap-8">
+          <h3 className="text-lg font-bold uppercase text-blue">
             Nos horaires de vol
           </h3>
-          <div className="flex flex-col rounded-[10px] bg-white px-5 py-4 lg:px-4 lg:py-2">
-            <h4 className="pb-4 text-[14px] font-semibold text-blue md:pb-0 lg:text-[16px]">
-              Filtres
-            </h4>
-            <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between lg:gap-4 ">
-              <div className="flex flex-col gap-2 md:flex-row md:items-center">
-                <span className="text-sm">Ville de depart</span>
-                <SearchInput
-                  placeholder={'Where are you going?'}
-                  callback={undefined}
-                />
-              </div>
-              <div className="flex flex-col gap-2 md:flex-row md:items-center">
-                <span className="text-sm">Ville d arriver</span>
-                <SearchInput
-                  placeholder={'Where are you going?'}
-                  callback={undefined}
-                />
-              </div>
+          <div className="mb-8 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div className="border-1 flex flex-col justify-between gap-4 rounded-[8px] border border-[#B3B3B3] pl-4 md:flex-row md:items-center">
+              <span className="text-sm">Jour de la semaine</span>
+              <SearchInput
+                placeholder={'Lundi'}
+                callback={undefined}
+                style="bg-blue rounded-[8px] w-[48%]"
+              />
+            </div>
+            <div className="border-1 flex flex-col justify-between gap-4 rounded-[8px] border border-[#B3B3B3] pl-4 md:flex-row md:items-center">
+              <span className="text-sm">Compagnie</span>
+              <SearchInput
+                placeholder={'Quelle compagnie?'}
+                callback={undefined}
+                style="w-[65%]"
+              />
+            </div>
+            <div className="border-1 flex flex-col justify-between gap-4 rounded-[8px] border border-[#B3B3B3] pl-4 md:flex-row md:items-center">
+              <span className="text-sm">Ville de depart</span>
+              <SearchInput
+                placeholder={'Where are you going?'}
+                callback={undefined}
+                style="w-[55%]"
+              />
+            </div>
+            <div className="border-1 flex flex-col gap-2 rounded-[8px] border border-[#B3B3B3] pl-4 md:flex-row md:items-center">
+              <span className="text-sm">Ville d arriver</span>
+              <SearchInput
+                placeholder={'Where are you going?'}
+                callback={undefined}
+                style="w-[60%]"
+              />
             </div>
           </div>
-        </div>
-        <div className="mt-[60px] w-full">
-          <Tab tabs={tabs} />
         </div>
 
         <div className="flex w-full flex-col overflow-y-scroll rounded-[15px] py-2 md:hidden">
@@ -72,6 +65,10 @@ const FlightSchedule: React.FC = () => {
               key={index}
             >
               <div className="grid grid-cols-2 gap-4">
+                <p className="mt-1 text-[14px] font-bold text-blue">
+                  COMPAGNIE:
+                  <span className="ml-4 text-primary-900">{f.company}</span>
+                </p>
                 <p className="mt-1 text-[14px] font-bold text-blue">
                   AVION:
                   <span className="ml-4 text-primary-900">{f.name}</span>
@@ -102,7 +99,7 @@ const FlightSchedule: React.FC = () => {
                   <span className="ml-4 text-primary-900">{f.arrival}</span>
                 </p>
               </div>
-              <div className="my-4 h-[1px] w-full bg-[#000] bg-opacity-20" />
+              <div className="bg-opacity/20 my-4 h-[1px] w-full bg-[#000]" />
               <Link
                 href={`/flight-details/${f.id}`}
                 className="rounded-lg bg-blue/10 px-4 py-1 text-[14px] font-semibold text-blue"
@@ -117,6 +114,9 @@ const FlightSchedule: React.FC = () => {
           <table className="w-full">
             <thead className="bg-[#F2F3F4] text-blue">
               <tr className="">
+                <th className=" py-4 pl-5 text-left text-[14px] font-semibold text-blue">
+                  COMPAGNIE
+                </th>
                 <th className=" py-4 pl-5 text-left text-[14px] font-semibold text-blue">
                   AVION
                 </th>
@@ -141,6 +141,9 @@ const FlightSchedule: React.FC = () => {
             <tbody>
               {flights.map((f, index) => (
                 <tr key={index} className="bg-white">
+                  <td className="py-4 pl-5 text-left text-sm font-semibold text-blue">
+                    {f.company}
+                  </td>
                   <td className="py-4 pl-5 text-left text-sm font-semibold text-blue">
                     {f.name}
                   </td>

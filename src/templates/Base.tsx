@@ -1,6 +1,6 @@
 import { Meta } from '../layout/Meta';
 import { AppConfig } from '../utils/AppConfig';
-import { FlightSchedule } from './FlightSchedule';
+import BookingPage from './Booking';
 
 const Base = () => {
   return (
@@ -17,7 +17,7 @@ const Base = () => {
         </div>
       </div> */}
 
-      <div
+      {/* <div
         style={{
           background:
             'linear-gradient(to bottom, rgb(175, 208, 241, 0), rgb(34, 58, 96, 0.4))',
@@ -25,9 +25,9 @@ const Base = () => {
         className="absolute left-0 top-0 size-full h-[100vh]"
       >
         <FlightSchedule />
-      </div>
+      </div> */}
 
-      {/* <div className="relative h-[100vh]">
+      <div className="relative h-[100vh]">
         <img
           src="/assets/images/home/background.jpg"
           alt="Hero"
@@ -36,7 +36,7 @@ const Base = () => {
         <div className="absolute left-0 top-0 size-full bg-blue/40 ">
           <BookingPage />
         </div>
-      </div> */}
+      </div>
       {/* <BookingPage />
       <Hero />
       <FlightSchedule /> */}

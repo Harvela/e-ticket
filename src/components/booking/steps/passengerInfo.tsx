@@ -7,7 +7,7 @@ const PassengerInfoStep: React.FC<{ onNextStep: () => void }> = ({
 }) => {
   return (
     <div>
-      <h2 className="mb-6 text-[14px] uppercase text-blue">ETAPE 1</h2>
+      <h2 className="mb-6 text-[14px] uppercase text-blue">ETAPE 2</h2>
 
       <h2 className="mb-6 text-[16px] font-bold uppercase text-blue">
         INFORMATIONS DU PASSAGER

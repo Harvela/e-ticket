@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import React from 'react';
 
-import SearchInput from '@/components/forms/filter';
+import { Filters } from '@/components/filter';
 import { Navbar } from '@/navigation/Navbar';
 import { flights } from '@/utils/flights';
 
@@ -22,40 +22,7 @@ const FlightSchedule: React.FC = () => {
           <h3 className="text-lg font-bold uppercase text-blue">
             Nos horaires de vol
           </h3>
-          <div className="mb-8 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-            <div className="border-1 flex flex-col justify-between gap-4 rounded-[8px] border border-[#B3B3B3] pl-4 md:flex-row md:items-center">
-              <span className="text-sm">Jour de la semaine</span>
-              <SearchInput
-                placeholder={'Lundi'}
-                callback={undefined}
-                style="bg-blue rounded-[8px] w-[48%]"
-              />
-            </div>
-            <div className="border-1 flex flex-col justify-between gap-4 rounded-[8px] border border-[#B3B3B3] pl-4 md:flex-row md:items-center">
-              <span className="text-sm">Compagnie</span>
-              <SearchInput
-                placeholder={'Quelle compagnie?'}
-                callback={undefined}
-                style="w-[65%]"
-              />
-            </div>
-            <div className="border-1 flex flex-col justify-between gap-4 rounded-[8px] border border-[#B3B3B3] pl-4 md:flex-row md:items-center">
-              <span className="text-sm">Ville de depart</span>
-              <SearchInput
-                placeholder={'Where are you going?'}
-                callback={undefined}
-                style="w-[55%]"
-              />
-            </div>
-            <div className="border-1 flex flex-col gap-2 rounded-[8px] border border-[#B3B3B3] pl-4 md:flex-row md:items-center">
-              <span className="text-sm">Ville d arriver</span>
-              <SearchInput
-                placeholder={'Where are you going?'}
-                callback={undefined}
-                style="w-[60%]"
-              />
-            </div>
-          </div>
+          <Filters />
         </div>
 
         <div className="flex w-full flex-col overflow-y-scroll rounded-[15px] py-2 md:hidden">

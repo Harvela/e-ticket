@@ -11,13 +11,12 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
 
   return (
     <div>
-      <div className="mb-4 flex flex-row justify-between gap-8 lg:mb-0">
-        <div className="w-[70%]">
-          <h2 className="mb-6 text-[14px] uppercase text-blue">ETAPE 2</h2>
-          <h2 className="mb-8 text-[16px] font-bold uppercase text-blue">
-            PAIEMENT
-          </h2>
-
+      <h2 className="mb-6 text-[14px] uppercase text-blue">ETAPE 3</h2>
+      <h2 className="mb-8 text-[16px] font-bold uppercase text-blue">
+        PAIEMENT
+      </h2>
+      <div className="mb-4 flex flex-col-reverse justify-between gap-8 lg:mb-0 lg:h-[70vh] lg:flex-row">
+        <div className="w-full lg:w-[70%]">
           {paymentsVol.map((vol, index) => (
             <div key={index}>
               <div className="flex w-full flex-row items-center justify-between font-bold text-black">
@@ -30,14 +29,14 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
               {isVolOpen && (
                 <div className="">
                   {vol.details.map((d, i) => (
-                    <div key={i} className="my-6 rounded-[8px] bg-blue/5 p-4">
+                    <div key={i} className="my-4 rounded-[8px] bg-blue/5 p-6">
                       <div className="flex flex-row items-center justify-between">
                         <h4 className="text-[16px] text-blue">{d.company}</h4>
                         <p className="font-bold text-red">{d.price}</p>
                       </div>
 
                       <div className="mt-4 flex flex-row items-center justify-between">
-                        <div className="flex w-[33%] flex-row items-center justify-between rounded-[8px] bg-red/5 px-4 py-1">
+                        <div className="flex w-[45%] flex-row items-center justify-between rounded-[8px] bg-red/5 px-4 py-1 lg:w-[33%]">
                           <span className="text-[14px] text-blue">
                             {d.departure}
                           </span>
@@ -45,11 +44,11 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                             {d.depTime}
                           </span>
                         </div>
-                        <div className="flex w-[33%] flex-row items-center justify-center text-blue/60">
-                          <div className="mr-[-10px] h-[1px] w-24 bg-blue/60" />
+                        <div className="flex w-[10%] flex-row items-center justify-center text-blue/60 lg:w-[33%]">
+                          <div className="mr-[-10px] h-[1px] w-8 bg-blue/60 lg:w-24" />
                           <IoIosArrowForward />
                         </div>
-                        <div className="flex w-[33%] flex-row items-center justify-between rounded-[8px] bg-red/5 px-4 py-1">
+                        <div className="flex w-[40%] flex-row items-center justify-between rounded-[8px] bg-red/5 px-4 py-1 lg:w-[33%]">
                           <span className="text-[14px] text-blue">
                             {d.arrival}
                           </span>
@@ -77,7 +76,7 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
               {isPasOpen && (
                 <div className="">
                   {pas.passenger.map((p, i) => (
-                    <div key={i} className="my-6 rounded-[8px] bg-blue/5 p-4">
+                    <div key={i} className="my-4 rounded-[8px] bg-blue/5 p-6">
                       <div className="flex flex-row items-center justify-between">
                         <div className="flex flex-row items-center gap-4">
                           <p className="text-blue">Nom complet:</p>
@@ -111,7 +110,7 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
               {isPriceOpen && (
                 <div className="">
                   {price.price.map((p, i) => (
-                    <div key={i} className="my-6 rounded-[8px] bg-blue/5 p-4">
+                    <div key={i} className="my-4 rounded-[8px] bg-blue/5 p-6">
                       <div className="flex flex-row items-center justify-between">
                         <div className="flex flex-row items-center gap-4">
                           <p className="text-blue">Nom complet:</p>
@@ -133,7 +132,7 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
             </div>
           ))}
         </div>
-        <div className="flex h-[40%] w-[25%] flex-col gap-2 rounded-[8px] bg-blue p-8 text-white lg:gap-6">
+        <div className="flex w-full flex-col gap-2 rounded-[8px] bg-blue p-8 text-white lg:h-[60%] lg:w-[25%] lg:gap-6">
           <p className="text-[12px] font-bold lg:text-[14px]">TOTAL</p>
           <p className="mb-2 text-2xl font-semibold">200 USD</p>
           <button

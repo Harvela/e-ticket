@@ -10,51 +10,65 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
   const [isPriceOpen, setIsPriceOpen] = useState(false);
 
   return (
-    <div>
-      <h2 className="mb-6 text-[14px] uppercase text-blue">ETAPE 3</h2>
+    <div className="h-[70vh] overflow-y-auto p-0 md:p-10">
+      <h2 className="mb-6 text-[14px] uppercase text-blue">
+        ETAPE 3/5 <span className="mx-4">|</span> RESUME ET PRIX
+      </h2>
       <h2 className="mb-8 text-[16px] font-bold uppercase text-blue">
         PAIEMENT
       </h2>
-      <div className="mb-4 flex flex-col-reverse justify-between gap-8 lg:mb-0 lg:h-[70vh] lg:flex-row">
+      <div className="mb-4 flex flex-col-reverse justify-between gap-8 overflow-y-scroll lg:mb-0 lg:h-[60vh] lg:flex-row">
         <div className="w-full lg:w-[70%]">
           {paymentsVol.map((vol, index) => (
             <div key={index}>
-              <div className="flex w-full flex-row items-center justify-between font-bold text-black">
+              <div className="flex w-full flex-row items-center justify-between text-[16px] font-medium text-black">
                 <h3>{vol.name}</h3>
                 <button onClick={() => setIsVolOpen(!isVolOpen)}>
                   {isVolOpen ? <SlArrowUp /> : <SlArrowDown />}
                 </button>
               </div>
-              <div className="mt-2 h-[1px] w-full bg-black" />
+              <div className="mt-2 h-[1px] w-full bg-blue" />
               {isVolOpen && (
                 <div className="">
-                  {vol.details.map((d, i) => (
-                    <div key={i} className="my-4 rounded-[8px] bg-blue/5 p-6">
-                      <div className="flex flex-row items-center justify-between">
-                        <h4 className="text-[16px] text-blue">{d.company}</h4>
-                        <p className="font-bold text-red">{d.price}</p>
-                      </div>
+                  {vol.details.map((d) => (
+                    <div key={index}>
+                      <div className="my-4  flex w-full flex-col items-center justify-between gap-16 rounded-[8px] bg-blue/5 p-4  md:flex-row md:gap-4 lg:p-5">
+                        <div className="lg-grow w-full">
+                          <div className="flex flex-row items-center justify-between">
+                            <h4 className="text-[14px] font-bold text-blue">
+                              {d.company}
+                            </h4>
+                            <p className="text-[14px] font-semibold text-red">
+                              Prix - {d.price}
+                            </p>
+                          </div>
 
-                      <div className="mt-4 flex flex-row items-center justify-between">
-                        <div className="flex w-[45%] flex-row items-center justify-between rounded-[8px] bg-red/5 px-4 py-1 lg:w-[33%]">
-                          <span className="text-[14px] text-blue">
-                            {d.departure}
-                          </span>
-                          <span className="text-[14px] font-bold text-blue">
-                            {d.depTime}
-                          </span>
-                        </div>
-                        <div className="flex w-[10%] flex-row items-center justify-center text-blue/60 lg:w-[33%]">
-                          <div className="mr-[-10px] h-[1px] w-8 bg-blue/60 lg:w-24" />
-                          <IoIosArrowForward />
-                        </div>
-                        <div className="flex w-[40%] flex-row items-center justify-between rounded-[8px] bg-red/5 px-4 py-1 lg:w-[33%]">
-                          <span className="text-[14px] text-blue">
-                            {d.arrival}
-                          </span>
-                          <span className="text-[14px] font-bold text-blue">
-                            {d.arrTime}
-                          </span>
+                          <div className="mt-4 flex flex-row items-center ">
+                            <div className="flex flex-row items-center justify-between gap-5 rounded-[8px] bg-red/20 px-4 py-1">
+                              <span className="text-[12px] font-semibold text-blue">
+                                {d.departure}
+                              </span>
+                              <span className="text-[12px] font-semibold text-blue">
+                                {d.depTime}
+                              </span>
+                            </div>
+                            <div className="mx-5 flex flex-row items-center justify-center text-blue/60">
+                              <div className="mr-[-10px] h-[1px] w-8 bg-blue/60 lg:w-[30px]" />
+                              <IoIosArrowForward />
+                            </div>
+                            <div className="flex flex-row items-center justify-between gap-5 rounded-[8px] bg-blue/20 px-4 py-1">
+                              <span className="text-[12px] font-semibold text-blue">
+                                {d.arrival}
+                              </span>
+                              <span className="text-[12px] font-semibold text-blue">
+                                {d.arrTime}
+                              </span>
+                            </div>
+                            <h4 className="ml-auto text-[14px] font-bold text-blue">
+                              Temps de vol
+                              <span className="ml-4 text-red">2h30</span>
+                            </h4>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -66,28 +80,28 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
 
           {paymentsPass.map((pas, index) => (
             <div key={index} className="my-4">
-              <div className="flex w-full flex-row items-center justify-between font-bold text-black">
+              <div className="flex w-full flex-row items-center justify-between text-[16px] font-medium text-black">
                 <h3>{pas.name}</h3>
                 <button onClick={() => setIsPasOpen(!isPasOpen)}>
                   {isPasOpen ? <SlArrowUp /> : <SlArrowDown />}
                 </button>
               </div>
-              <div className="mt-2 h-[1px] w-full bg-black" />
+              <div className="mt-2 h-[1px] w-full bg-blue" />
               {isPasOpen && (
                 <div className="">
                   {pas.passenger.map((p, i) => (
                     <div key={i} className="my-4 rounded-[8px] bg-blue/5 p-6">
                       <div className="flex flex-row items-center justify-between">
                         <div className="flex flex-row items-center gap-4">
-                          <p className="text-blue">Nom complet:</p>
+                          <p className="text-blue">Nom complet :</p>
                           <h4 className="text-[16px] font-bold text-blue">
                             {p.name}
                           </h4>
                         </div>
                         <div className="flex flex-row items-center gap-4">
-                          <p className="text-blue">N. Siege:</p>
+                          <p className="text-blue">Sexe : </p>
                           <h4 className="text-[16px] font-bold text-blue">
-                            {p.sit}
+                            MASCULIN
                           </h4>
                         </div>
                       </div>
@@ -100,27 +114,25 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
 
           {paymentsPrice.map((price, index) => (
             <div key={index}>
-              <div className="flex w-full flex-row items-center justify-between font-bold text-black">
+              <div className="flex w-full flex-row items-center justify-between text-[16px] font-medium text-black">
                 <h3>{price.name}</h3>
                 <button onClick={() => setIsPriceOpen(!isPriceOpen)}>
                   {isPriceOpen ? <SlArrowUp /> : <SlArrowDown />}
                 </button>
               </div>
-              <div className="mt-2 h-[1px] w-full bg-black" />
+              <div className="mt-2 h-[1px] w-full bg-blue" />
               {isPriceOpen && (
-                <div className="">
+                <div className="mt-4 overflow-y-scroll rounded-[10px] bg-blue/5">
                   {price.price.map((p, i) => (
-                    <div key={i} className="my-4 rounded-[8px] bg-blue/5 p-6">
+                    <div key={i} className="my-4 rounded-[8px]  px-6 py-2">
                       <div className="flex flex-row items-center justify-between">
                         <div className="flex flex-row items-center gap-4">
-                          <p className="text-blue">Nom complet:</p>
-                          <h4 className="text-[16px] font-bold text-blue">
+                          <p className="text-[14px] font-semibold text-blue">
                             {p.name}
-                          </h4>
+                          </p>
                         </div>
                         <div className="flex flex-row items-center gap-4">
-                          <p className="text-blue">N. Siege:</p>
-                          <h4 className="text-[16px] font-bold text-blue">
+                          <h4 className="text-[16px] font-semibold text-blue">
                             {p.sit}
                           </h4>
                         </div>
@@ -132,15 +144,17 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
             </div>
           ))}
         </div>
-        <div className="flex w-full flex-col gap-2 rounded-[8px] bg-blue p-8 text-white lg:h-[60%] lg:w-[25%] lg:gap-6">
+        <div className="flex w-full flex-col gap-2 rounded-[8px] bg-blue p-8 text-white lg:h-fit lg:w-[25%] lg:gap-6">
           <p className="text-[12px] font-bold lg:text-[14px]">TOTAL</p>
-          <p className="mb-2 text-2xl font-semibold">200 USD</p>
-          <button
-            className="w-[50%] rounded-[8px] bg-white px-4 py-2 text-sm font-bold text-blue lg:px-8"
-            onClick={onNextStep}
-          >
-            PAYER
-          </button>
+          <div className="flex flex-row justify-between">
+            <p className="mb-2 text-2xl font-semibold">200 USD</p>
+            <button
+              className="rounded-[8px] bg-white px-4 py-1 text-sm font-bold text-blue lg:px-8"
+              onClick={onNextStep}
+            >
+              PAYER
+            </button>
+          </div>
         </div>
       </div>
     </div>

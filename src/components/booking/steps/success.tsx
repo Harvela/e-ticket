@@ -3,7 +3,7 @@ import { LuCheckCircle } from 'react-icons/lu';
 
 const BookingSuccess: React.FC = () => {
   return (
-    <div className="flex h-[60vh] flex-col items-center justify-center gap-10">
+    <div className="flex h-[70vh] flex-col items-center justify-center gap-10">
       <h2 className="flex flex-row items-center gap-4 text-xl font-bold text-blue">
         <LuCheckCircle />
         PAIEMENT RECU

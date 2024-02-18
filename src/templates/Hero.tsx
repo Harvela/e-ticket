@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
         id="home"
         className="flex h-[100vh] flex-col items-center justify-between overflow-y-scroll p-4 pb-[50px] md:px-16"
       >
-        <Navbar />
+        <Navbar active="acceuil" />
         <div className=" flex flex-col items-center justify-between">
           <h1 className="mt-[15vh] text-center text-[30px] font-bold tracking-widest text-white md:mt-4 lg:text-4xl">
             Explorez Des Nouvelles Horisons <br /> Chassez Vos Reves.

@@ -4,7 +4,11 @@ import Input from '@/components/forms/input';
 
 const Payment2Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
   return (
-    <div>
+    <div className="h-[70vh] p-0 md:p-10">
+      <h2 className="mb-6 text-[14px] uppercase text-blue">
+        ETAPE 4/5 <span className="mx-4">|</span> PAIEMENT
+      </h2>
+
       <h2 className="mb-6 text-[14px] font-bold text-blue">PAIEMENT</h2>
 
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-16">

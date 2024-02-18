@@ -16,10 +16,10 @@ const FlightSchedule: React.FC = () => {
         className="flex h-[100vh] flex-col items-center p-4 lg:px-16"
       >
         <div className="fixed w-[100vw] p-4 md:w-full md:px-16">
-          <Navbar />
+          <Navbar active="schedule" />
         </div>
-        <div className="mt-[100px] flex w-full flex-col gap-8">
-          <h3 className="text-lg font-bold uppercase text-blue">
+        <div className="mt-[80px] flex w-full flex-col gap-0 md:flex-row md:items-center md:justify-between">
+          <h3 className="mb-[10px] text-[16px] font-semibold uppercase text-blue md:w-[250px]">
             Nos horaires de vol
           </h3>
           <Filters />
@@ -78,10 +78,10 @@ const FlightSchedule: React.FC = () => {
         </div>
 
         <div className="hidden w-full rounded-[10px] md:block">
-          <table className="w-full">
-            <thead className="bg-[#F2F3F4] text-blue">
-              <tr className="">
-                <th className=" py-4 pl-5 text-left text-[14px] font-semibold text-blue">
+          <table className="w-full rounded-[10px]">
+            <thead className="rounded-[10px]  text-blue">
+              <tr className="rounded-[10px] bg-[#F2F3F4]">
+                <th className=" py-4 pl-5 text-left text-[14px] font-semibold text-blue ">
                   COMPAGNIE
                 </th>
                 <th className=" py-4 pl-5 text-left text-[14px] font-semibold text-blue">
@@ -108,28 +108,28 @@ const FlightSchedule: React.FC = () => {
             <tbody>
               {flights.map((f, index) => (
                 <tr key={index} className="bg-white">
-                  <td className="py-4 pl-5 text-left text-sm font-semibold text-blue">
+                  <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
                     {f.company}
                   </td>
-                  <td className="py-4 pl-5 text-left text-sm font-semibold text-blue">
+                  <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
                     {f.name}
                   </td>
-                  <td className="py-4 pl-5 text-left text-sm font-semibold text-blue">
+                  <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
                     {f.number}
                   </td>
-                  <td className="py-4 pl-5 text-left text-sm font-semibold text-blue">
+                  <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
                     {f.departure}
                   </td>
-                  <td className="py-4 pl-5 text-left text-sm font-semibold text-blue">
+                  <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
                     {f.arrival}
                   </td>
-                  <td className="py-4 pl-5 text-left text-sm font-semibold text-blue">
+                  <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
                     {f.depTime}
                   </td>
-                  <td className="py-4 pl-5 text-left text-sm font-semibold text-blue">
+                  <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
                     {f.arrTime}
                   </td>
-                  <td className="py-4 pl-5 text-left text-sm font-semibold text-blue">
+                  <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
                     <Link
                       href={`/flight-details/${f.id}`}
                       className="rounded-lg bg-blue/20 px-4 py-1 text-[12px] text-blue"

@@ -6,11 +6,13 @@ const PassengerInfoStep: React.FC<{ onNextStep: () => void }> = ({
   onNextStep,
 }) => {
   return (
-    <div>
-      <h2 className="mb-6 text-[14px] uppercase text-blue">ETAPE 2</h2>
+    <div className="h-[70vh] p-0 md:p-10">
+      <h2 className="mb-6 text-[14px] uppercase text-blue">
+        ETAPE 2/5 <span className="mx-4">|</span> PASSAGERS
+      </h2>
 
       <h2 className="mb-6 text-[16px] font-bold uppercase text-blue">
-        INFORMATIONS DU PASSAGER
+        INFORMATIONS DU PASSAGER N 1
       </h2>
       <div className="flex w-full flex-col lg:flex-row lg:gap-16">
         <div className="w-full">

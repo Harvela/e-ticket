@@ -29,7 +29,7 @@ const SearchInput: React.FC<Props> = (props: Props) => {
     <div className={`${style}`}>
       <input
         type={type || 'text'}
-        className={`${bgColor} w-full rounded-[8px] border-0 px-2 py-1 text-[12px] focus:outline-0 lg:px-4`}
+        className={`${bgColor} w-full  rounded-[8px]  border-0 px-2 py-1 text-[12px] focus:outline-0 lg:px-4`}
         placeholder={placeholder}
         defaultValue={defaultValue}
         // onChange={debouncedChangeHandler}

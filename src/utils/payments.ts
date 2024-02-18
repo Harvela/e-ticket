@@ -34,8 +34,16 @@ export const paymentsPrice = [
     name: 'DETAILS DES PRIX',
     price: [
       {
-        name: 'Metre Murhula',
-        sit: '25',
+        name: 'TVA ( 16% )',
+        sit: '25$',
+      },
+      {
+        name: 'Tax 1 ( 16% )',
+        sit: '25$',
+      },
+      {
+        name: 'Tax 2 ( 16% )',
+        sit: '25$',
       },
     ],
   },

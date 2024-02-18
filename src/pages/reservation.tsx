@@ -1,8 +1,9 @@
+import BookingPage from '@/templates/Booking';
+
 import { Meta } from '../layout/Meta';
 import { AppConfig } from '../utils/AppConfig';
-import { Hero } from './Hero';
 
-const Base = () => {
+const Reservation = () => {
   return (
     <div className="text-gray-600 antialiased">
       <Meta title={AppConfig.title} description={AppConfig.description} />
@@ -13,11 +14,11 @@ const Base = () => {
           className="size-full object-cover"
         />
         <div className="absolute left-0 top-0 size-full bg-blue/40 ">
-          <Hero />
+          <BookingPage />
         </div>
       </div>
     </div>
   );
 };
 
-export { Base };
+export default Reservation;

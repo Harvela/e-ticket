@@ -1,7 +1,7 @@
 import type { CustomFlowbiteTheme } from 'flowbite-react';
 import { Flowbite, Navbar } from 'flowbite-react';
+import Link from 'next/link';
 import React, { useState } from 'react';
-import { Link } from 'react-scroll';
 
 export type NavbarProps = {
   setOpenModal?: (value: boolean) => void;
@@ -24,7 +24,7 @@ const customTheme: CustomFlowbiteTheme = {
   },
 };
 
-const NavbarGlobal: React.FC<NavbarProps> = () => {
+const NavbarGlobal: React.FC<NavbarProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -51,46 +51,16 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
         />
         <Navbar.Collapse className={isOpen ? 'block' : 'hidden'}>
           <div className="absolute top-[110px] ml-[5vw] flex w-[80vw] flex-col gap-4  rounded-md bg-white p-5">
-            <Link
-              activeClass="text-blue font-bold"
-              to="/"
-              smooth
-              spy
-              offset={-200}
-              onClick={() => setIsOpen(false)}
-              className="font-semibold text-blue/60"
-            >
+            <Link href="/" className="font-semibold text-blue/60">
               Accueil
             </Link>
-            <Link
-              activeClass="text-blue font-bold"
-              to="/flyhours"
-              smooth
-              spy
-              offset={-100}
-              onClick={() => setIsOpen(false)}
-              className="font-semibold text-blue/60"
-            >
+            <Link href="/flyhours" className="font-semibold text-blue/60">
               Horaire de vol
             </Link>
-            <Link
-              activeClass="text-blue font-bold"
-              to="services"
-              smooth
-              spy
-              onClick={() => setIsOpen(false)}
-              className="font-semibold text-blue/60"
-            >
+            <Link href="services" className="font-semibold text-blue/60">
               A propos de nous
             </Link>
-            <Link
-              activeClass="text-blue font-bold"
-              to="team"
-              smooth
-              spy
-              onClick={() => setIsOpen(false)}
-              className="font-semibold text-blue/60"
-            >
+            <Link href="team" className="font-semibold text-blue/60">
               Nos contacts
             </Link>
             {/* <Link
@@ -104,11 +74,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
               Traquer mon billet
             </Link> */}
             <Link
-              activeClass="text-secondary-900 font-bold border-b-2 border-secondary-900"
-              to="pricing"
-              smooth
-              spy
-              offset={-100}
+              href="#"
               className="mt-4 rounded-lg bg-blue px-4 py-1 text-center text-sm font-semibold text-white md:mt-0"
             >
               Deconnexion
@@ -135,29 +101,19 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
         </Navbar.Brand>
         <Navbar.Collapse>
           <Link
-            activeClass="text-blue font-bold"
-            to="/"
-            smooth
-            spy
-            offset={-200}
+            href="/"
+            className={props.active === 'acceuil' ? 'font-bold text-blue' : ''}
           >
             Accueil
           </Link>
           <Link
-            activeClass="text-blue font-bold"
-            to="/flyhours"
-            smooth
-            spy
-            offset={-100}
+            href="/schedule"
+            className={props.active === 'schedule' ? 'font-bold text-blue' : ''}
           >
             Horaire de vol
           </Link>
-          <Link activeClass="text-blue font-bold" to="services" smooth spy>
-            A propos de nous
-          </Link>
-          <Link activeClass="text-blue font-bold" to="team" smooth spy>
-            Nos contact
-          </Link>
+          <Link href="#">A propos de nous</Link>
+          <Link href="#">Nos contact</Link>
         </Navbar.Collapse>
         <Navbar.Collapse className="flex flex-row items-center">
           {/* <Link
@@ -171,11 +127,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
             Traquer mon billet
           </Link> */}
           <Link
-            activeClass="text-secondary-900 font-bold border-b-2 border-secondary-900"
-            to="pricing"
-            smooth
-            spy
-            offset={-100}
+            href="#"
             className="rounded-lg bg-blue px-2 py-1 text-[8px] font-semibold text-white lg:px-4 lg:text-sm"
           >
             Se connecter

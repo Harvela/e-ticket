@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { SlArrowDown } from 'react-icons/sl';
@@ -11,6 +12,7 @@ type VolProps = {
 
 export const FlyForm: React.FC<VolProps> = (props) => {
   const [selectedTab, setSelectedTab] = useState<number>(2);
+  const navigation = useRouter();
 
   return (
     <div className="w-full">
@@ -110,7 +112,7 @@ export const FlyForm: React.FC<VolProps> = (props) => {
         <button
           className="mt-1 h-[35px] rounded-[5px] bg-blue px-4 py-[5px] text-sm text-white"
           onClick={() => {
-            console.log('form');
+            navigation.push('/reservation');
           }}
         >
           Rechercher

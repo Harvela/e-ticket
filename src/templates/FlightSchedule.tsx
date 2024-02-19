@@ -19,7 +19,7 @@ const FlightSchedule: React.FC = () => {
           <Navbar active="schedule" />
         </div>
         <div className="mt-[80px] flex w-full flex-col gap-0 md:flex-row md:items-center md:justify-between">
-          <h3 className="mb-[10px] text-[16px] font-semibold uppercase text-blue md:w-[250px]">
+          <h3 className="mb-[10px] mt-[16px] text-[16px] font-semibold uppercase text-blue md:w-[250px] lg:mt-0">
             Nos horaires de vol
           </h3>
           <Filters />

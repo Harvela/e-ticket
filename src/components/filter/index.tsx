@@ -11,7 +11,7 @@ const Filters: React.FC = () => {
         <SearchInput
           placeholder={'Lundi'}
           callback={undefined}
-          style="rounded-[8px] w-[100px] md:w-full text-[14px] text-white font-bold"
+          style="rounded-[8px] w-[140px] md:w-full text-[14px] text-white font-bold"
           defaultValue={'Lundi , 14/03/2024'}
         />
       </div>

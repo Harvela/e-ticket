@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
@@ -6,11 +8,10 @@ import { SlArrowDown } from 'react-icons/sl';
 import Input from './input';
 
 type VolProps = {
-  setData: (data: any) => void;
   data: any;
 };
 
-export const FlyForm: React.FC<VolProps> = (props) => {
+export const FlyForm: React.FC<VolProps> = () => {
   const [selectedTab, setSelectedTab] = useState<number>(2);
   const navigation = useRouter();
 
@@ -49,24 +50,24 @@ export const FlyForm: React.FC<VolProps> = (props) => {
           label="Vous venez d'ou?"
           icon={<SlArrowDown />}
           placeholder="Kinshasa"
-          onChange={(e: any) => {
-            props.setData({
-              ...props.data,
-              name: e.target.value,
-            });
-          }}
+          // onChange={(e: any) => {
+          //   // props.setData({
+          //   //   ...props.data,
+          //   //   name: e.target.value,
+          //   // });
+          // }}
         />
         <Input
           name="text"
           label="Vous allez où?"
           icon={<SlArrowDown />}
           placeholder="Goma"
-          onChange={(e: any) => {
-            props.setData({
-              ...props.data,
-              name: e.target.value,
-            });
-          }}
+          // onChange={(e: any) => {
+          //   // props.setData({
+          //   //   ...props.data,
+          //   //   name: e.target.value,
+          //   // });
+          // }}
         />
         <Input
           name="date"
@@ -74,12 +75,12 @@ export const FlyForm: React.FC<VolProps> = (props) => {
           label="Date de départ"
           placeholder="Goma"
           style=" lg:pl-4"
-          onChange={(e: any) => {
-            props.setData({
-              ...props.data,
-              name: e.target.value,
-            });
-          }}
+          // onChange={(e: any) => {
+          //   // props.setData({
+          //   //   ...props.data,
+          //   //   name: e.target.value,
+          //   // });
+          // }}
         />
         {selectedTab === 2 && (
           <Input
@@ -88,12 +89,12 @@ export const FlyForm: React.FC<VolProps> = (props) => {
             label="Date d'arrivée"
             placeholder="Goma"
             style="lg:pl-4"
-            onChange={(e: any) => {
-              props.setData({
-                ...props.data,
-                name: e.target.value,
-              });
-            }}
+            // onChange={(e: any) => {
+            //   props.setData({
+            //     ...props.data,
+            //     name: e.target.value,
+            //   });
+            // }}
           />
         )}
         <Input
@@ -102,12 +103,12 @@ export const FlyForm: React.FC<VolProps> = (props) => {
           label="Nombre de passagers"
           placeholder="Goma"
           style="lg:pl-4"
-          onChange={(e: any) => {
-            props.setData({
-              ...props.data,
-              name: e.target.value,
-            });
-          }}
+          // onChange={(e: any) => {
+          //   props.setData({
+          //     ...props.data,
+          //     name: e.target.value,
+          //   });
+          // }}
         />
         <button
           className="mt-1 h-[35px] rounded-[5px] bg-blue px-4 py-[5px] text-sm text-white"

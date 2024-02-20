@@ -1,3 +1,5 @@
+'use client';
+
 import type { CustomFlowbiteTheme } from 'flowbite-react';
 import { Flowbite, Navbar } from 'flowbite-react';
 import Link from 'next/link';
@@ -54,13 +56,13 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
             <Link href="/" className="font-semibold text-blue/60">
               Accueil
             </Link>
-            <Link href="/flyhours" className="font-semibold text-blue/60">
+            <Link href="/schedule" className="font-semibold text-blue/60">
               Horaire de vol
             </Link>
-            <Link href="services" className="font-semibold text-blue/60">
+            <Link href="#" className="font-semibold text-blue/60">
               A propos de nous
             </Link>
-            <Link href="team" className="font-semibold text-blue/60">
+            <Link href="#" className="font-semibold text-blue/60">
               Nos contacts
             </Link>
             {/* <Link

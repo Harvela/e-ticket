@@ -26,9 +26,9 @@ const Hero: React.FC = () => {
         </div>
         <div className="w-full">
           <FlyForm
-            setData={() => {
-              console.log('form');
-            }}
+            // setData={() => {
+            //   console.log('form');
+            // }}
             data={undefined}
           />
         </div>

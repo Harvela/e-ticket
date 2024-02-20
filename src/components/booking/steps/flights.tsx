@@ -1,5 +1,3 @@
-import dayjs from 'dayjs';
-import Link from 'next/link';
 import React from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 
@@ -54,8 +52,8 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                 </div>
 
                 <div className="flex flex-col gap-2 text-[14px]">
-                  <p>{dayjs(vol.depTime).format('DD/MM/YYYY HH:mm')}</p>
-                  <p>{dayjs(vol.arrTime).format('DD/MM/YYYY HH:mm')}</p>
+                  <p>{vol.depTime}</p>
+                  <p>{vol.arrTime}</p>
                 </div>
               </div>
 
@@ -63,12 +61,12 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                 <p className="text-[16px] font-semibold text-red">
                   Prix : {vol.price}
                 </p>
-                <Link
-                  href={`/flight-details/${vol.id}`}
+                <button
                   className="rounded-lg bg-[#B85043] px-4 py-1 text-[14px] text-white"
+                  onClick={onNextStep}
                 >
-                  Selectioner
-                </Link>
+                  Selectionner
+                </button>
               </div>
             </div>
 

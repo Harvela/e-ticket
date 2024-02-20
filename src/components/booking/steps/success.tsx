@@ -15,11 +15,11 @@ const BookingSuccess: React.FC = () => {
       </p>
 
       <div className="flex flex-row items-center gap-4 lg:gap-8">
-        <button className="rounded-[10px] bg-blue px-4 py-2 text-sm text-white lg:px-8">
+        <button className="rounded-[5px] bg-blue px-2 py-1 text-sm text-white md:rounded-[10px] md:px-8 md:py-2">
           Imprimer le biller
         </button>
 
-        <button className="rounded-[10px] border border-blue px-4 py-2 text-sm text-blue lg:px-8">
+        <button className="rounded-[5px] border border-blue px-2 py-1 text-sm text-blue md:rounded-[10px] md:px-8 md:py-2">
           Creer un compte
         </button>
       </div>

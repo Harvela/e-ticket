@@ -28,51 +28,49 @@ const FlightSchedule: React.FC = () => {
         <div className="flex w-full flex-col overflow-y-scroll rounded-[15px] py-2 md:hidden">
           {flights.map((f, index) => (
             <div
-              className="mb-5 min-w-[100%] rounded-[15px] bg-primary-200 p-5 shadow-md shadow-primary-300"
+              className="mb-5 min-w-[100%] rounded-[15px] bg-blue p-5"
               key={index}
             >
-              <div className="grid grid-cols-2 gap-4">
-                <p className="mt-1 text-[14px] font-bold text-blue">
-                  COMPAGNIE:
-                  <span className="ml-4 text-primary-900">{f.company}</span>
-                </p>
-                <p className="mt-1 text-[14px] font-bold text-blue">
-                  AVION:
-                  <span className="ml-4 text-primary-900">{f.name}</span>
-                </p>
-                <p className="mt-1 text-[14px] font-bold text-blue">
-                  N. VOL:
-                  <span className="ml-4 text-primary-900">{f.number}</span>
-                </p>
-                <p className="text-[14px] font-bold text-blue">
-                  HEURE DEP. :
-                  <span className="ml-[10px] mt-[1px] text-primary-900">
-                    {dayjs(f.depTime).format('DD/MM/YYYY HH:mm')}
-                  </span>
-                </p>
-                <p className="text-[14px] font-bold text-blue">
-                  DEPARTURE:
-                  <span className="ml-4 text-primary-900">{f.departure}</span>
-                </p>
-                <p className="text-[14px] font-bold text-blue">
-                  HEURE AR. :
-                  <span className="ml-[10px] mt-[1px] text-primary-900">
-                    {dayjs(f.arrTime).format('DD/MM/YYYY HH:mm')}
-                  </span>
-                </p>
-
-                <p className="text-[14px] font-bold text-blue">
-                  ARRIVAL:
-                  <span className="ml-4 text-primary-900">{f.arrival}</span>
+              <div className="flex flex-row items-center justify-between">
+                <p className="mt-1 text-[14px] text-white">{f.company}</p>
+                <p className="mt-1 text-[14px] text-white">
+                  <span className="mr-2">Vol</span>
+                  {f.number}
                 </p>
               </div>
-              <div className="bg-opacity/20 my-4 h-[1px] w-full bg-[#000]" />
-              <Link
-                href={`/flight-details/${f.id}`}
-                className="rounded-lg bg-blue/10 px-4 py-1 text-[14px] font-semibold text-blue"
-              >
-                Reserver
-              </Link>
+
+              <div className="my-4 flex flex-row items-center justify-between rounded-lg bg-white p-4 text-blue">
+                <div className="flex flex-row items-center justify-between">
+                  <div className="flex flex-col gap-4">
+                    <p>Depart</p>
+                    <p>Arrivee</p>
+                  </div>
+                  <div className="mx-6 h-16 w-[2px] bg-blue" />
+
+                  <div className="flex flex-col gap-4">
+                    <p>{f.departure}</p>
+                    <p>{f.arrival}</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-4">
+                  <p>{dayjs(f.depTime).format('DD/MM/YYYY HH:mm')}</p>
+                  <p>{dayjs(f.arrTime).format('DD/MM/YYYY HH:mm')}</p>
+                </div>
+              </div>
+              <div className="flex flex-row items-center justify-between text-white">
+                <p className="mt-1 text-[14px]">
+                  AVION:
+                  <span className="ml-2">{f.name}</span>
+                </p>
+
+                <Link
+                  href={`/flight-details/${f.id}`}
+                  className="rounded-lg bg-[#B85043] px-4 py-1 text-[14px] text-white"
+                >
+                  Reserver
+                </Link>
+              </div>
             </div>
           ))}
         </div>

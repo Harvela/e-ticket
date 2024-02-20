@@ -20,6 +20,7 @@ const PassengerInfoStep: React.FC<{ onNextStep: () => void }> = ({
             name="firstName"
             label="Nom"
             placeholder="Votre nom"
+            style="mb-4 md:mb-0"
             onChange={() => {
               console.log('any');
             }}
@@ -28,6 +29,7 @@ const PassengerInfoStep: React.FC<{ onNextStep: () => void }> = ({
             name="sex"
             label="Sexe"
             placeholder="sexe"
+            style="mb-4 md:mb-0"
             onChange={() => {
               console.log('any');
             }}
@@ -39,6 +41,7 @@ const PassengerInfoStep: React.FC<{ onNextStep: () => void }> = ({
             name="secondName"
             label="Post-nom"
             placeholder="Votre post-nom"
+            style="mb-4 md:mb-0"
             onChange={() => {
               console.log('any');
             }}
@@ -47,6 +50,7 @@ const PassengerInfoStep: React.FC<{ onNextStep: () => void }> = ({
             name="telephone"
             label="N. de telephone"
             placeholder="votre numero"
+            style="mb-4 md:mb-0"
             onChange={() => {
               console.log('any');
             }}
@@ -58,6 +62,7 @@ const PassengerInfoStep: React.FC<{ onNextStep: () => void }> = ({
             name="lastName"
             label="Prenom"
             placeholder="Votre prenom"
+            style="mb-4 md:mb-0"
             onChange={() => {
               console.log('any');
             }}
@@ -67,6 +72,7 @@ const PassengerInfoStep: React.FC<{ onNextStep: () => void }> = ({
             type="mail"
             label="Address email"
             placeholder="example@gmail.com"
+            style="mb-4 md:mb-0"
             onChange={() => {
               console.log('any');
             }}

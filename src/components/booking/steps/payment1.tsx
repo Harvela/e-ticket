@@ -35,16 +35,16 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                       <div className="my-4  flex w-full flex-col items-center justify-between gap-16 rounded-[8px] bg-blue/5 p-4  md:flex-row md:gap-4 lg:p-5">
                         <div className="lg-grow w-full">
                           <div className="flex flex-row items-center justify-between">
-                            <h4 className="text-[14px] font-bold text-blue">
+                            <h4 className="text-[12px] font-bold text-blue md:text-[14px]">
                               {d.company}
                             </h4>
-                            <p className="text-[14px] font-semibold text-red">
+                            <p className="text-[12px] font-semibold text-red md:text-[14px]">
                               Prix - {d.price}
                             </p>
                           </div>
 
-                          <div className="mt-4 flex flex-row items-center ">
-                            <div className="flex flex-row items-center justify-between gap-5 rounded-[8px] bg-red/20 px-4 py-1">
+                          <div className="mt-4 flex flex-row items-center justify-between">
+                            <div className="flex flex-row items-center justify-between gap-2 rounded-[8px] bg-red/20 px-2 py-1 md:gap-5 md:px-4">
                               <span className="text-[12px] font-semibold text-blue">
                                 {d.departure}
                               </span>
@@ -52,11 +52,11 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                                 {d.depTime}
                               </span>
                             </div>
-                            <div className="mx-5 flex flex-row items-center justify-center text-blue/60">
-                              <div className="mr-[-10px] h-[1px] w-8 bg-blue/60 lg:w-[30px]" />
+                            <div className="mx-2 flex flex-row items-center justify-center text-blue/60 md:mx-5">
+                              <div className="mr-[-10px] h-[1px] w-6 bg-blue/60 lg:w-[30px]" />
                               <IoIosArrowForward />
                             </div>
-                            <div className="flex flex-row items-center justify-between gap-5 rounded-[8px] bg-blue/20 px-4 py-1">
+                            <div className="flex flex-row items-center justify-between gap-2 rounded-[8px] bg-blue/20 px-2 py-1 md:gap-5 md:px-4">
                               <span className="text-[12px] font-semibold text-blue">
                                 {d.arrival}
                               </span>
@@ -64,11 +64,11 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                                 {d.arrTime}
                               </span>
                             </div>
-                            <h4 className="ml-auto text-[14px] font-bold text-blue">
-                              Temps de vol
-                              <span className="ml-4 text-red">2h30</span>
-                            </h4>
                           </div>
+                          <h4 className="ml-auto mt-4 text-[12px] font-bold text-blue md:text-[14px]">
+                            Temps de vol
+                            <span className="ml-4 text-red">2h30</span>
+                          </h4>
                         </div>
                       </div>
                     </div>
@@ -91,16 +91,20 @@ const Payment1Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                 <div className="">
                   {pas.passenger.map((p, i) => (
                     <div key={i} className="my-4 rounded-[8px] bg-blue/5 p-6">
-                      <div className="flex flex-row items-center justify-between">
+                      <div className="flex flex-col justify-between md:flex-row md:items-center">
                         <div className="flex flex-row items-center gap-4">
-                          <p className="text-blue">Nom complet :</p>
-                          <h4 className="text-[16px] font-bold text-blue">
+                          <p className="text-[12px] text-blue md:text-[14px]">
+                            Nom complet :
+                          </p>
+                          <h4 className="text-[14px] font-bold text-blue md:text-[16px]">
                             {p.name}
                           </h4>
                         </div>
                         <div className="flex flex-row items-center gap-4">
-                          <p className="text-blue">Sexe : </p>
-                          <h4 className="text-[16px] font-bold text-blue">
+                          <p className="text-[12px] text-blue md:text-[14px]">
+                            Sexe :{' '}
+                          </p>
+                          <h4 className="text-[14px] font-bold text-blue md:text-[16px]">
                             MASCULIN
                           </h4>
                         </div>

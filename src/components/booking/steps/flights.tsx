@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+import Link from 'next/link';
 import React from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 
@@ -19,11 +21,62 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
         </p>
         {flights.map((vol, index) => (
           <div key={index}>
-            <div className="mb-8  flex w-full flex-col items-center justify-between gap-16 rounded-[8px] bg-blue/5 p-4  md:w-full md:flex-row md:gap-4 lg:p-5">
+            <div className="mb-4 flex w-full flex-col gap-2 rounded-[8px] bg-blue/10 p-4 md:hidden">
+              <div className="flex flex-row items-center justify-between font-bold text-blue">
+                <div className="flex flex-row items-center">
+                  <img
+                    src={vol.logo}
+                    alt="logo"
+                    className="mr-2 size-[30px] rounded-[10px] md:block"
+                  />
+                  <p className="text-[16px]">{vol.company}</p>
+                </div>
+                <p className="text-[16px]">
+                  <span className="mr-2">Vol</span>
+                  {vol.number}
+                </p>
+              </div>
+
+              <div className="my-4 flex flex-row justify-between rounded-lg bg-blue p-4 text-white">
+                <div className="flex flex-row items-center justify-between">
+                  <div className="flex flex-col gap-2 text-[14px]">
+                    <p>Depart</p>
+                    <p>Arrivee</p>
+                    <p>Avion</p>
+                  </div>
+                  <div className="mx-4 h-20 w-[2px] bg-white" />
+
+                  <div className="flex flex-col gap-2 text-[14px]">
+                    <p>{vol.departure}</p>
+                    <p>{vol.arrival}</p>
+                    <p>{vol.name}</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2 text-[14px]">
+                  <p>{dayjs(vol.depTime).format('DD/MM/YYYY HH:mm')}</p>
+                  <p>{dayjs(vol.arrTime).format('DD/MM/YYYY HH:mm')}</p>
+                </div>
+              </div>
+
+              <div className="flex flex-row items-center justify-between">
+                <p className="text-[16px] font-semibold text-red">
+                  Prix : {vol.price}
+                </p>
+                <Link
+                  href={`/flight-details/${vol.id}`}
+                  className="rounded-lg bg-[#B85043] px-4 py-1 text-[14px] text-white"
+                >
+                  Selectioner
+                </Link>
+              </div>
+            </div>
+
+            <div className="mb-8 hidden w-full flex-row items-center justify-between gap-4 rounded-[8px] bg-blue/5 p-5 md:flex">
               <img
                 src={vol.logo}
                 alt="logo"
-                className="mr-6 hidden size-[100px] rounded-[100px] md:block"
+                className="mr-6 size-[100px] rounded-[100px]"
               />
 
               <div className="lg-grow w-full">
@@ -36,7 +89,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                   </p>
                 </div>
 
-                <div className="my-3 flex flex-row items-center ">
+                <div className="my-3 flex flex-row items-center justify-between">
                   <div className="flex flex-row items-center justify-between gap-5 rounded-[8px] bg-red/20 px-4 py-1">
                     <span className="text-[12px] font-semibold text-blue">
                       {vol.departure}
@@ -45,8 +98,8 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                       {vol.depTime}
                     </span>
                   </div>
-                  <div className="mx-5 flex flex-row items-center justify-center text-blue/60">
-                    <div className="mr-[-10px] h-[1px] w-8 bg-blue/60 lg:w-[30px]" />
+                  <div className="mx-2 flex flex-row items-center justify-center text-blue/60 md:mx-5">
+                    <div className="mr-[-10px] h-[1px] w-[50px] bg-blue/60" />
                     <IoIosArrowForward />
                   </div>
                   <div className="flex flex-row items-center justify-between gap-5 rounded-[8px] bg-blue/20 px-4 py-1">

@@ -1,6 +1,7 @@
 import type { CustomFlowbiteTheme } from 'flowbite-react';
 import { Flowbite, Navbar } from 'flowbite-react';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import { Link } from 'react-scroll';
 
 export type NavbarProps = {
@@ -24,22 +25,66 @@ const customTheme: CustomFlowbiteTheme = {
 };
 
 const NavbarGlobal: React.FC<NavbarProps> = () => {
-  // useEffect(() => {
-  //   scroller.scrollTo('home', {
-  //     duration: 800,
-  //     delay: 0,
-  //     smooth: 'easeInOutQuart',
-  //   });
-  // }, []);
+  const [isOpen, setIsOpen] = useState(false);
+  const navigation = useRouter();
+
   return (
     <Flowbite theme={{ theme: customTheme }}>
       <Navbar
-        className="rounded-xl px-2"
+        className="rounded-xl p-3 md:hidden"
         style={{
           width: '100%',
           zIndex: 40,
-          background:
-            'linear-gradient(90deg, rgba(234, 240, 240, 0.5), rgba(234, 240, 240, 0.3))',
+        }}
+      >
+        <div className="flex flex-row items-center gap-2">
+          <Navbar.Toggle
+            className="text-blue"
+            onClick={() => setIsOpen(!isOpen)}
+          />
+          <Navbar.Brand href="#">
+            <img
+              src="/assets/images/home/logo.png"
+              className="h-6 rounded-[4px] bg-white"
+              alt="Logo"
+            />
+          </Navbar.Brand>
+        </div>
+        <Navbar.Collapse className={isOpen ? 'block' : 'hidden'}>
+          <div className="absolute top-[110px] flex w-full flex-col items-start gap-4  rounded-md bg-white p-4">
+            <button
+              onClick={() => {
+                navigation.push('/dashboard');
+              }}
+            >
+              Mes reservations
+            </button>
+            <button
+              onClick={() => {
+                navigation.push('/profile');
+              }}
+            >
+              Mon profile
+            </button>
+          </div>
+        </Navbar.Collapse>
+        <Link
+          activeClass="text-secondary-900 font-bold border-b-2 border-secondary-900"
+          to="pricing"
+          smooth
+          spy
+          offset={-100}
+          className="rounded-lg border border-blue px-2 py-1 text-[12px] text-blue"
+        >
+          Faire une reservation
+        </Link>
+      </Navbar>
+
+      <Navbar
+        className="hidden rounded-xl px-2 md:block"
+        style={{
+          width: '100%',
+          zIndex: 40,
         }}
       >
         <Navbar.Brand href="#">
@@ -51,24 +96,14 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
         </Navbar.Brand>
         <Navbar.Collapse className="flex flex-row items-center">
           <Link
-            activeClass="font-bold border-secondary-900"
-            to="pricing"
-            smooth
-            spy
-            offset={-100}
-            className="mt-1 font-semibold text-blue"
-          >
-            Traquer mon billet
-          </Link>
-          <Link
             activeClass="text-secondary-900 font-bold border-b-2 border-secondary-900"
             to="pricing"
             smooth
             spy
             offset={-100}
-            className="rounded-lg bg-blue px-4 py-1 font-semibold text-white"
+            className="rounded-lg border border-blue px-4 py-1 text-blue"
           >
-            Deconnexion
+            Faire une reservation
           </Link>
         </Navbar.Collapse>
       </Navbar>

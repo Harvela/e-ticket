@@ -1,39 +1,37 @@
+import { useRouter } from 'next/router';
 import React from 'react';
-import { Link } from 'react-scroll';
 
-export type NavbarProps = {
-  setOpenModal?: (value: boolean) => void;
-};
+const tabs = [
+  { label: 'Mes reservations', link: '/dashboard' },
+  { label: 'Mon profile', link: '/profile' },
+];
 
 const AsideNav: React.FC = () => {
+  const [currentTab, setCurrentTab] = React.useState(0);
+  const handleTabClick = (index: number) => {
+    setCurrentTab(index);
+  };
+
+  const navigation = useRouter();
+
   return (
-    <nav className="flex flex-col gap-8 text-white">
-      <Link
-        activeClass="text-blue bg-white py-1 px-4 font-bold cursor"
-        to="/"
-        smooth
-        spy
-        offset={-200}
-      >
-        Mes Reservations
-      </Link>
-      <Link
-        activeClass="text-blue bg-white py-1 px-4 font-bold"
-        to="/flyhours"
-        smooth
-        spy
-        offset={-100}
-      >
-        Mon profile
-      </Link>
-      <Link
-        activeClass="text-blue bg-white py-1 px-4 font-bold"
-        to="services"
-        smooth
-        spy
-      >
-        Mon profile
-      </Link>
+    <nav className="flex h-[50vh] flex-col items-start gap-6 rounded-[10px] border border-[#BDD4E8] bg-[#FDFEFF] p-8 text-[14px] text-blue shadow-md shadow-black/20">
+      {tabs.map((tab, index) => (
+        <button
+          key={index}
+          onClick={() => {
+            navigation.push(tab.link);
+            handleTabClick(index);
+          }}
+          className={`${
+            currentTab === index
+              ? 'rounded-[8px] bg-blue/10 px-4 py-2 font-semibold text-blue'
+              : 'text-blue'
+          }`}
+        >
+          {tab.label}
+        </button>
+      ))}
     </nav>
   );
 };

@@ -3,6 +3,7 @@
 import type { CustomFlowbiteTheme } from 'flowbite-react';
 import { Flowbite, Navbar } from 'flowbite-react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 export type NavbarProps = {
@@ -28,6 +29,7 @@ const customTheme: CustomFlowbiteTheme = {
 
 const NavbarGlobal: React.FC<NavbarProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigation = useRouter();
 
   return (
     <Flowbite theme={{ theme: customTheme }}>
@@ -128,12 +130,14 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
           >
             Traquer mon billet
           </Link> */}
-          <Link
-            href="#"
+          <button
+            onClick={() => {
+              navigation.push('/login');
+            }}
             className="rounded-lg bg-blue px-2 py-1 text-[8px] font-semibold text-white lg:px-4 lg:text-sm"
           >
             Se connecter
-          </Link>
+          </button>
         </Navbar.Collapse>
       </Navbar>
     </Flowbite>

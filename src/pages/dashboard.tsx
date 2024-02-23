@@ -13,9 +13,7 @@ const Dashboard = () => {
             'linear-gradient(to bottom, rgb(255, 255, 255, 0), rgb(34, 58, 96, 0.2))',
         }}
       >
-        <div className="px-6">
-          <UserNavbar />
-        </div>
+        <UserNavbar />
         <DashboardPage />
       </div>
     </div>

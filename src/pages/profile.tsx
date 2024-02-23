@@ -14,9 +14,7 @@ const Profile = () => {
         }}
         className="h-[100vh]"
       >
-        <div className="px-6">
-          <UserNavbar />
-        </div>
+        <UserNavbar />
         <ProfilePage />
       </div>
     </div>

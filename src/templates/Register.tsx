@@ -1,25 +1,41 @@
 import { useRouter } from 'next/router';
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
 
+import { registerUser } from '@/components/forms/hooks/data';
 import Input from '@/components/forms/input';
 
 const RegisterPage: React.FC = () => {
   const navigation = useRouter();
+  const mutation = useMutation(registerUser, {
+    onError: (error) => {
+      console.log(error);
+      // show error message
+    },
+  });
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data: any) => {
+    console.log(data);
+    mutation.mutate({ ...data, username: data.email });
+  };
+
   return (
-    <div className=" m-auto mt-12 flex w-[40%] flex-col items-center justify-between gap-6 rounded-lg bg-white p-8">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className=" m-auto mt-12 flex w-[40%] flex-col items-center justify-between gap-6 rounded-lg bg-white p-8"
+    >
       <img
         src="/assets/images/home/logo.png"
         className="mb-4 h-8 rounded-lg bg-white"
         alt="Logo"
       />
       <Input
-        name="name"
+        name="fullname"
         label="Nom complet"
         placeholder="Nom complet"
         style="mb-4 md:mb-0 w-full"
-        onChange={() => {
-          console.log('any');
-        }}
+        register={register}
       />
       <Input
         name="email"
@@ -27,24 +43,18 @@ const RegisterPage: React.FC = () => {
         type="email"
         placeholder="example@gmail.com"
         style="mb-4 md:mb-0 w-full"
-        onChange={() => {
-          console.log('any');
-        }}
+        register={register}
       />
       <Input
         name="password"
         label="Mot de passe"
         placeholder="Example@2024"
         style="mb-4 md:mb-0 w-full"
-        onChange={() => {
-          console.log('any');
-        }}
+        register={register}
       />
       <button
         className="w-full rounded-[8px] bg-blue px-16 py-2 text-sm text-white"
-        onClick={() => {
-          navigation.push('/reservation');
-        }}
+        type="submit"
       >
         Se connecter
       </button>
@@ -59,7 +69,7 @@ const RegisterPage: React.FC = () => {
           Se connecter
         </button>
       </p>
-    </div>
+    </form>
   );
 };
 

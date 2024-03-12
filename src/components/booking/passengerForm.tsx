@@ -15,11 +15,22 @@ const PassengerForm: React.FC = () => {
     setStep(step + 1);
   };
 
+  const handlePrevStep = () => {
+    setStep(step - 1);
+  };
+
   return (
     <div className="mt-8 w-full rounded-[15px] bg-[#EAF0F0] p-6">
       {step === 1 && <Flights onNextStep={handleNextStep} />}
-      {step === 2 && <PassengerInfo onNextStep={handleNextStep} />}
-      {step === 3 && <Payment1Step onNextStep={handleNextStep} />}
+      {step === 2 && (
+        <PassengerInfo
+          onPrevStep={handlePrevStep}
+          onNextStep={handleNextStep}
+        />
+      )}
+      {step === 3 && (
+        <Payment1Step onPrevStep={handlePrevStep} onNextStep={handleNextStep} />
+      )}
       {step === 4 && <Payment2Step onNextStep={handleNextStep} />}
       {step === 5 && <BookingSuccess />}
     </div>

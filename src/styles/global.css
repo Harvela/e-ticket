@@ -19,3 +19,16 @@ body {
     sans-serif;
   scroll-behavior: smooth;
 }
+
+.css-100ebu3-menu {
+  background-color: #124069;
+  color: white;
+  padding: 10px;
+  margin-left: -10px;
+
+}
+
+input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

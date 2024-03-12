@@ -3,6 +3,12 @@ import React from 'react';
 import Input from '@/components/forms/input';
 
 const Payment2Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
+  // const mutation = useMutation(payWithFlexPay);
+  // const [transaction, setTransaction] = useState<Transaction>();
+  const onPay = () => {
+    // mutation.mutate(1);
+    onNextStep();
+  };
   return (
     <div className="h-[70vh] p-0 md:p-10">
       <h2 className="mb-6 text-[14px] uppercase text-blue">
@@ -32,7 +38,7 @@ const Payment2Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
         </div>
         <button
           className="rounded-[10px] bg-blue px-8 py-2 text-sm text-white"
-          onClick={onNextStep}
+          onClick={onPay}
         >
           CONFIRMER
         </button>

@@ -1,17 +1,50 @@
-import React from 'react';
+import dayjs from 'dayjs';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import { IoMdArrowDropright } from 'react-icons/io';
+import { useQuery } from 'react-query';
 
+import type { Transaction } from '@/components/forms/hooks/data';
+import { findTransactions } from '@/components/forms/hooks/data';
 import { Ticket } from '@/components/ticket';
 
-const TicketPage: React.FC = () => {
+const TicketPage: React.FC<any> = ({ ref }: any) => {
+  const [transaction, setTransaction] = useState<Transaction>();
+  const router = useRouter();
+
+  useEffect(() => {
+    const reference = router.query.ref;
+    if (reference)
+      setTransaction({
+        id: Number.parseInt(reference as string, 10),
+      } as Transaction);
+    else {
+      const transactionJson = JSON.parse(
+        localStorage.getItem('transactions') || '[]',
+      );
+      if (transactionJson.length > 0) {
+        setTransaction(transactionJson[transactionJson.length - 1]);
+      }
+    }
+  }, [router.query.ref]);
+
+  const { data } = useQuery(
+    ['transaction', { id: transaction?.id || '' }],
+    () => findTransactions(transaction?.id?.toString()),
+  );
+
+  if (!data) return null;
+
   return (
-    <div id="ticket" className="p-16 text-black">
+    <div id="ticket" className="p-16 text-black" ref={ref}>
       <div>
         <h2 className="flex flex-row items-center gap-2 font-bold uppercase">
-          <span>09 dec.2023</span>
+          <span>Date de reservation</span>
           <IoMdArrowDropright className="h-4 w-4 text-black" />
-          <span>09 dec.2023</span>
-          <span>Voyage a destination de addis ababa, ethiopia</span>
+          <span>
+            {dayjs(data?.data?.[0]?.attributes?.createdAt).format('DD-MM-YYYY')}
+          </span>
+          <span></span>
         </h2>
       </div>
       <hr className="h-[2px] w-full bg-black" />
@@ -19,11 +52,10 @@ const TicketPage: React.FC = () => {
       <div className="my-2 flex flex-row gap-4">
         <div className="flex w-[50%] flex-col justify-between gap-4 uppercase">
           <p className="flex flex-col gap-1">
-            Prepare pour
-            <span className="text-md font-bold">Mr Murhula Metre Faustin</span>
+            <span className="text-md font-bold">FEZA Airline Company</span>
           </p>
           <p>
-            code de reservation <span>lbsqef</span>
+            Code de reservation <span>FEZ{transaction?.id}</span>
           </p>
         </div>
 
@@ -31,13 +63,15 @@ const TicketPage: React.FC = () => {
           <img
             src="./assets/images/home/kenya.jpg"
             alt="logo"
-            className="h-[100px] w-[50%]"
+            className="ml-auto h-[50px]"
           />
         </div>
       </div>
 
       <div className="w-full">
-        <Ticket />
+        {data?.data?.map?.((ticket, index) => (
+          <Ticket key={`ticket-${index}`} ticket={ticket} />
+        ))}
       </div>
     </div>
   );

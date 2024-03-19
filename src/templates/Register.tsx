@@ -13,6 +13,11 @@ const RegisterPage: React.FC = () => {
       console.log(error);
       // show error message
     },
+    onSuccess: (data) => {
+      window.localStorage.setItem('token', data.jwt);
+      window.localStorage.setItem('user', JSON.stringify(data.user));
+      navigation.push('/dashboard');
+    },
   });
   const { register, handleSubmit } = useForm();
   const onSubmit = (data: any) => {
@@ -51,6 +56,7 @@ const RegisterPage: React.FC = () => {
         placeholder="Example@2024"
         style="mb-4 md:mb-0 w-full"
         register={register}
+        type="password"
       />
       <button
         className="w-full rounded-[8px] bg-blue px-16 py-2 text-sm text-white"

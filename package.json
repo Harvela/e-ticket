@@ -34,6 +34,7 @@
     "react-router-dom": "^6.22.0",
     "react-scroll": "^1.9.0",
     "react-select": "^5.8.0",
+    "react-to-print": "^2.15.1",
     "react-toastify": "^10.0.4",
     "styled-jsx-plugin-postcss": "^4.0.1",
     "universal-cookie": "^7.0.1"

@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 const axios = axiosParent.create({
   baseURL: 'http://localhost:1337',
   headers: {
-    Authorization: `Bearer 9d1124311d38ba200a799bb71cb09758d35914009a4b2c1deca8aece1cfc7300ace841d8bb0b5cc8e01dc87efcecf0cb7bba3e8b0719dc61a38f0148a9791c5a596d47a40150c219666b2a0a425f1774bb079758c912e0cff5ef5d3fd66749644fbf4b1f1c9ec06e6d8eb9088b546a1e202576dd19fe350b61139e9134bf0a36`,
+    Authorization: `Bearer 5322fcfb3a18a809d8d682e434839bfca7628e466e47591a79feb4d629d1315becc6c1c5223af6185fa989be0d83ebc50bf5b0564c09d7e7001a8c4ebba5b4dbde1caf3cc3f3042007715f2def730d750e9b3f1dab801223dfde90d6c759caddc0ba31e51b57bb202ae325ab8e5824cbf6772dd5297d011c02b4e261bf95668e`,
   },
 });
 
@@ -110,18 +110,41 @@ interface Passenger {
   attributes: {
     name: string;
     email: string;
+    firstName: string;
+    lastName: string;
+    familyName: string;
+    phoneNumber: string;
   };
   // Add other properties of a passenger as needed
 }
 
-// interface Reservation {
-//   id: number;
-//   attributes: {
-//     passengerId: number;
-//     flightId: number;
-//   };
-//   // Add other properties of a reservation as needed
-// }
+export interface Reservation {
+  id: number;
+  attributes: {
+    passenger: {
+      data: Passenger;
+    };
+    totalPrice: string;
+    date_depart: string;
+    createdAt: string;
+    schedule: {
+      data: {
+        id: number;
+        attributes: {
+          day: string;
+          place_arrival: { data: Place };
+          place_depart: { data: Place };
+          plane: { data: Plane };
+          time_depart: string;
+          time_arrival: string;
+          totalPrice: string;
+        };
+      };
+    };
+    flightId: number;
+  };
+  // Add other properties of a reservation as needed
+}
 
 export const fetchPlaces = async (name: string) => {
   const response = await axios.get('/api/places', {
@@ -338,6 +361,22 @@ export const assignTransactions = async (transactionIds: number[]) => {
     transactionIds,
   });
   return response.data;
+};
+
+export const findTransactions = async (transactionId?: string) => {
+  if (!transactionId) return null;
+  const response = await axios.get('/api/reservations', {
+    params: {
+      'filters[transaction][id][$eq]': transactionId,
+      'populate[passenger][populate]': '*',
+      'populate[schedule][populate][0]': 'plane',
+      'populate[schedule][populate][1]': 'place_depart',
+      'populate[schedule][populate][2]': 'place_arrival',
+      'populate[schedule][populate][3]': 'plane.company',
+      sort: 'date_depart',
+    },
+  });
+  return response.data as Response<Reservation>;
 };
 
 // export const createReservation = async (

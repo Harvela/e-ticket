@@ -18,9 +18,9 @@ const FlightSchedule: React.FC = () => {
     <Background color="">
       <div
         id="home"
-        className="flex h-[100vh] flex-col items-center p-4 lg:px-16"
+        className="flex h-screen flex-col items-center p-4 lg:px-16"
       >
-        <div className="fixed w-[100vw] p-4 md:w-full md:px-16">
+        <div className="fixed w-screen p-4 md:w-full md:px-16">
           <Navbar active="schedule" />
         </div>
         <div className="mt-[80px] flex w-full flex-col gap-0 md:flex-row md:items-center md:justify-between">
@@ -38,7 +38,7 @@ const FlightSchedule: React.FC = () => {
         <div className="flex w-full flex-col overflow-y-scroll rounded-[15px] py-2 md:hidden">
           {data?.data.map((f, index) => (
             <div
-              className="mb-5 min-w-[100%] rounded-[15px] bg-blue p-5"
+              className="mb-5 min-w-full rounded-[15px] bg-blue p-5"
               key={index}
             >
               <div className="flex flex-row items-center justify-between">

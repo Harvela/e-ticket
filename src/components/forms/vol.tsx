@@ -82,7 +82,7 @@ export const FlyForm: React.FC<VolProps> = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            className="border-[1px] border-blue text-blue"
+            className="border-DEFAULT border-blue text-blue"
             onClick={() => setErrors({})}
           >
             OK

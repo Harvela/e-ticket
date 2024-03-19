@@ -6,7 +6,7 @@ const Base = () => {
   return (
     <div className="text-gray-600 antialiased">
       <Meta title={AppConfig.title} description={AppConfig.description} />
-      <div className="relative h-[100vh]">
+      <div className="relative h-screen">
         {/* <TicketPage /> */}
         <img
           src="/assets/images/home/background.jpg"

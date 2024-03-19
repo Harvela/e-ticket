@@ -24,7 +24,7 @@ const BookingSuccess: React.FC = () => {
         PAIEMENT RECU
       </h2>
 
-      <p className="text-md text-center text-black lg:w-[40%]">
+      <p className="text-md text-center text-black lg:w-2/5">
         Merci beaucoup pour votre achat, le code de votre billet est EDEDFER.
         Veuillez vous presenter avec lors de votre voyage.
       </p>

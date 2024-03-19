@@ -9,7 +9,7 @@ const MyReservations: React.FC = () => {
     <Background color="">
       <div
         id="home"
-        className="flex h-[100vh] flex-col items-center gap-8 px-16 py-4"
+        className="flex h-screen flex-col items-center gap-8 px-16 py-4"
       >
         <UserNavbar />
 

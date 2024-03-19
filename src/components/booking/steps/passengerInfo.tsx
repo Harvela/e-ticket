@@ -56,7 +56,7 @@ const PassengerInfoStep: React.FC<{
         </Modal.Body>
         <Modal.Footer>
           <Button
-            className="border-[1px] border-blue text-blue"
+            className="border-DEFAULT border-blue text-blue"
             onClick={() => setErrors({})}
           >
             OK
@@ -69,7 +69,7 @@ const PassengerInfoStep: React.FC<{
         </h2>
         <button
           onClick={() => onPrevStep()}
-          className="ml-auto flex h-[30px] flex-row gap-[5px] rounded-[5px] border-[1px] border-blue px-3"
+          className="ml-auto flex h-[30px] flex-row gap-[5px] rounded-[5px] border-DEFAULT border-blue px-3"
         >
           <ArrowLeft /> Retourner en arriere
         </button>

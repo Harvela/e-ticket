@@ -40,7 +40,7 @@ const TicketPage: React.FC<any> = ({ ref }: any) => {
       <div>
         <h2 className="flex flex-row items-center gap-2 font-bold uppercase">
           <span>Date de reservation</span>
-          <IoMdArrowDropright className="h-4 w-4 text-black" />
+          <IoMdArrowDropright className="size-4 text-black" />
           <span>
             {dayjs(data?.data?.[0]?.attributes?.createdAt).format('DD-MM-YYYY')}
           </span>
@@ -59,7 +59,7 @@ const TicketPage: React.FC<any> = ({ ref }: any) => {
           </p>
         </div>
 
-        <div className="h-full w-[50%] border-[1px] border-blue/10 p-2">
+        <div className="h-full w-[50%] border-DEFAULT border-blue/10 p-2">
           <img
             src="./assets/images/home/kenya.jpg"
             alt="logo"

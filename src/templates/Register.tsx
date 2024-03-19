@@ -41,7 +41,6 @@ const RegisterPage: React.FC = () => {
       navigation.push('/dashboard');
     },
   });
-  // const { register, handleSubmit } = useForm();
   const {
     register,
     handleSubmit,

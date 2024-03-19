@@ -6,14 +6,11 @@ import { useMutation } from 'react-query';
 import { login } from '@/components/forms/hooks/data';
 import Input from '@/components/forms/input';
 
-const LoginPage: React.FC = () => {
+const ForgetPassword: React.FC = () => {
   const navigation = useRouter();
   const mutation = useMutation(login, {
-    onSuccess: (data) => {
-      // redirect if flights found
-      window.localStorage.setItem('token', data.jwt);
-      window.localStorage.setItem('user', JSON.stringify(data.user));
-      navigation.push('/dashboard');
+    onSuccess: () => {
+      navigation.push('/reset');
     },
     onError: (error) => {
       console.log(error);
@@ -44,40 +41,16 @@ const LoginPage: React.FC = () => {
         style="mb-4 md:mb-0 w-full"
         register={register}
       />
-      <Input
-        name="password"
-        label="Mot de passe"
-        placeholder="Example@2024"
-        style="mb-4 md:mb-0 w-full"
-        register={register}
-      />
-      <button
-        onClick={() => {
-          navigation.push('/forget');
-        }}
-        className="w-full text-end text-sm font-semibold text-blue"
-      >
-        Mot de passe oublie?
-      </button>
       <button
         className="w-full rounded-[8px] bg-blue px-16 py-2 text-sm text-white"
-        type="submit"
+        onClick={() => {
+          navigation.push('/reset');
+        }}
       >
-        Se connecter
+        Reset
       </button>
-      <p className="text-sm font-semibold text-black">
-        Vous n’avez pas de compte ?
-        <button
-          onClick={() => {
-            navigation.push('/register');
-          }}
-          className="ml-2 text-blue"
-        >
-          Creer un compte
-        </button>
-      </p>
     </form>
   );
 };
 
-export { LoginPage };
+export { ForgetPassword };

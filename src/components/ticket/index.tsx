@@ -12,7 +12,7 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
     <div className="mt-[30px] text-black">
       <hr className="h-[2px] w-full bg-black" />
       <div className="mt-[20px] flex flex-row items-center gap-2">
-        <PiAirplaneTiltFill className="h-16 w-16 text-black" />
+        <PiAirplaneTiltFill className="size-16 text-black" />
         <div>
           <p className="text-md">
             DEPART:{' '}
@@ -72,8 +72,8 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
           <p className="text-sm">Statut: Confirme</p>
         </div>
 
-        <div className="flex w-[70%] flex-row border-[2px] border-blue/10">
-          <div className="h-full w-[100%]">
+        <div className="flex w-[70%] flex-row border-2 border-blue/10">
+          <div className="size-full">
             <div className="flex flex-row items-center justify-between p-4">
               <div>
                 <h2 className="font-semibold uppercase">
@@ -89,7 +89,7 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
                   }
                 </p>
               </div>
-              <IoMdArrowDropright className="h-8 w-8 text-black" />
+              <IoMdArrowDropright className="size-8 text-black" />
               <div>
                 <h2 className="font-semibold uppercase">
                   {ticket.attributes.schedule.data.attributes.place_arrival.data.attributes.name.substring(
@@ -105,7 +105,7 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
                 </p>
               </div>
             </div>
-            <hr className="h-[1px] w-full bg-blue/10" />
+            <hr className="h-px w-full bg-blue/10" />
 
             <div className="flex flex-row">
               <div className="flex w-[50%] flex-col gap-4 p-4">
@@ -117,7 +117,7 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
                 </p>
               </div>
 
-              <div className="flex w-[50%] flex-col gap-4 border border-y-0 border-l-[1px] border-r-0 p-4">
+              <div className="flex w-[50%] flex-col gap-4 border border-y-0 border-l-DEFAULT border-r-0 p-4">
                 <p className="text-sm">
                   Arrivee a:{' '}
                   <span className="text-md">
@@ -137,7 +137,7 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
               <th className="p-1 text-left text-[14px] font-medium">
                 Nom du passager
               </th>
-              <th className="border border-y-0 border-l-[1px] border-r-0 border-blue/20 p-1 text-left text-[14px] font-medium">
+              <th className="border border-y-0 border-l-DEFAULT border-r-0 border-blue/20 p-1 text-left text-[14px] font-medium">
                 Numero telephone
               </th>
             </tr>
@@ -151,7 +151,7 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
                   {ticket.attributes.passenger.data.attributes.lastName}
                 </span>
               </td>
-              <td className="font-regular border border-y-0 border-l-[1px] border-r-0 border-blue/20 p-1 text-left text-[14px]">
+              <td className="font-regular border border-y-0 border-l-DEFAULT border-r-0 border-blue/20 p-1 text-left text-[14px]">
                 {ticket.attributes.passenger.data.attributes.phoneNumber}
               </td>
             </tr>

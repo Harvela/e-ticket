@@ -1,9 +1,9 @@
-import { LoginPage } from '@/templates/Login';
+import { ResetPassword } from '@/templates/Reset';
 
 import { Meta } from '../layout/Meta';
 import { AppConfig } from '../utils/AppConfig';
 
-const Login = () => {
+const Reset = () => {
   return (
     <div className="text-gray-600 antialiased">
       <Meta title={AppConfig.title} description={AppConfig.description} />
@@ -14,11 +14,11 @@ const Login = () => {
           className="size-full object-cover"
         />
         <div className="absolute left-0 top-0 size-full bg-blue/40 ">
-          <LoginPage />
+          <ResetPassword />
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Reset;

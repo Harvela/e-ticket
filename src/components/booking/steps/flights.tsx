@@ -77,7 +77,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
         </h2>
         <button
           onClick={() => navigation.back()}
-          className="ml-auto flex h-[30px] flex-row gap-[5px] rounded-[5px] border-[1px] border-blue px-3"
+          className="ml-auto flex h-[30px] flex-row gap-[5px] rounded-[5px] border-DEFAULT border-blue px-3"
         >
           <ArrowLeft /> Annuler
         </button>
@@ -209,7 +209,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                     </span>
                   </div>
                   <div className="mx-2 flex flex-row items-center justify-center text-blue/60 md:mx-5">
-                    <div className="mr-[-10px] h-[1px] w-[50px] bg-blue/60" />
+                    <div className="mr-[-10px] h-px w-[50px] bg-blue/60" />
                     <IoIosArrowForward />
                   </div>
                   <div className="flex flex-row items-center justify-between gap-5 rounded-[8px] bg-blue/20 px-4 py-1">

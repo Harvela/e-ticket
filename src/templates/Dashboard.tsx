@@ -18,7 +18,7 @@ const DashboardPage: React.FC = () => {
   };
   return (
     <div className="flex flex-row gap-16 p-4 md:p-10">
-      <div className="hidden w-[20%] md:block">
+      <div className="hidden w-1/5 md:block">
         <AsideNav />
       </div>
       <div className="flex w-full flex-col justify-between gap-0 md:w-[70%]">
@@ -53,7 +53,7 @@ const DashboardPage: React.FC = () => {
               </a>
               <div
                 className={`${
-                  currentTab === index ? 'mt-1 h-[2px] w-[60%] bg-blue' : ''
+                  currentTab === index ? 'mt-1 h-[2px] w-3/5 bg-blue' : ''
                 }`}
               />
             </div>
@@ -138,7 +138,7 @@ const DashboardPage: React.FC = () => {
                       </span>
                     </div>
                     <div className="mx-2 flex flex-row items-center justify-center text-blue/60 md:mx-5">
-                      <div className="mr-[-10px] h-[1px] w-[50px] bg-blue/60" />
+                      <div className="mr-[-10px] h-px w-[50px] bg-blue/60" />
                       <IoIosArrowForward />
                     </div>
                     <div className="flex flex-row items-center justify-between gap-5 rounded-[8px] bg-blue/20 px-4 py-1">

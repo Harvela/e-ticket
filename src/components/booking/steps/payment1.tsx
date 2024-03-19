@@ -72,7 +72,7 @@ const Payment1Step: React.FC<{
         </h2>
         <button
           onClick={() => onPrevStep()}
-          className="ml-auto flex h-[30px] flex-row gap-[5px] rounded-[5px] border-[1px] border-blue px-3"
+          className="ml-auto flex h-[30px] flex-row gap-[5px] rounded-[5px] border-DEFAULT border-blue px-3"
         >
           <ArrowLeft /> Retourner en arriere
         </button>
@@ -90,7 +90,7 @@ const Payment1Step: React.FC<{
                   {isVolOpen ? <SlArrowUp /> : <SlArrowDown />}
                 </button>
               </div>
-              <div className="mt-2 h-[1px] w-full bg-blue" />
+              <div className="mt-2 h-px w-full bg-blue" />
               {isVolOpen && (
                 <div className="">
                   {data?.data.map((d) => (
@@ -122,7 +122,7 @@ const Payment1Step: React.FC<{
                               </span>
                             </div>
                             <div className="mx-2 flex flex-row items-center justify-center text-blue/60 md:mx-5">
-                              <div className="mr-[-10px] h-[1px] w-6 bg-blue/60 lg:w-[30px]" />
+                              <div className="mr-[-10px] h-px w-6 bg-blue/60 lg:w-[30px]" />
                               <IoIosArrowForward />
                             </div>
                             <div className="flex flex-row items-center justify-between gap-2 rounded-[8px] bg-blue/20 px-2 py-1 md:gap-5 md:px-4">
@@ -180,7 +180,7 @@ const Payment1Step: React.FC<{
                   {isPasOpen ? <SlArrowUp /> : <SlArrowDown />}
                 </button>
               </div>
-              <div className="mt-2 h-[1px] w-full bg-blue" />
+              <div className="mt-2 h-px w-full bg-blue" />
               {isPasOpen && (
                 <div className="">
                   {dataStored.passengers?.map?.((p: any, i: number) => (
@@ -218,7 +218,7 @@ const Payment1Step: React.FC<{
                   {isPriceOpen ? <SlArrowUp /> : <SlArrowDown />}
                 </button>
               </div>
-              <div className="mt-2 h-[1px] w-full bg-blue" />
+              <div className="mt-2 h-px w-full bg-blue" />
               {isPriceOpen && (
                 <div className="mt-4 overflow-y-scroll rounded-[10px] bg-blue/5">
                   {price.price.map((p, i) => (

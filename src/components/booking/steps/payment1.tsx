@@ -9,6 +9,7 @@ import {
   createReservation,
   fetchSchedules,
 } from '@/components/forms/hooks/data';
+import { FullWidthLoading } from '@/components/loading/full-width';
 import { getTimeOrDate } from '@/utils/format';
 import { paymentsPass, paymentsPrice, paymentsVol } from '@/utils/payments';
 
@@ -30,18 +31,25 @@ const Payment1Step: React.FC<{
 
   const [flightData, setFlightData] = useState<any[]>();
 
+  const [loadingText, setLoadingText] = useState('');
+
   useEffect(() => {
+    setLoadingText('Chargement des informations sur les vols');
     const reservation = JSON.parse(localStorage.getItem('reservation') || '{}');
     const flightIds = reservation.flights.map((r: any) => r.id);
     setDataStored(reservation);
     setFlightData(JSON.parse(localStorage.getItem('flightData') || '[]'));
     setIds(flightIds);
+    setLoadingText('');
   }, []);
 
   let totalPrice = 0;
 
   const createReservationMutation = useMutation(createReservation);
   const onCreateReservation = async () => {
+    setLoadingText(
+      'Enregistrement de votre reservation, preparation du paiement ...',
+    );
     const d: any = await createReservationMutation.mutateAsync({
       passengers: dataStored.passengers,
       schedules: dataStored.flights.map((f: any) => f.id),
@@ -53,6 +61,8 @@ const Payment1Step: React.FC<{
     );
     transactions.push(d?.data?.transaction);
     localStorage.setItem('transactions', JSON.stringify(transactions));
+
+    setLoadingText('');
 
     onNextStep();
   };
@@ -66,6 +76,7 @@ const Payment1Step: React.FC<{
 
   return (
     <div className="h-[70vh] overflow-y-auto p-0 md:p-10">
+      {loadingText && <FullWidthLoading text={loadingText} />}
       <div className="flex flex-row justify-between">
         <h2 className="mb-6 text-[14px] uppercase text-blue">
           ETAPE 3/5 <span className="mx-4">|</span> RESUME ET PRIX

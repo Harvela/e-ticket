@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 
-import { login } from '@/components/forms/hooks/data';
+import { resetPassword } from '@/components/forms/hooks/data';
 import Input from '@/components/forms/input';
+import { FullWidthLoading } from '@/components/loading/full-width';
 
 const passwordValidation = {
   required: 'Le mot de passe est requis',
@@ -30,14 +31,16 @@ const confirmPasswordValidation = {
 };
 
 const ResetPassword: React.FC = () => {
+  const [error, setError] = useState('');
   const navigation = useRouter();
-  const mutation = useMutation(login, {
+  const mutation = useMutation(resetPassword, {
     onSuccess: () => {
       navigation.push('/login');
     },
-    onError: (error) => {
-      console.log(error);
-      // show error message
+    onError: () => {
+      setError(
+        'Une erreur est survenu lors de la mise A jour de votre mot de passe',
+      );
     },
   });
   const {
@@ -46,7 +49,7 @@ const ResetPassword: React.FC = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => {
-    console.log(data);
+    setError('');
     mutation.mutate(data);
   };
 
@@ -55,11 +58,19 @@ const ResetPassword: React.FC = () => {
       onSubmit={handleSubmit(onSubmit)}
       className=" m-auto mt-14 flex w-2/5 flex-col items-center justify-between gap-6 rounded-lg bg-white p-8"
     >
+      {mutation.isLoading && (
+        <FullWidthLoading text="Mise A jour de votre mot de passe ... " />
+      )}
       <img
         src="/assets/images/home/logo.png"
         className="mb-4 h-8 rounded-lg bg-white"
         alt="Logo"
       />
+      {error && (
+        <div className="rounded-[5px] bg-red/20 p-3 text-center text-gray-900">
+          {error}
+        </div>
+      )}
       <Input
         name="password"
         label="Nouveau mot de passe"

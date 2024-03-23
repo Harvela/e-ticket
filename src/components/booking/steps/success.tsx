@@ -14,7 +14,7 @@ const BookingSuccess: React.FC = () => {
 
   return (
     <div className="flex h-[70vh] flex-col items-center justify-center gap-10">
-      <div className="">
+      <div className="absolute top-[-3000px]">
         <div ref={componentRef}>
           <TicketPage />
         </div>
@@ -25,8 +25,9 @@ const BookingSuccess: React.FC = () => {
       </h2>
 
       <p className="text-md text-center text-black lg:w-2/5">
-        Merci beaucoup pour votre achat, le code de votre billet est EDEDFER.
-        Veuillez vous presenter avec lors de votre voyage.
+        Merci beaucoup pour votre achat, Telecharger ou imprimer votre billet.
+        Vous allez aussi le recevoir par email. Veuillez vous presenter avec
+        lors de votre voyage.
       </p>
 
       <div className="flex flex-row items-center gap-4 lg:gap-8">
@@ -34,14 +35,19 @@ const BookingSuccess: React.FC = () => {
           className="rounded-[5px] bg-blue px-2 py-1 text-sm text-white md:rounded-[10px] md:px-8 md:py-2"
           onClick={() => {
             handlePrint();
+            localStorage.removeItem('flightData');
           }}
         >
           Imprimer le biller
         </button>
 
-        <button className="rounded-[5px] border border-blue px-2 py-1 text-sm text-blue md:rounded-[10px] md:px-8 md:py-2">
-          Creer un compte
-        </button>
+        <a
+          href="/login"
+          target="_blank"
+          className="rounded-[5px] border border-blue px-2 py-1 text-sm text-blue md:rounded-[10px] md:px-8 md:py-2"
+        >
+          Se connecter ou creer un compte
+        </a>
       </div>
     </div>
   );

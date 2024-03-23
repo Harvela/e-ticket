@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { Spinner } from 'flowbite-react';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft } from 'react-feather';
@@ -11,6 +12,7 @@ import {
   countReservation,
   fetchSchedules,
 } from '@/components/forms/hooks/data';
+import { FullWidthLoading } from '@/components/loading/full-width';
 import { getTimeOrDate } from '@/utils/format';
 
 const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
@@ -26,11 +28,9 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
     setFilterData(flightDataJSON[0]);
   }, []);
 
-  const { data } = useQuery(['flights', { ...filterData }], () =>
+  const { data, isLoading } = useQuery(['flights', { ...filterData }], () =>
     fetchSchedules(filterData),
   );
-
-  console.log(data);
 
   const onSelected = (vol: Flight) => {
     const currentReservationSt = localStorage.getItem('reservation');
@@ -51,9 +51,12 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
   };
 
   const mutation = useMutation(countReservation);
+  const [loadingText, setLoaingText] = useState('');
 
   const checkFlight = async (vol: Flight) => {
+    setLoaingText('Validation des informations en cours');
     const dataChecked = await mutation.mutateAsync({ id: vol.id });
+    setLoaingText('');
     if (
       typeof dataChecked.data !== 'undefined' &&
       dataChecked.data < vol.attributes.plane.data.attributes.placeCount
@@ -68,6 +71,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
 
   return (
     <div className="flex h-[70vh] flex-col gap-0 p-0 md:p-10">
+      {loadingText && <FullWidthLoading text={loadingText} />}
       <div className="flex flex-row justify-between">
         <h2 className="mb-4 text-[14px] uppercase text-blue">
           ETAPE 1/5 <span className="mx-4">|</span> Selection de vol pour le{' '}
@@ -90,6 +94,12 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
       />
 
       <div className="overflow-y-scroll">
+        {isLoading && (
+          <div className="flex flex-row gap-5">
+            <p>Recherche des vols ...</p>
+            {<Spinner color="gray" />}
+          </div>
+        )}
         <p className="text[16px] pb-8 font-semibold text-blue">
           {data?.meta?.pagination?.total} Vol(s) trouvees{' '}
         </p>

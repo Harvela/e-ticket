@@ -6,6 +6,7 @@ import { useQuery } from 'react-query';
 
 import type { Transaction } from '@/components/forms/hooks/data';
 import { findTransactions } from '@/components/forms/hooks/data';
+import { FullWidthLoading } from '@/components/loading/full-width';
 import { Ticket } from '@/components/ticket';
 
 const TicketPage: React.FC<any> = ({ ref }: any) => {
@@ -28,15 +29,20 @@ const TicketPage: React.FC<any> = ({ ref }: any) => {
     }
   }, [router.query.ref]);
 
-  const { data } = useQuery(
+  const { data, isLoading } = useQuery(
     ['transaction', { id: transaction?.id || '' }],
     () => findTransactions(transaction?.id?.toString()),
   );
+
+  console.log(data, transaction, 'w');
 
   if (!data) return null;
 
   return (
     <div id="ticket" className="p-16 text-black" ref={ref}>
+      {isLoading && (
+        <FullWidthLoading text="Chargement du recu de votre reservation ..." />
+      )}
       <div>
         <h2 className="flex flex-row items-center gap-2 font-bold uppercase">
           <span>Date de reservation</span>

@@ -342,6 +342,20 @@ export const login = async (data: any) => {
   return response.data;
 };
 
+export const resetPassword = async (data: any) => {
+  const response = await axios.post('/api/auth/reset-password', {
+    ...data,
+  });
+  return response.data;
+};
+
+export const forgetPassword = async (data: any) => {
+  const response = await axios.post('/api/auth/forgot-password', {
+    ...data,
+  });
+  return response.data;
+};
+
 export const registerUser = async (data: any) => {
   const response = await axios.post('/api/auth/local/register', {
     ...data,
@@ -377,6 +391,12 @@ export const findTransactions = async (transactionId?: string) => {
     },
   });
   return response.data as Response<Reservation>;
+};
+
+export const findAllTransactions = async () => {
+  const response = await axios.get('/api/transactions');
+  console.log(response);
+  return response.data as Response<Transaction>;
 };
 
 // export const createReservation = async (

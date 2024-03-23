@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 
 import Flights from './steps/flights';
 import PassengerInfo from './steps/passengerInfo';
@@ -9,7 +10,19 @@ import Payment2Step from './steps/payment2';
 import BookingSuccess from './steps/success';
 
 const PassengerForm: React.FC = () => {
-  const [step, setStep] = useState<number>(1);
+  const router = useRouter();
+  const [step, setStep] = useState<number>(0);
+  useEffect(() => {
+    if (
+      router.query.step &&
+      !Number.isNaN(Number(router.query.step as any)) &&
+      (localStorage.getItem('flightData') || router.query.step === '5')
+    ) {
+      setStep(Number.parseInt(router.query.step as string, 10));
+    } else {
+      setStep(1);
+    }
+  }, [router.query.step]);
 
   const handleNextStep = () => {
     setStep(step + 1);

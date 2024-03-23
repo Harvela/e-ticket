@@ -70,7 +70,7 @@ const Filters: React.FC<Props> = (props) => {
           placeholder={'Goma'}
           style="w-[150px] md:w-full"
           bgColor="rounded-[0px] rounded-r-[8px] bg-blue/10 font-bold text-blue"
-          defaultValue={props.data.place_depart?.toString?.()}
+          defaultValue={props?.data?.place_depart?.toString?.()}
           name="depart"
           onChange={(e: string) => {
             props.setData({
@@ -86,7 +86,7 @@ const Filters: React.FC<Props> = (props) => {
           placeholder={'Kin'}
           style="w-[150px] md:w-full sm:mb-0"
           bgColor="rounded-[0px] rounded-r-[8px] bg-blue/10 font-bold text-blue sm:mb-0"
-          defaultValue={props.data.place_arrival?.toString?.()}
+          defaultValue={props.data?.place_arrival?.toString?.()}
           name="arrival"
           onChange={(e: string) => {
             console.log(e);

@@ -22,18 +22,12 @@ const PassengerInfoStep: React.FC<{
   const [errors, setErrors] = useState<any>({});
 
   const onSubmit = (data: any) => {
-    if (
-      !data.firstName ||
-      !data.lastName ||
-      !data.email ||
-      !data.phoneNumber ||
-      !data.sex
-    ) {
+    if (!data.firstName || !data.lastName || !data.email || !data.phoneNumber) {
       setErrors({ message: 'Veuillez remplir tous les champs correctement' });
       return;
     }
     const dataStored = JSON.parse(localStorage.getItem('reservation') || '{}');
-    dataStored.passengers.push(data);
+    dataStored.passengers.push({ ...data, sex: data.sex || 'M' });
     localStorage.setItem('reservation', JSON.stringify(dataStored));
     if (currentStep + 1 === steps) {
       onNextStep();
@@ -78,75 +72,69 @@ const PassengerInfoStep: React.FC<{
         INFORMATIONS DU PASSAGER N {currentStep + 1}
       </h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex w-full flex-col lg:flex-row lg:gap-16">
-          <div className="w-full">
-            <Input
-              name="firstName"
-              label="Nom"
-              placeholder="Votre nom"
-              style="mb-4 md:mb-0"
-              register={register}
-              validator={{ validator: true }}
-            />
-            <Select
-              name="sex"
-              label="Sexe"
-              placeholder="sexe"
-              style="mb-4 md:mb-0"
-              onChange={(e: string) => {
-                setValue('sex', e);
-              }}
-              options={[
-                { label: 'M', value: 'M' },
-                { label: 'F', value: 'F' },
-              ]}
-              defaultValue="M"
-              register={register}
-            />
-          </div>
+        <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-3">
+          <Input
+            name="firstName"
+            label="Nom"
+            placeholder="Votre nom"
+            style="mb-4 md:mb-0"
+            register={register}
+            validator={{ validator: true }}
+          />
+          <Input
+            name="familyName"
+            label="Post-nom"
+            placeholder="Votre post-nom"
+            style="mb-4 md:mb-0"
+            register={register}
+            validator={{ validator: true }}
+          />
+          <Input
+            name="lastName"
+            label="Prenom"
+            placeholder="Votre prenom"
+            style="mb-4 md:mb-0"
+            register={register}
+            validator={{ validator: true }}
+          />
+          <Select
+            name="sex"
+            label="Sexe"
+            placeholder="sexe"
+            style="mb-4 md:mb-0"
+            onChange={(e: string) => {
+              setValue('sex', e);
+            }}
+            options={[
+              { label: 'M', value: 'M' },
+              { label: 'F', value: 'F' },
+            ]}
+            defaultValue="M"
+            register={register}
+          />
 
-          <div className="w-full">
-            <Input
-              name="familyName"
-              label="Post-nom"
-              placeholder="Votre post-nom"
-              style="mb-4 md:mb-0"
-              register={register}
-              validator={{ validator: true }}
-            />
-            <Input
-              name="phoneNumber"
-              label="N. de telephone"
-              placeholder="votre numero"
-              style="mb-4 md:mb-0"
-              type="number"
-              register={register}
-              validator={{ validator: true }}
-            />
-          </div>
+          <Input
+            name="phoneNumber"
+            label="N. de telephone"
+            placeholder="votre numero"
+            style="mb-4 md:mb-0"
+            type="number"
+            register={register}
+            validator={{ validator: true }}
+          />
 
-          <div className="w-full">
-            <Input
-              name="lastName"
-              label="Prenom"
-              placeholder="Votre prenom"
-              style="mb-4 md:mb-0"
-              register={register}
-              validator={{ validator: true }}
-            />
-            <Input
-              name="email"
-              type="email"
-              label="Address email"
-              placeholder="example@gmail.com"
-              style="mb-4 md:mb-0"
-              register={register}
-              validator={{ validator: true }}
-            />
-          </div>
+          <Input
+            name="email"
+            type="email"
+            label="Address email"
+            placeholder="example@gmail.com"
+            style="mb-4 md:mb-0"
+            register={register}
+            validator={{ validator: true }}
+          />
         </div>
         <button
-          className="mt-2 w-full rounded-[8px] bg-blue px-16 py-2 text-sm text-white lg:w-[17%]"
+          className="mt-10 w-full rounded-[8px] bg-blue px-16 py-2 text-sm text-white lg:w-[17%]"
           type="submit"
         >
           Continuer

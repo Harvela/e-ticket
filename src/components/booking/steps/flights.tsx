@@ -99,7 +99,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
               <div className="flex flex-row items-center justify-between font-bold text-blue">
                 <div className="flex flex-row items-center">
                   <img
-                    src={`http://localhost:1337${vol.attributes.plane.data.attributes.company.data.attributes.logo.data.attributes.url}`}
+                    src={`https://e-ticket.harvely.com${vol.attributes.plane.data.attributes.company.data.attributes.logo.data.attributes.url}`}
                     alt="logo"
                     className="mr-2 size-[30px] rounded-[10px] md:block"
                   />
@@ -178,7 +178,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
 
             <div className="mb-8 hidden w-full flex-row items-center justify-between gap-4 rounded-[8px] bg-blue/5 p-5 md:flex">
               <img
-                src={`http://localhost:1337${vol.attributes.plane.data.attributes.company.data.attributes.logo.data.attributes.url}`}
+                src={`https://e-ticket.harvely.com${vol.attributes.plane.data.attributes.company.data.attributes.logo.data.attributes.url}`}
                 alt="logo"
                 className="mr-6 size-[100px] rounded-[100px]"
               />

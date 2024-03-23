@@ -2,9 +2,9 @@ import axiosParent from 'axios';
 import dayjs from 'dayjs';
 
 const axios = axiosParent.create({
-  baseURL: 'http://localhost:1337',
+  baseURL: 'https://e-ticket.harvely.com',
   headers: {
-    Authorization: `Bearer 5322fcfb3a18a809d8d682e434839bfca7628e466e47591a79feb4d629d1315becc6c1c5223af6185fa989be0d83ebc50bf5b0564c09d7e7001a8c4ebba5b4dbde1caf3cc3f3042007715f2def730d750e9b3f1dab801223dfde90d6c759caddc0ba31e51b57bb202ae325ab8e5824cbf6772dd5297d011c02b4e261bf95668e`,
+    Authorization: `Bearer 57c0b771724331a9a3dc957b55d074330f57981eb04037aec986eaeb672d9ff2930083ef515f614d048e5377b4c1feb89808df95dfb40413ab6f160e1712b87b3e92bb65965d1f1f662d5f77181da3f658bb28cbfa9cf0cd0859ef7333f961e1af4afed51b9c8ad331ce6277e541fe184f0c57a512eb870c547db0dac99172f5`,
   },
 });
 

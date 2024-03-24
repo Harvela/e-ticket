@@ -22,9 +22,9 @@ type Props = {
 
 const Filters: React.FC<Props> = (props) => {
   return (
-    <div className="mb-4 flex h-[100px] flex-row items-center gap-2 overflow-x-scroll md:h-[150px] md:gap-8">
+    <div className="mb-4 flex h-[100px] flex-row items-center justify-between gap-2 overflow-x-scroll md:h-[150px] md:gap-8">
       <div className="flex h-[37px]  flex-row items-center gap-4 rounded-[8px] bg-blue  pl-4">
-        <span className="text-[14px] text-white">
+        <span className="w-[150px] text-[14px] text-white md:w-[140px]">
           {props.showDay ? 'Jour de la semaine' : 'Date'}
         </span>
         <div className="h-full w-px bg-white"></div>
@@ -37,7 +37,7 @@ const Filters: React.FC<Props> = (props) => {
             }}
             name="date"
             placeholder="Date"
-            style="rounded-[8px] w-[140px] md:w-full text-[14px] text-white font-bold "
+            style="rounded-[8px] w-[150px] md:w-[150px] text-[14px] text-white font-bold "
           />
         ) : (
           <Select
@@ -46,15 +46,20 @@ const Filters: React.FC<Props> = (props) => {
             options={[
               { label: 'LUNDI', value: 'LUNDI' },
               { label: 'MARDI', value: 'MARDI' },
+              { label: 'MERCREDI', value: 'MERCREDI' },
+              { label: 'JEUDI', value: 'JEUDI' },
+              { label: 'VENDREDI', value: 'VENDREDI' },
+              { label: 'SAMEDI', value: 'SAMEDI' },
+              { label: 'DIMANCHE', value: 'DIMANCHE' },
             ]}
             onChange={(e: string) => {
               props.setData({ ...props.data, date: '', rawDate: e });
             }}
-            style="rounded-[8px] w-[140px] md:w-full text-[14px] text-white font-bold "
+            style="rounded-[8px] w-[150px] md:w-[100px] text-[14px] text-white font-bold"
           />
         )}
       </div>
-      <div className="border-1 flex min-w-[80px] flex-row items-center gap-4 rounded-[8px] border border-[#B3B3B3] pl-4">
+      <div className="border-1 flex flex-row items-center gap-4 rounded-[8px] border border-[#B3B3B3] pl-4">
         <span className="text-sm">Compagnie</span>
         <CompanyInput
           name="company"
@@ -62,7 +67,7 @@ const Filters: React.FC<Props> = (props) => {
           onChange={(e: string) => {
             props.setData({ ...props.data, company: e });
           }}
-          style="w-[150px] md:w-full"
+          style="w-[150px] md:w-[100px]"
           bgColor="rounded-[0px] rounded-r-[8px] bg-blue/10 font-bold text-blue"
         />
       </div>
@@ -70,7 +75,7 @@ const Filters: React.FC<Props> = (props) => {
         <span className="text-sm">Depart</span>
         <PlaceInput
           placeholder={'Goma'}
-          style="w-[150px] md:w-full"
+          style="w-[150px] md:w-[100px]"
           bgColor="rounded-[0px] rounded-r-[8px] bg-blue/10 font-bold text-blue"
           defaultValue={props?.data?.place_depart?.toString?.()}
           name="depart"
@@ -86,7 +91,7 @@ const Filters: React.FC<Props> = (props) => {
         <span className="text-sm">Arriver</span>
         <PlaceInput
           placeholder={'Kin'}
-          style="w-[150px] md:w-full sm:mb-0"
+          style="w-[150px] md:w-[100px] sm:mb-0"
           bgColor="rounded-[0px] rounded-r-[8px] bg-blue/10 font-bold text-blue sm:mb-0"
           defaultValue={props.data?.place_arrival?.toString?.()}
           name="arrival"

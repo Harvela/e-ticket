@@ -76,7 +76,9 @@ const Payment1Step: React.FC<{
 
   return (
     <div className="h-[70vh] overflow-y-auto p-0 md:p-10">
-      {loadingText && <FullWidthLoading text={loadingText} />}
+      <p className="p-8 text-center text-[12px] font-bold text-blue md:text-[16px]">
+        {loadingText && <FullWidthLoading text={loadingText} />}
+      </p>
       <div className="flex flex-row justify-between">
         <h2 className="mb-6 text-[14px] uppercase text-blue">
           ETAPE 3/5 <span className="mx-4">|</span> RESUME ET PRIX

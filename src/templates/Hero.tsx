@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
             informations.
           </h2>
         </div>
-        <div className="w-full pb-[0px] md:pb-[60px]">
+        <div className="w-full pb-0 md:pb-[60px]">
           <FlyForm
             // setData={() => {
             //   console.log('form');

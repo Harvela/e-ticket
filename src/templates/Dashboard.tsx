@@ -22,7 +22,7 @@ const DashboardPage: React.FC = () => {
     setCurrentTab(index);
   };
   return (
-    <div className="flex h-[100vh] flex-row gap-16 p-4 md:p-10">
+    <div className="flex h-screen flex-row gap-16 p-4 md:p-10">
       <div className="hidden w-1/5 md:block">
         <AsideNav />
       </div>

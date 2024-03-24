@@ -23,6 +23,7 @@ const Payment2Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
             name="method"
             label="Moyen de paiement"
             placeholder="Carte"
+            required
             onChange={() => {
               console.log('any');
             }}
@@ -31,6 +32,7 @@ const Payment2Step: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
             name="number"
             label="Numero de la carte"
             placeholder="0987654678"
+            required
             onChange={() => {
               console.log('any');
             }}

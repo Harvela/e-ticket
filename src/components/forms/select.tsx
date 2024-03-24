@@ -51,7 +51,7 @@ const Select: React.FC<SelectProps> = (props) => {
         </span>
       )}
       <ReactSelect
-        className={`${bgColor} w-full min-w-[150px] rounded-[5px] border-blue/10 px-2 text-[14px] focus:outline-0`}
+        className={`${bgColor} w-full rounded-[5px] border-blue/10 px-2 text-[14px] focus:outline-0`}
         placeholder={placeholder}
         options={options || []}
         value={props.options?.find((e) => e.value === value)}

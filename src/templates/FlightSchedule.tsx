@@ -4,18 +4,20 @@ import { useQuery } from 'react-query';
 
 import { Filters } from '@/components/filter';
 import { fetchSchedules } from '@/components/forms/hooks/data';
+import { FullWidthLoading } from '@/components/loading/full-width';
 import { Navbar } from '@/navigation/Navbar';
 
 import { Background } from '../background/Background';
 
 const FlightSchedule: React.FC = () => {
   const [filterData, setFilterData] = useState<any>({});
-  const { data } = useQuery(['flights', { ...filterData }], () =>
+  const { data, isLoading } = useQuery(['flights', { ...filterData }], () =>
     fetchSchedules(filterData),
   );
-  console.log(data);
+
   return (
     <Background color="">
+      {isLoading && <FullWidthLoading text={'Nous chargeons nos horaires'} />}
       <div
         id="home"
         className="flex h-screen flex-col items-center p-4 lg:px-16"

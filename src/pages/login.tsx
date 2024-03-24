@@ -1,9 +1,19 @@
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+
 import { LoginPage } from '@/templates/Login';
 
 import { Meta } from '../layout/Meta';
 import { AppConfig } from '../utils/AppConfig';
 
 const Login = () => {
+  const navigation = useRouter();
+
+  useEffect(() => {
+    const t = window.localStorage.getItem('token') as string;
+    if (t) navigation.push('/dashboard');
+  }, []);
+
   return (
     <div className="text-gray-600 antialiased">
       <Meta title={AppConfig.title} description={AppConfig.description} />

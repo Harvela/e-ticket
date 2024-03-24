@@ -24,7 +24,9 @@ const Filters: React.FC<Props> = (props) => {
   return (
     <div className="mb-4 flex h-[100px] flex-row items-center gap-2 overflow-x-scroll md:h-[150px] md:gap-8">
       <div className="flex h-[37px]  flex-row items-center gap-4 rounded-[8px] bg-blue  pl-4">
-        <span className="text-[14px] text-white">Date</span>
+        <span className="text-[14px] text-white">
+          {props.showDay ? 'Jour de la semaine' : 'Date'}
+        </span>
         <div className="h-full w-px bg-white"></div>
         {!props.showDay ? (
           <Input

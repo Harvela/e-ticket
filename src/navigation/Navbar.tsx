@@ -4,7 +4,7 @@ import type { CustomFlowbiteTheme } from 'flowbite-react';
 import { Flowbite, Navbar } from 'flowbite-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export type NavbarProps = {
   setOpenModal?: (value: boolean) => void;
@@ -29,7 +29,13 @@ const customTheme: CustomFlowbiteTheme = {
 
 const NavbarGlobal: React.FC<NavbarProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [token, setToken] = useState('');
   const navigation = useRouter();
+
+  useEffect(() => {
+    const t = window.localStorage.getItem('token') as string;
+    setToken(t);
+  }, []);
 
   return (
     <Flowbite theme={{ theme: customTheme }}>
@@ -132,11 +138,12 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
           </Link> */}
           <button
             onClick={() => {
-              navigation.push('/login');
+              if (!token) navigation.push('/login');
+              else navigation.push('/dashboard');
             }}
             className="rounded-lg bg-blue px-2 py-1 text-[8px] font-semibold text-white lg:px-4 lg:text-sm"
           >
-            Se connecter
+            {token ? 'Mes reservations' : 'Se connecter'}
           </button>
         </Navbar.Collapse>
       </Navbar>

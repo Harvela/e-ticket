@@ -17,7 +17,7 @@ type VolProps = {
 };
 
 export const FlyForm: React.FC<VolProps> = () => {
-  const [selectedTab, setSelectedTab] = useState<number>(2);
+  const [selectedTab, setSelectedTab] = useState<number>(1);
   const navigation = useRouter();
   const [errors, setErrors] = useState<any>({});
 

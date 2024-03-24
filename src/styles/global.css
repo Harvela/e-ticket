@@ -19,3 +19,29 @@ body {
     sans-serif;
   scroll-behavior: smooth;
 }
+
+.css-100ebu3-menu {
+  background-color: #124069;
+  color: white;
+  padding: 10px;
+  margin-left: -10px;
+
+}
+
+input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}

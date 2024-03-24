@@ -11,7 +11,7 @@ const Schedule = () => {
           background:
             'linear-gradient(to bottom, rgb(255, 255, 255, 0), rgb(34, 58, 96, 0.2))',
         }}
-        className="absolute left-0 top-0 size-full h-[100vh]"
+        className="absolute left-0 top-0 size-full h-screen"
       >
         <FlightSchedule />
       </div>

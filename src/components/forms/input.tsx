@@ -46,7 +46,7 @@ const Input: React.FC<Props> = (props: Props) => {
   const [selectedDate, setSelectedDate] = React.useState<any>(null);
 
   return (
-    <div className={`sm:mb-5 ${style} flex-1`}>
+    <div className={`${style} flex-1`}>
       {label && (
         <span className="mb-2 flex flex-row items-center gap-1 text-[12px] font-semibold text-blue">
           {label}
@@ -72,18 +72,23 @@ const Input: React.FC<Props> = (props: Props) => {
         ></input>
       ) : (
         <DatePicker
-          selected={selectedDate || dayjs(defaultValue || min).toDate()}
+          selected={
+            selectedDate || defaultValue
+              ? dayjs(defaultValue || min).toDate()
+              : undefined
+          }
           onChange={(date) => {
             setSelectedDate(date);
-            props?.onChange?.(date);
+            props?.onChange?.(dayjs(date).format('YYYY-MM-DD'));
           }}
           minDate={min ? dayjs(min).toDate() : undefined}
           maxDate={max ? dayjs(max).toDate() : undefined}
-          className="w-full rounded-[10px] px-3"
+          className={`${bgColor} h-[35px] w-full rounded-[5px] border-blue/10 bg-blue/10 px-3`}
           required={required}
           onBlur={onBlur}
-          wrapperClassName="w-full rounded-[5px] focus:outline-0"
+          wrapperClassName="w-full rounded-[5px] focus:outline-0 bg-transparent"
           placeholderText="12/01/2024"
+          showTimeSelect={false}
         />
       )}
     </div>

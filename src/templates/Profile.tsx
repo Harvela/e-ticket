@@ -6,11 +6,11 @@ import { AsideNav } from '@/navigation/AsideNav';
 const ProfilePage: React.FC = () => {
   return (
     <div className="flex flex-row gap-16 p-4 md:p-10">
-      <div className="hidden w-[20%] md:block">
+      <div className="hidden w-1/5 md:block">
         <AsideNav />
       </div>
 
-      <div className="mt-8 w-full md:mt-0 md:w-[80%]">
+      <div className="mt-8 w-full md:mt-0 md:w-4/5">
         <div>
           <div>
             <div className="flex w-full flex-row items-center justify-between">
@@ -22,7 +22,7 @@ const ProfilePage: React.FC = () => {
                 Enregistrer
               </button>
             </div>
-            <div className="mt-2 h-[1px] w-full bg-black" />
+            <div className="mt-2 h-px w-full bg-black" />
           </div>
 
           <div className="mt-8 flex w-full flex-col md:flex-row md:gap-20">
@@ -84,7 +84,7 @@ const ProfilePage: React.FC = () => {
                 Enregistrer
               </button>
             </div>
-            <div className="mt-2 h-[1px] w-full bg-black" />
+            <div className="mt-2 h-px w-full bg-black" />
           </div>
 
           <div className="mt-8 flex w-full flex-col md:flex-row md:gap-20">

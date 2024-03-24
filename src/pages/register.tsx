@@ -1,13 +1,23 @@
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+
 import { RegisterPage } from '@/templates/Register';
 
 import { Meta } from '../layout/Meta';
 import { AppConfig } from '../utils/AppConfig';
 
 const Register = () => {
+  const navigation = useRouter();
+
+  useEffect(() => {
+    const t = window.localStorage.getItem('token') as string;
+    if (t) navigation.push('/dashboard');
+  }, []);
+
   return (
     <div className="text-gray-600 antialiased">
       <Meta title={AppConfig.title} description={AppConfig.description} />
-      <div className="relative h-[100vh]">
+      <div className="relative h-screen">
         <img
           src="/assets/images/home/background.jpg"
           alt="Hero"

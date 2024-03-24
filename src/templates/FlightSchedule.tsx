@@ -1,41 +1,58 @@
-import dayjs from 'dayjs';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 
 import { Filters } from '@/components/filter';
+import { fetchSchedules } from '@/components/forms/hooks/data';
+import { FullWidthLoading } from '@/components/loading/full-width';
 import { Navbar } from '@/navigation/Navbar';
-import { flights } from '@/utils/flights';
 
 import { Background } from '../background/Background';
 
 const FlightSchedule: React.FC = () => {
+  const [filterData, setFilterData] = useState<any>({});
+  const { data, isLoading } = useQuery(['flights', { ...filterData }], () =>
+    fetchSchedules(filterData),
+  );
+
   return (
     <Background color="">
+      {isLoading && <FullWidthLoading text={'Nous chargeons nos horaires'} />}
       <div
         id="home"
-        className="flex h-[100vh] flex-col items-center p-4 lg:px-16"
+        className="flex h-screen flex-col items-center p-4 lg:px-16"
       >
-        <div className="fixed w-[100vw] p-4 md:w-full md:px-16">
+        <div className="fixed w-screen p-4 md:w-full md:px-16">
           <Navbar active="schedule" />
         </div>
         <div className="mt-[80px] flex w-full flex-col gap-0 md:flex-row md:items-center md:justify-between">
           <h3 className="mb-[10px] mt-[16px] text-[16px] font-semibold uppercase text-blue md:w-[250px] lg:mt-0">
             Nos horaires de vol
           </h3>
-          <Filters />
+          <Filters
+            data={filterData}
+            date={filterData.originDate}
+            setData={setFilterData}
+            showDay
+          />
         </div>
 
         <div className="flex w-full flex-col overflow-y-scroll rounded-[15px] py-2 md:hidden">
-          {flights.map((f, index) => (
+          {data?.data.map((f, index) => (
             <div
-              className="mb-5 min-w-[100%] rounded-[15px] bg-blue p-5"
+              className="mb-5 min-w-full rounded-[15px] bg-blue p-5"
               key={index}
             >
               <div className="flex flex-row items-center justify-between">
-                <p className="mt-1 text-[14px] text-white">{f.company}</p>
+                <p className="mt-1 text-[14px] text-white">
+                  {
+                    f.attributes.plane.data.attributes.company.data.attributes
+                      .name
+                  }
+                </p>
                 <p className="mt-1 text-[14px] text-white">
                   <span className="mr-2">Vol</span>
-                  {f.number}
+                  {f.attributes.plane.data.attributes.model}
                 </p>
               </div>
 
@@ -48,20 +65,22 @@ const FlightSchedule: React.FC = () => {
                   <div className="mx-6 h-16 w-[2px] bg-blue" />
 
                   <div className="flex flex-col gap-4">
-                    <p>{f.departure}</p>
-                    <p>{f.arrival}</p>
+                    <p>{f.attributes.place_depart.data.attributes.name}</p>
+                    <p>{f.attributes.place_arrival.data.attributes.name}</p>
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-4">
-                  <p>{dayjs(f.depTime).format('DD/MM/YYYY HH:mm')}</p>
-                  <p>{dayjs(f.arrTime).format('DD/MM/YYYY HH:mm')}</p>
+                  <p>{f.attributes.time_depart.toString()}</p>
+                  <p>{f.attributes.time_arrival.toString()}</p>
                 </div>
               </div>
               <div className="flex flex-row items-center justify-between text-white">
                 <p className="mt-1 text-[14px]">
                   AVION:
-                  <span className="ml-2">{f.name}</span>
+                  <span className="ml-2">
+                    {f.attributes.plane.data.attributes.code}
+                  </span>
                 </p>
 
                 <Link
@@ -104,37 +123,40 @@ const FlightSchedule: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {flights.map((f, index) => (
+              {data?.data?.map((f, index) => (
                 <tr key={index} className="bg-white">
                   <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
-                    {f.company}
+                    {
+                      f.attributes.plane.data.attributes.company.data.attributes
+                        .name
+                    }
                   </td>
                   <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
-                    {f.name}
+                    {f.attributes.plane.data.attributes.model}
                   </td>
                   <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
-                    {f.number}
+                    {f.attributes.plane.data.attributes.code}
                   </td>
                   <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
-                    {f.departure}
+                    {f.attributes.place_depart.data.attributes.name}
                   </td>
                   <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
-                    {f.arrival}
+                    {f.attributes.place_arrival.data.attributes.name}
                   </td>
                   <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
-                    {f.depTime}
+                    {f.attributes.time_depart.toString()}
                   </td>
                   <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
-                    {f.arrTime}
+                    {f.attributes.time_arrival.toString()}
                   </td>
-                  <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
+                  {/* <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
                     <Link
                       href={`/flight-details/${f.id}`}
                       className="rounded-lg bg-blue/20 px-4 py-1 text-[12px] text-blue"
                     >
                       Reserver
                     </Link>
-                  </td>
+                  </td> */}
                 </tr>
               ))}
             </tbody>

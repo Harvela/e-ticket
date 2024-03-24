@@ -12,7 +12,7 @@ const Profile = () => {
           background:
             'linear-gradient(to bottom, rgb(255, 255, 255, 0), rgb(34, 58, 96, 0.2))',
         }}
-        className="h-[100vh]"
+        className="h-screen"
       >
         <UserNavbar />
         <ProfilePage />

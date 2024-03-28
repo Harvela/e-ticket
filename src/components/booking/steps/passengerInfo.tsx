@@ -101,12 +101,12 @@ const PassengerInfoStep: React.FC<{
             validator={{ validator: true }}
           />
           <Select
-            name="sex"
+            name="sexe"
             label="Sexe"
             placeholder="sexe"
             style="mb-4 md:mb-0"
             onChange={(e: string) => {
-              setValue('sex', e);
+              setValue('sexe', e);
             }}
             options={[
               { label: 'M', value: 'M' },

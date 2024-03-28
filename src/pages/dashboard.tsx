@@ -1,11 +1,13 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 
-import { assignTransactions } from '@/components/forms/hooks/data';
+import {
+  assignTransactions,
+  fetchSchedules,
+} from '@/components/forms/hooks/data';
 import { FullWidthLoading } from '@/components/loading/full-width';
 import { Meta } from '@/layout/Meta';
-import { UserNavbar } from '@/navigation/UserNavbar';
 import DashboardPage from '@/templates/Dashboard';
 import { AppConfig } from '@/utils/AppConfig';
 
@@ -39,22 +41,25 @@ const Dashboard = () => {
       );
     }
   }, []);
+  const [filterData, setFilterData] = useState<any>({});
+  const { isLoading } = useQuery(['flights', { ...filterData }], () =>
+    fetchSchedules(filterData),
+  );
 
   return (
     <div className="text-gray-600 antialiased">
       <Meta title={AppConfig.title} description={AppConfig.description} />
       {!token && <FullWidthLoading text="Connexion et chargement de donnes" />}
       {token && (
-        <div
-          style={{
-            background:
-              'linear-gradient(to bottom, rgb(255, 255, 255, 0), rgb(34, 58, 96, 0.2))',
-          }}
-        >
-          <div className="px-6">
-            <UserNavbar />
-          </div>
-          <DashboardPage />
+        <div>
+          {isLoading && (
+            <FullWidthLoading text={'Nous chargeons nos horaires'} />
+          )}
+          <DashboardPage
+            data={filterData}
+            date={filterData.originDate}
+            setData={setFilterData}
+          />
         </div>
       )}
     </div>

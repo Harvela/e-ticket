@@ -23,11 +23,10 @@ type Props = {
 const Filters: React.FC<Props> = (props) => {
   return (
     <div className="mb-4 flex h-[100px] flex-row items-center justify-between gap-2 overflow-x-scroll md:h-[150px] md:gap-8">
-      <div className="flex h-[37px]  flex-row items-center gap-4 rounded-[8px] bg-blue  pl-4">
+      <div className="flex h-[37px]  flex-row items-center gap-4 rounded-[8px] border border-white  pl-4">
         <span className="w-[150px] text-[14px] text-white md:w-[140px]">
           {props.showDay ? 'Jour de la semaine' : 'Date'}
         </span>
-        <div className="h-full w-px bg-white"></div>
         {!props.showDay ? (
           <Input
             type="date"
@@ -37,7 +36,7 @@ const Filters: React.FC<Props> = (props) => {
             }}
             name="date"
             placeholder="Date"
-            style="rounded-[8px] w-[150px] md:w-[150px] text-[14px] text-white font-bold "
+            style="rounded-[8px] w-[150px] md:w-[150px] text-[14px] text-blue bg-[#FFF6DE]"
           />
         ) : (
           <Select
@@ -55,28 +54,28 @@ const Filters: React.FC<Props> = (props) => {
             onChange={(e: string) => {
               props.setData({ ...props.data, date: '', rawDate: e });
             }}
-            style="rounded-[8px] w-[150px] md:w-[100px] text-[14px] text-white font-bold"
+            style="rounded-[8px] w-[150px] text-[14px] text-blue bg-[#FFF6DE]"
           />
         )}
       </div>
-      <div className="border-1 flex flex-row items-center gap-4 rounded-[8px] border border-[#B3B3B3] pl-4">
-        <span className="text-sm">Compagnie</span>
+      <div className="border-1 flex flex-row items-center gap-4 rounded-[8px] border border-white pl-4">
+        <span className="text-sm text-white">Compagnie</span>
         <CompanyInput
           name="company"
           placeholder=" "
           onChange={(e: string) => {
             props.setData({ ...props.data, company: e });
           }}
-          style="w-[150px] md:w-[100px]"
-          bgColor="rounded-[0px] rounded-r-[8px] bg-blue/10 font-bold text-blue"
+          style="w-[150px]"
+          bgColor="rounded-[0px] rounded-r-[8px] bg-blue/10 text-white/80"
         />
       </div>
-      <div className="border-1 flex flex-row items-center gap-4 rounded-[8px] border border-[#B3B3B3] pl-4">
-        <span className="text-sm">Depart</span>
+      <div className="border-1 flex flex-row items-center gap-4 rounded-[8px] border border-white pl-4">
+        <span className="text-sm text-white">Ville de depart</span>
         <PlaceInput
           placeholder={'Goma'}
-          style="w-[150px] md:w-[100px]"
-          bgColor="rounded-[0px] rounded-r-[8px] bg-blue/10 font-bold text-blue"
+          style="w-[150px]"
+          bgColor="rounded-[0px] rounded-r-[8px] bg-blue/10 text-white/80"
           defaultValue={props?.data?.place_depart?.toString?.()}
           name="depart"
           onChange={(e: string) => {
@@ -87,12 +86,12 @@ const Filters: React.FC<Props> = (props) => {
           }}
         />
       </div>
-      <div className="border-1 flex flex-row items-center gap-4 rounded-[8px] border border-[#B3B3B3] pl-4">
-        <span className="text-sm">Arriver</span>
+      <div className="border-1 flex flex-row items-center gap-4 rounded-[8px] border border-white pl-4">
+        <span className="text-sm text-white">Ville d&apos;arriver</span>
         <PlaceInput
           placeholder={'Kin'}
-          style="w-[150px] md:w-[100px] sm:mb-0"
-          bgColor="rounded-[0px] rounded-r-[8px] bg-blue/10 font-bold text-blue sm:mb-0"
+          style="w-[150px] sm:mb-0"
+          bgColor="rounded-[0px] rounded-r-[8px] bg-blue/10 text-white/80 sm:mb-0"
           defaultValue={props.data?.place_arrival?.toString?.()}
           name="arrival"
           onChange={(e: string) => {

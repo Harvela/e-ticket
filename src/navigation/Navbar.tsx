@@ -67,10 +67,10 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
             <Link href="/schedule" className="font-semibold text-blue/60">
               Horaire de vol
             </Link>
-            <Link href="#" className="font-semibold text-blue/60">
+            <Link href="/about" className="font-semibold text-blue/60">
               A propos de nous
             </Link>
-            <Link href="#" className="font-semibold text-blue/60">
+            <Link href="/contact" className="font-semibold text-blue/60">
               Nos contacts
             </Link>
             {/* <Link
@@ -122,8 +122,8 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
           >
             Horaire de vol
           </Link>
-          <Link href="#">A propos de nous</Link>
-          <Link href="#">Nos contact</Link>
+          <Link href="/about">A propos de nous</Link>
+          <Link href="/contact">Nos contact</Link>
         </Navbar.Collapse>
         <Navbar.Collapse className="flex flex-row items-center">
           {/* <Link

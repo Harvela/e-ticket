@@ -53,7 +53,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
               <button
                 className="rounded-lg border border-blue px-8 py-2 text-blue"
                 onClick={() => {
-                  navigation.push('/dashboard');
+                  navigation.push('/');
                 }}
               >
                 Reserver
@@ -61,6 +61,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
             </div>
             <button
               onClick={() => {
+                localStorage.clear();
                 navigation.push('/login');
               }}
               className="rounded-lg bg-blue px-6 py-2 font-semibold text-white"
@@ -71,7 +72,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
         </Navbar.Collapse>
         <Link
           activeClass="text-secondary-900 font-bold border-b-2 border-secondary-900"
-          to="pricing"
+          to="/"
           smooth
           spy
           offset={-100}

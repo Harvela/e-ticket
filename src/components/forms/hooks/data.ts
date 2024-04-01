@@ -55,6 +55,7 @@ export interface Transaction {
   id: number;
   attributes: {
     totalAmount: string;
+    paid: boolean;
   };
   // Add other properties of a place as needed
 }
@@ -305,7 +306,9 @@ export const fetchFlightById = async (flightId: number) => {
 // add card paiment by flex pay
 
 export const payWithFlexPay = async (transactionId: number) => {
-  const response = await axios.post('/api/transactions/pay', { transactionId });
+  const response = await axios.post(`/api/transactions/pay/${transactionId}`, {
+    transactionId,
+  });
   console.log(response);
   return response;
 };
@@ -373,6 +376,7 @@ export const getReservations = async () => {
 export const assignTransactions = async (transactionIds: number[]) => {
   const response = await axios.post('/api/transactions/assign', {
     transactionIds,
+    userId: JSON.parse(localStorage.getItem('user') || '{}')?.id,
   });
   return response.data;
 };
@@ -393,8 +397,21 @@ export const findTransactions = async (transactionId?: string) => {
   return response.data as Response<Reservation>;
 };
 
-export const findAllTransactions = async () => {
-  const response = await axios.get('/api/transactions');
+export const findAllTransactions = async (date?: Date) => {
+  const response = await axios.get('/api/transactions', {
+    params: {
+      'filters[users_permissions_user][id][$eq]': JSON.parse(
+        localStorage.getItem('user') || '{id: 0}',
+      )?.id,
+      // createdAt is today
+      'filters[createdAt][$gt]': dayjs(
+        date || new Date(1997, 1, 1),
+      ).toISOString(),
+      'filters[createdAt][$lt]': dayjs(date || new Date(2200, 1, 1))
+        .add(1, 'day')
+        .toISOString(),
+    },
+  });
   console.log(response);
   return response.data as Response<Transaction>;
 };

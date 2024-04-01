@@ -18,6 +18,7 @@ body {
     "Helvetica Neue",
     sans-serif;
   scroll-behavior: smooth;
+  margin-top: -0px;
 }
 
 .css-100ebu3-menu {
@@ -25,7 +26,6 @@ body {
   color: white;
   padding: 10px;
   margin-left: -10px;
-
 }
 
 input:focus {
@@ -43,5 +43,16 @@ html {
 }
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-  background: #FF0000;
+  background: transparent;
+  opacity: 0.1;
+  width: 2px;
+}
+
+.VIpgJd-ZVi9od-ORHb {
+  height: 0px !important;
+  display: none !important;
+}
+
+.skiptranslate {
+  display: none !important;
 }

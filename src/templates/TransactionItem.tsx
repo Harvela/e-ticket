@@ -4,7 +4,12 @@ import { useQuery } from 'react-query';
 
 import { findTransactions } from '@/components/forms/hooks/data';
 
-const TicketItem: React.FC<any> = ({ ref, transactionId, totalPrice }: any) => {
+const TicketItem: React.FC<any> = ({
+  ref,
+  transactionId,
+  totalPrice,
+  paid,
+}: any) => {
   const { data, isLoading } = useQuery(
     ['transaction', { id: transactionId || '' }],
     () => findTransactions(transactionId),
@@ -98,11 +103,13 @@ const TicketItem: React.FC<any> = ({ ref, transactionId, totalPrice }: any) => {
                   {formatDate(firstReservation?.date_depart)}
                 </h4>
                 <a
-                  href={`/reservation?step=5&ref=${transactionId}`}
+                  href={`/reservation?step=${
+                    paid ? '5' : '4'
+                  }&ref=${transactionId}`}
                   target="_blank"
                   className="rounded-[8px] bg-blue px-4 py-2 text-sm text-white"
                 >
-                  Imprimer
+                  {paid ? 'Imprimer' : 'Payer'}
                 </a>
               </div>
             </div>

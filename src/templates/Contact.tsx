@@ -16,9 +16,7 @@ const ContactPage: React.FC = () => {
 
       <div className=" m-auto mt-14 flex h-[75vh] w-full flex-col items-center justify-between rounded-lg bg-white md:flex-row">
         <form className="m-auto w-full p-8 md:w-2/5 md:px-16 md:py-4">
-          <h2 className="mb-8 text-2xl font-semibold text-blue">
-            Contactez-nous
-          </h2>
+          <h2 className="mb-8 text-2xl font-semibold text-blue">Suggestion</h2>
           <Input
             name="name"
             label="Nom"
@@ -44,20 +42,20 @@ const ContactPage: React.FC = () => {
             className="w-full rounded-[8px] bg-blue px-16 py-2 text-sm text-white md:w-[50%]"
             type="submit"
           >
-            Se connecter
+            Envoyer
           </button>
         </form>
 
         <div className="hidden h-full w-[2px] bg-blue/50 md:block" />
         <div className="h-[2px] w-full bg-blue/50 md:hidden" />
 
-        <div className="m-auto flex size-full flex-col gap-12 p-8 md:w-2/5 md:px-16 md:py-12">
+        <div className="m-auto flex size-full flex-col justify-center gap-12 bg-white p-8 md:w-2/5 md:px-16 md:py-12">
           <div className="flex flex-row items-center gap-8">
             <IoIosMail className="size-8 text-blue" />
             <p className="text-[16px] text-black">fezacompany@info.com</p>
           </div>
 
-          <div>
+          <div className="w-full bg-white ">
             <div className="mb-4 h-px w-full bg-blue/50" />
 
             <div className="flex flex-row gap-8">

@@ -24,7 +24,7 @@ const FlightSchedule: React.FC = () => {
         <div className="fixed w-screen p-4 md:w-full md:px-16">
           <Navbar active="schedule" />
         </div>
-        <div className="mt-[80px] flex w-full flex-col gap-0 md:flex-row md:items-center">
+        <div className="mt-[80px] flex w-full flex-col gap-0 overflow-y-visible md:flex-row md:items-center">
           <Filters
             data={filterData}
             date={filterData.originDate}

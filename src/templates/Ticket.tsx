@@ -39,7 +39,7 @@ const TicketPage: React.FC<any> = ({ ref }: any) => {
   if (!data) return null;
 
   return (
-    <div id="ticket" className="p-16 text-black" ref={ref}>
+    <div id="ticket" className="min-w-[1000px] p-16 text-black" ref={ref}>
       {isLoading && (
         <FullWidthLoading text="Chargement du recu de votre reservation ..." />
       )}

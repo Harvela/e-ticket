@@ -37,13 +37,19 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
     const currentReservation = currentReservationSt
       ? JSON.parse(currentReservationSt)
       : {};
+    if (!currentReservation.flights) currentReservation.flights = [];
     currentReservation.flights?.push({
       id: vol.id,
     });
 
     localStorage.setItem('reservation', JSON.stringify(currentReservation));
-
-    if (currentReservation.flights?.length === flightData.length) onNextStep();
+    console.log(
+      'testing',
+      flightData.length,
+      currentReservation.flights?.length,
+    );
+    if ((currentReservation.flights?.length || 0) === flightData.length)
+      onNextStep();
     else {
       setFilterData(flightData[currentFlight + 1]);
       setCurrentFlight(currentFlight + 1);
@@ -103,6 +109,17 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
         <p className="text[16px] pb-8 font-semibold text-blue">
           {data?.meta?.pagination?.total} Vol(s) trouvees{' '}
         </p>
+        {data?.data?.length === 0 && (
+          <div className="flex h-[50vh] flex-row items-center justify-center">
+            <p>Aucun vol disponible pour cette date</p>
+            <button
+              className="rounded-[8px] bg-blue px-4 py-1 text-sm text-white"
+              onClick={() => navigation.push('/')}
+            >
+              Retour
+            </button>
+          </div>
+        )}
         {data?.data?.map((vol, index) => (
           <div key={index}>
             <div className="mb-4 flex w-full flex-col gap-2 rounded-[8px] bg-blue/10 p-4 md:hidden">

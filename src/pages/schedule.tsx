@@ -12,7 +12,7 @@ const Schedule = () => {
           alt="Hero"
           className="size-full object-cover"
         />
-        <div className="absolute left-0 top-0 size-full bg-blue/40 ">
+        <div className="absolute left-0 top-0 size-full bg-blue/70 pb-[50px] ">
           <FlightSchedule />
         </div>
       </div>

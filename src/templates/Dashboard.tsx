@@ -40,7 +40,7 @@ const DashboardPage: React.FC<Props> = (props) => {
           <button
             className="rounded-lg border border-blue px-4 py-1 text-blue"
             onClick={() => {
-              navigation.push('/dashboard');
+              navigation.push('/');
             }}
           >
             Reserver
@@ -69,6 +69,7 @@ const DashboardPage: React.FC<Props> = (props) => {
               key={t.id}
               totalPrice={t.attributes.totalAmount}
               transactionId={t.id}
+              paid={t.attributes.paid}
             />
           ))}
         </div>

@@ -4,7 +4,7 @@ import React from 'react';
 const tabs = [
   { label: 'Mes reservations', link: '/dashboard' },
   { label: 'Mon profile', link: '/profile' },
-  { label: 'Horaire de vol', link: '/profile' },
+  { label: 'Horaire de vol', link: '/schedule' },
 ];
 
 const AsideNav: React.FC = () => {
@@ -40,6 +40,7 @@ const AsideNav: React.FC = () => {
       </div>
       <button
         onClick={() => {
+          localStorage.clear();
           navigation.push('/login');
         }}
         className="rounded-lg bg-white px-6 py-2 font-semibold text-blue"

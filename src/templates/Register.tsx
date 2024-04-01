@@ -62,7 +62,7 @@ const RegisterPage: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className=" m-auto mt-12 flex w-2/5 flex-col items-center justify-between gap-6 rounded-lg bg-white p-8"
+      className=" m-auto mt-12 flex w-[90%] flex-col items-center justify-between gap-6 rounded-lg bg-white p-8 md:w-2/5"
     >
       {mutation.isLoading && (
         <FullWidthLoading text="Validation et enregistrement de vos informations" />

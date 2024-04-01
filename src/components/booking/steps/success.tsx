@@ -19,7 +19,9 @@ const BookingSuccess: React.FC = () => {
     <div className="flex h-[70vh] flex-col items-center justify-center gap-10">
       <div
         className={`absolute ${
-          isPrinting ? 'top-0  z-[20000] min-h-[100vh]' : 'top-[-3000px]'
+          isPrinting
+            ? 'top-[0px]  z-[20000] min-h-[100vh] w-full'
+            : 'top-[-3000px]'
         }`}
       >
         <div ref={componentRef}>

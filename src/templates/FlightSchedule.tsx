@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 
@@ -25,10 +24,7 @@ const FlightSchedule: React.FC = () => {
         <div className="fixed w-screen p-4 md:w-full md:px-16">
           <Navbar active="schedule" />
         </div>
-        <div className="mt-[80px] flex w-full flex-col gap-0 md:flex-row md:items-center md:justify-between">
-          <h3 className="mb-[10px] mt-[16px] text-[16px] font-semibold uppercase text-blue md:w-[250px] lg:mt-0">
-            Nos horaires de vol
-          </h3>
+        <div className="mt-[80px] flex w-full flex-col gap-0 overflow-y-visible md:flex-row md:items-center">
           <Filters
             data={filterData}
             date={filterData.originDate}
@@ -56,7 +52,7 @@ const FlightSchedule: React.FC = () => {
                 </p>
               </div>
 
-              <div className="my-4 flex flex-row items-center justify-between rounded-lg bg-white p-4 text-blue">
+              <div className="my-4 flex flex-row items-center justify-between rounded-lg bg-white p-4 text-[12px] text-blue md:text-[16px]">
                 <div className="flex flex-row items-center justify-between">
                   <div className="flex flex-col gap-4">
                     <p>Depart</p>
@@ -82,13 +78,14 @@ const FlightSchedule: React.FC = () => {
                     {f.attributes.plane.data.attributes.code}
                   </span>
                 </p>
-
+                {/* 
                 <Link
-                  href={`/flight-details/${f.id}`}
+                  href={`/flight-details/${f.attributes.plane.data.attributes.company.data.attributes
+                    .name}`}
                   className="rounded-lg bg-[#B85043] px-4 py-1 text-[14px] text-white"
                 >
                   Reserver
-                </Link>
+                </Link> */}
               </div>
             </div>
           ))}
@@ -119,7 +116,7 @@ const FlightSchedule: React.FC = () => {
                 <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue">
                   HEURE ARR.
                 </th>
-                <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue"></th>
+                {/* <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue"></th> */}
               </tr>
             </thead>
             <tbody>

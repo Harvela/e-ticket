@@ -1,8 +1,9 @@
-import { Meta } from '@/layout/Meta';
-import { FlightSchedule } from '@/templates/FlightSchedule';
-import { AppConfig } from '@/utils/AppConfig';
+import { ContactPage } from '@/templates/Contact';
 
-const Schedule = () => {
+import { Meta } from '../layout/Meta';
+import { AppConfig } from '../utils/AppConfig';
+
+const Contact = () => {
   return (
     <div className="text-gray-600 antialiased">
       <Meta title={AppConfig.title} description={AppConfig.description} />
@@ -12,12 +13,12 @@ const Schedule = () => {
           alt="Hero"
           className="size-full object-cover"
         />
-        <div className="absolute left-0 top-0 size-full bg-blue/70 pb-[50px] ">
-          <FlightSchedule />
+        <div className="absolute left-0 top-0 size-full bg-blue/40 ">
+          <ContactPage />
         </div>
       </div>
     </div>
   );
 };
 
-export default Schedule;
+export default Contact;

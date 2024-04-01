@@ -1,3 +1,5 @@
+'use client';
+
 import 'react-datepicker/dist/react-datepicker.css';
 
 import type { ReactNode } from 'react';
@@ -43,21 +45,25 @@ const Select: React.FC<SelectProps> = (props) => {
   }, [props.defaultValue]);
 
   return (
-    <div className={`sm:mb-0 ${style} flex-1 `}>
+    <div className={`sm:mb-0 ${style} data-no-translation notranslate flex-1`}>
       {label && (
-        <span className="mb-2 flex flex-row items-center gap-1 text-[12px] font-semibold text-blue">
+        <span className="mb-2 flex flex-row items-center gap-1 overflow-y-visible text-[12px] font-semibold text-blue">
           {label}
           {icon}
         </span>
       )}
       <ReactSelect
-        className={`${bgColor} w-full min-w-[150px] rounded-[5px] border-blue/10 px-2 text-[14px] focus:outline-0`}
+        className={`${bgColor}  notranslate w-full rounded-[5px] border-blue/10 px-2 text-[14px] focus:outline-0`}
         placeholder={placeholder}
         options={options || []}
         value={props.options?.find((e) => e.value === value)}
         onChange={(e: any) => {
           props?.onChange?.(e.value || '');
         }}
+        menuPortalTarget={
+          typeof window !== 'undefined' ? document.body : undefined
+        }
+        styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
         onBlur={onBlur}
         required={required}
         unstyled

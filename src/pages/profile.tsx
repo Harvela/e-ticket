@@ -1,5 +1,4 @@
 import { Meta } from '@/layout/Meta';
-import { UserNavbar } from '@/navigation/UserNavbar';
 import ProfilePage from '@/templates/Profile';
 import { AppConfig } from '@/utils/AppConfig';
 
@@ -14,7 +13,6 @@ const Profile = () => {
         }}
         className="h-screen"
       >
-        <UserNavbar />
         <ProfilePage />
       </div>
     </div>

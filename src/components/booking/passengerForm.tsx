@@ -16,10 +16,18 @@ const PassengerForm: React.FC = () => {
     if (
       router.query.step &&
       !Number.isNaN(Number(router.query.step as any)) &&
-      (localStorage.getItem('flightData') || router.query.step === '5')
+      (localStorage.getItem('flightData') ||
+        router.query.step === '5' ||
+        router.query.step === '4')
     ) {
       setStep(Number.parseInt(router.query.step as string, 10));
     } else {
+      const reservation = JSON.parse(
+        localStorage.getItem('reservation') || '{}',
+      );
+      if (!reservation?.flights) {
+        router.push('/');
+      }
       setStep(1);
     }
   }, [router.query.step]);
@@ -44,7 +52,9 @@ const PassengerForm: React.FC = () => {
       {step === 3 && (
         <Payment1Step onPrevStep={handlePrevStep} onNextStep={handleNextStep} />
       )}
-      {step === 4 && <Payment2Step onNextStep={handleNextStep} />}
+      {step === 4 && (
+        <Payment2Step onNextStep={handleNextStep} onPrevStep={handlePrevStep} />
+      )}
       {step === 5 && <BookingSuccess />}
     </div>
   );

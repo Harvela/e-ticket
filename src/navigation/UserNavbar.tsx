@@ -1,4 +1,3 @@
-import type { CustomFlowbiteTheme } from 'flowbite-react';
 import { Flowbite, Navbar } from 'flowbite-react';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -8,28 +7,12 @@ export type NavbarProps = {
   setOpenModal?: (value: boolean) => void;
 };
 
-const customTheme: CustomFlowbiteTheme = {
-  navbar: {
-    link: {
-      base: 'block py-2 md:p-0 text-white',
-      active: {
-        on: 'text-white dark:text-white md:bg-transparent md:text-white',
-        off: 'border-b border-gray-100  text-white hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:hover:bg-transparent md:hover:text-cyan-700 md:dark:hover:bg-transparent md:dark:hover:text-white',
-      },
-      disabled: {
-        on: 'text-white hover:cursor-not-allowed dark:text-white',
-        off: '',
-      },
-    },
-  },
-};
-
 const NavbarGlobal: React.FC<NavbarProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigation = useRouter();
 
   return (
-    <Flowbite theme={{ theme: customTheme }}>
+    <Flowbite>
       <Navbar
         className="rounded-xl p-3 md:hidden"
         style={{
@@ -51,49 +34,62 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
           </Navbar.Brand>
         </div>
         <Navbar.Collapse className={isOpen ? 'block' : 'hidden'}>
-          <div className="absolute top-[110px] flex w-full flex-col items-start gap-4  rounded-md bg-white p-4">
+          <div className="absolute -left-px top-[100px] flex h-2/5 w-full flex-col items-start justify-between gap-8 rounded-md  bg-white px-8 py-12">
+            <div className="flex flex-col items-start gap-8">
+              <button
+                onClick={() => {
+                  navigation.push('/dashboard');
+                }}
+              >
+                Mes reservations
+              </button>
+              <button
+                onClick={() => {
+                  navigation.push('/profile');
+                }}
+              >
+                Mon profile
+              </button>
+              <button
+                className="rounded-lg border border-blue px-8 py-2 text-blue"
+                onClick={() => {
+                  navigation.push('/');
+                }}
+              >
+                Reserver
+              </button>
+            </div>
             <button
               onClick={() => {
-                navigation.push('/dashboard');
+                localStorage.clear();
+                navigation.push('/login');
               }}
+              className="rounded-lg bg-blue px-6 py-2 font-semibold text-white"
             >
-              Mes reservations
-            </button>
-            <button
-              onClick={() => {
-                navigation.push('/profile');
-              }}
-            >
-              Mon profile
+              Deconnexion
             </button>
           </div>
         </Navbar.Collapse>
         <Link
           activeClass="text-secondary-900 font-bold border-b-2 border-secondary-900"
-          to="pricing"
+          to="/"
           smooth
           spy
           offset={-100}
-          className="rounded-lg border border-blue px-2 py-1 text-[12px] text-blue"
+          className="rounded-lg border border-blue px-4 py-1 text-blue"
         >
-          Faire une reservation
+          Reserver
         </Link>
       </Navbar>
 
       <Navbar
-        className="hidden rounded-xl px-2 md:block"
+        className="hidden md:block"
         style={{
           width: '100%',
           zIndex: 40,
         }}
       >
-        <Navbar.Brand href="#">
-          <img
-            src="/assets/images/home/logo.png"
-            className="h-4 rounded-lg bg-white lg:h-8"
-            alt="Logo"
-          />
-        </Navbar.Brand>
+        <h1 className="text-lg font-semibold text-blue">Mes reservations </h1>
         <Navbar.Collapse className="flex flex-row items-center">
           <Link
             activeClass="text-secondary-900 font-bold border-b-2 border-secondary-900"
@@ -103,7 +99,7 @@ const NavbarGlobal: React.FC<NavbarProps> = () => {
             offset={-100}
             className="rounded-lg border border-blue px-4 py-1 text-blue"
           >
-            Faire une reservation
+            Reserver
           </Link>
         </Navbar.Collapse>
       </Navbar>

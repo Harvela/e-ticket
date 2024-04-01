@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
         <Navbar active="acceuil" />
         <div className=" flex flex-col items-center justify-between">
           <h1 className="mt-[15vh] text-center text-[30px] font-bold tracking-widest text-white md:mt-4 lg:text-4xl">
-            Explorez Des Nouvelles Horisons <br /> Chassez Vos Reves.
+            Voyagez paisiblement <br /> En R.D. Congo
           </h1>
           <h2 className="mb-[60px] mt-[40px] text-center text-[15px] text-white/80 md:mb-0 md:mt-[15px]  md:text-[15px]">
             Avec notre plateforme reservez vos billets d’avions dans le confort
@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
             informations.
           </h2>
         </div>
-        <div className="w-full pb-[0px] md:pb-[60px]">
+        <div className="w-full pb-0 md:pb-[60px]">
           <FlyForm
             // setData={() => {
             //   console.log('form');

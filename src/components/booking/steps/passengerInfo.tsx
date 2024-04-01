@@ -71,7 +71,10 @@ const PassengerInfoStep: React.FC<{
       <h2 className="mb-6 text-[16px] font-bold uppercase text-blue">
         INFORMATIONS DU PASSAGER N {currentStep + 1}
       </h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className=" h-4/5 overflow-y-scroll"
+      >
         <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-3">
           <Input
             name="firstName"
@@ -98,12 +101,12 @@ const PassengerInfoStep: React.FC<{
             validator={{ validator: true }}
           />
           <Select
-            name="sex"
+            name="sexe"
             label="Sexe"
             placeholder="sexe"
             style="mb-4 md:mb-0"
             onChange={(e: string) => {
-              setValue('sex', e);
+              setValue('sexe', e);
             }}
             options={[
               { label: 'M', value: 'M' },

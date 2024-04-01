@@ -56,7 +56,7 @@ const Input: React.FC<Props> = (props: Props) => {
       {!(type === 'date' && (min || max)) ? (
         <input
           type={type || 'text'}
-          className={`${bgColor} w-full rounded-[5px] border-blue/10 px-4 py-1 text-[14px] focus:outline-0`}
+          className={`${bgColor} w-full rounded-[5px] border-blue/10 px-4 py-1 text-[16px] focus:outline-0 md:text-[14px]`}
           placeholder={placeholder}
           max={max}
           min={min}

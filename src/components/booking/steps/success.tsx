@@ -6,15 +6,22 @@ import { TicketPage } from '@/templates/Ticket';
 
 const BookingSuccess: React.FC = () => {
   const componentRef = useRef<any>();
+  const [isPrinting, setIsPrinting] = React.useState(false);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
+    onBeforePrint: () => setIsPrinting(true),
+    onAfterPrint: () => setIsPrinting(false),
   });
 
   // opacity-0 absolute top-[-20000px]
 
   return (
     <div className="flex h-[70vh] flex-col items-center justify-center gap-10">
-      <div className="absolute top-[-3000px]">
+      <div
+        className={`absolute ${
+          isPrinting ? 'top-0  z-[20000] min-h-[100vh]' : 'top-[-3000px]'
+        }`}
+      >
         <div ref={componentRef}>
           <TicketPage />
         </div>

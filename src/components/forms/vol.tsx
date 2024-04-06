@@ -134,7 +134,7 @@ export const FlyForm: React.FC<VolProps> = () => {
           name="destination"
           label="Vous allez où?"
           icon={<SlArrowDown />}
-          placeholder="Goma"
+          placeholder="Kolwezi"
           onChange={(e: any) => {
             setValue('destination', e);
           }}

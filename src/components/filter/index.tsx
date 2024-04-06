@@ -87,7 +87,7 @@ const Filters: React.FC<Props> = (props) => {
         >
           <span className={`text-sm ${textColor}`}>Ville de depart</span>
           <PlaceInput
-            placeholder={'Goma'}
+            placeholder={'Kinshasa'}
             style="w-[150px]"
             bgColor={`"rounded-[0px] rounded-r-[8px] bg-blue/10 ${textColor}`}
             defaultValue={props?.data?.place_depart?.toString?.()}
@@ -105,7 +105,7 @@ const Filters: React.FC<Props> = (props) => {
         >
           <span className={`text-sm ${textColor}`}>Ville d&apos;arriver</span>
           <PlaceInput
-            placeholder={'Kin'}
+            placeholder={'Kananga'}
             style="w-[150px] sm:mb-0"
             bgColor={`rounded-[0px] rounded-r-[8px] bg-blue/10 ${textColor} sm:mb-0`}
             defaultValue={props.data?.place_arrival?.toString?.()}

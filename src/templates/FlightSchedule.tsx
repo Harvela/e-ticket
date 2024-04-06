@@ -40,19 +40,19 @@ const FlightSchedule: React.FC = () => {
               key={index}
             >
               <div className="flex flex-row items-center justify-between">
-                <p className="mt-1 text-[14px] text-white">
+                <p className="mt-1 text-[16px] text-white">
                   {
                     f.attributes.plane.data.attributes.company.data.attributes
                       .name
                   }
                 </p>
-                <p className="mt-1 text-[14px] text-white">
+                <p className="mt-1 text-[16px] text-white">
                   <span className="mr-2">Vol</span>
                   {f.attributes.plane.data.attributes.model}
                 </p>
               </div>
 
-              <div className="my-4 flex flex-row items-center justify-between rounded-lg bg-white p-4 text-[12px] text-blue md:text-[16px]">
+              <div className="my-4 flex flex-row items-center justify-between rounded-lg bg-white p-4 text-[14px] text-blue md:text-[16px]">
                 <div className="flex flex-row items-center justify-between">
                   <div className="flex flex-col gap-4">
                     <p>Depart</p>
@@ -72,20 +72,12 @@ const FlightSchedule: React.FC = () => {
                 </div>
               </div>
               <div className="flex flex-row items-center justify-between text-white">
-                <p className="mt-1 text-[14px]">
+                <p className="mt-1 text-[16px]">
                   AVION:
                   <span className="ml-2">
                     {f.attributes.plane.data.attributes.code}
                   </span>
                 </p>
-                {/* 
-                <Link
-                  href={`/flight-details/${f.attributes.plane.data.attributes.company.data.attributes
-                    .name}`}
-                  className="rounded-lg bg-[#B85043] px-4 py-1 text-[14px] text-white"
-                >
-                  Reserver
-                </Link> */}
               </div>
             </div>
           ))}

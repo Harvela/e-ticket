@@ -91,9 +91,9 @@ const FlightSchedule: React.FC = () => {
           ))}
         </div>
 
-        <div className="hidden w-full rounded-[10px] md:block">
+        <div className="hidden h-[60vh] w-full overflow-y-scroll rounded-[10px] md:block">
           <table className="w-full rounded-[10px]">
-            <thead className="rounded-[10px]  text-blue">
+            <thead className="sticky top-0 rounded-[10px] text-blue">
               <tr className="rounded-[10px] bg-[#F2F3F4]">
                 <th className=" py-4 pl-5 text-left text-[14px] font-semibold text-blue ">
                   COMPAGNIE
@@ -116,7 +116,9 @@ const FlightSchedule: React.FC = () => {
                 <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue">
                   HEURE ARR.
                 </th>
-                {/* <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue"></th> */}
+                <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue">
+                  BLOCK TIME
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -129,10 +131,10 @@ const FlightSchedule: React.FC = () => {
                     }
                   </td>
                   <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
-                    {f.attributes.plane.data.attributes.model}
+                    {f.attributes.plane.data.attributes.code}
                   </td>
                   <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
-                    {f.attributes.plane.data.attributes.code}
+                    {f.attributes.plane.data.attributes.model}
                   </td>
                   <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
                     {f.attributes.place_depart.data.attributes.name}
@@ -146,14 +148,12 @@ const FlightSchedule: React.FC = () => {
                   <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
                     {f.attributes.time_arrival.toString()}
                   </td>
-                  {/* <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
-                    <Link
-                      href={`/flight-details/${f.id}`}
-                      className="rounded-lg bg-blue/20 px-4 py-1 text-[12px] text-blue"
-                    >
-                      Reserver
-                    </Link>
-                  </td> */}
+                  <td className="font-regular py-4 pl-5 text-left text-sm text-blue">
+                    {Math.abs(
+                      new Date(f.attributes.time_depart).getTime() -
+                        new Date(f.attributes.time_arrival).getTime(),
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

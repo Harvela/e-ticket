@@ -197,7 +197,9 @@ const FlightSchedule: React.FC = () => {
                 <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue">
                   {t('schedule.hour')} ARR.
                 </th>
-                {/* <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue"></th> */}
+                <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue">
+                  BLOCK TIME
+                </th>
               </tr>
             </thead>
             <tbody>

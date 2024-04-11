@@ -98,12 +98,15 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
             >
               Traquer mon billet
             </Link> */}
-              <Link
-                href="#"
-                className="mt-4 rounded-lg bg-blue px-4 py-1 text-center text-sm font-semibold text-white md:mt-0"
-              >
-                Deconnexion
-              </Link>
+            <button
+              onClick={() => {
+                if (!token) navigation.push('/login');
+                else navigation.push('/dashboard');
+              }}
+              className="rounded-lg bg-blue px-2 py-2 text-[14px] font-semibold text-white lg:px-4 lg:text-sm"
+            >
+              {token ? 'Mes reservations' : 'Se connecter'}
+            </button>
             </div>
           </Navbar.Collapse>
         </Navbar>

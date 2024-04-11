@@ -103,6 +103,7 @@ export interface Flight {
     time_arrival: Date;
     time_depart: Date;
     totalPrice: number;
+    day: string;
   };
 }
 

@@ -3,6 +3,7 @@ import '../styles/global.css';
 
 import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
+// ts-ignore
 import nextI18NextConfig from '../../next-i18next.config.js';
 
 

@@ -7,7 +7,7 @@ import { Background } from '../background/Background';
 import { useTranslation } from 'next-i18next';
 
 const Hero: React.FC = () => {
-  const {t, i18n} = useTranslation('common'); 
+  const {t} = useTranslation('common'); 
 
   return (
     <Background color="">

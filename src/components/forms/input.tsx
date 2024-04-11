@@ -73,9 +73,9 @@ const Input: React.FC<Props> = (props: Props) => {
       ) : (
         <DatePicker
           selected={
-            selectedDate || defaultValue
+            selectedDate ? dayjs(selectedDate).toDate() : (defaultValue
               ? dayjs(defaultValue || min).toDate()
-              : undefined
+              : undefined )
           }
           onChange={(date) => {
             setSelectedDate(date);

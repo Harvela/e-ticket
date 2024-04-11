@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { IoMdArrowDropright } from 'react-icons/io';
 import { PiAirplaneTiltFill } from 'react-icons/pi';
@@ -8,6 +9,7 @@ import { getTimeOrDate } from '@/utils/format';
 import type { Reservation } from '../forms/hooks/data';
 
 const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
+  const { t } = useTranslation('common');
   return (
     <div className="mt-[30px] text-black">
       <hr className="h-[2px] w-full bg-black" />
@@ -15,13 +17,13 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
         <PiAirplaneTiltFill className="size-16 text-black" />
         <div>
           <p className="text-md">
-            DEPART:{' '}
+            {t('ticket.departure')}:{' '}
             <span className="font-semibold uppercase">
               {dayjs(ticket.attributes.date_depart).format('DD - MM - YYYY')}
             </span>{' '}
           </p>
           <p className="text-sm font-bold">
-            Avion:{' '}
+            {t('ticket.plane')}:{' '}
             <span className="uppercase">
               {
                 ticket.attributes.schedule.data.attributes.plane.data.attributes
@@ -50,7 +52,7 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
             </h2>
           </div>
           <p className="text-sm">
-            Duree:{' '}
+            {t('ticket.duration')}:{' '}
             {dayjs(
               getTimeOrDate(
                 ticket.attributes.schedule.data.attributes
@@ -69,7 +71,7 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
             )}{' '}
             minutes
           </p>
-          <p className="text-sm">Statut: Confirme</p>
+          <p className="text-sm">{t('ticket.status')}: Confirme</p>
         </div>
 
         <div className="flex w-[70%] flex-row border-2 border-blue/10">
@@ -110,7 +112,7 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
             <div className="flex flex-row">
               <div className="flex w-[50%] flex-col gap-4 p-4">
                 <p className="text-sm">
-                  Depart a:{' '}
+                  {t('ticket.departureAt')}:{' '}
                   <span className="text-md">
                     {ticket.attributes.schedule.data.attributes.time_depart}
                   </span>
@@ -119,7 +121,7 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
 
               <div className="flex w-[50%] flex-col gap-4 border border-y-0 border-l-DEFAULT border-r-0 p-4">
                 <p className="text-sm">
-                  Arrivee a:{' '}
+                  {t('ticket.arrivalAt')}:{' '}
                   <span className="text-md">
                     {ticket.attributes.schedule.data.attributes.time_arrival}
                   </span>
@@ -135,10 +137,10 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
           <thead className="">
             <tr className="bg-blue/10">
               <th className="p-1 text-left text-[14px] font-medium">
-                Nom du passager
+                {t('ticket.passengerName')}
               </th>
               <th className="border border-y-0 border-l-DEFAULT border-r-0 border-blue/20 p-1 text-left text-[14px] font-medium">
-                Numero telephone
+                {t('ticket.passengerNumber')}
               </th>
             </tr>
           </thead>

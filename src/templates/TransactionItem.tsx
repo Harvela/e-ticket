@@ -22,10 +22,10 @@ const TicketItem: React.FC<any> = ({
   data?.data.forEach((t) => {
     if (
       cities[cities.length - 1] !==
-      t.attributes.schedule.data.attributes.place_arrival.data.attributes.name
+      t.attributes.schedule.data?.attributes.place_arrival.data.attributes.name
     ) {
       cities.push(
-        t.attributes.schedule.data.attributes.place_arrival.data.attributes
+        t.attributes.schedule.data?.attributes.place_arrival.data.attributes
           .name,
       );
     }
@@ -66,13 +66,13 @@ const TicketItem: React.FC<any> = ({
             <div className="lg-grow w-full">
               <h4 className="text-[14px] font-bold text-blue">
                 {
-                  firstReservation?.schedule.data.attributes.place_depart.data
-                    .attributes.name
+                  firstReservation?.schedule.data?.attributes.place_depart.data
+                    ?.attributes.name
                 }{' '}
                 &gt; {cities.join(' > ')} &gt;{' '}
                 {
-                  firstReservation?.schedule.data.attributes.place_depart.data
-                    .attributes.name
+                  firstReservation?.schedule.data?.attributes.place_depart.data
+                    ?.attributes.name
                 }
               </h4>
 
@@ -88,8 +88,8 @@ const TicketItem: React.FC<any> = ({
                       {
                         data.data.filter(
                           (d) =>
-                            d.attributes.schedule.data.id ===
-                            firstReservation?.schedule.data.id,
+                            d.attributes.schedule.data?.id ===
+                            firstReservation?.schedule.data?.id,
                         ).length
                       }
                     </span>

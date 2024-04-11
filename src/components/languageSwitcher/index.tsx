@@ -1,18 +1,18 @@
 /* eslint-disable import/no-named-as-default */
 import type { NextPageContext } from 'next';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import type { LanguageDescriptor } from './hooks';
 import useLanguageSwitcher from './hooks';
-import { useTranslation } from 'next-i18next';
 
 export type LanguageSwitcherProps = {
   context?: NextPageContext;
 };
 
 export const LanguageSwitcher = ({ context }: LanguageSwitcherProps = {}) => {
-  const {i18n} = useTranslation('common');
-  console.log(i18n.language)
+  const { i18n } = useTranslation('common');
+  console.log(i18n.language);
   const { currentLanguage, switchLanguage, languageConfig } =
     useLanguageSwitcher({ context });
 

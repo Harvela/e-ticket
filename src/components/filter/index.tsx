@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { CompanyInput } from '../flight-input/company';
@@ -21,13 +22,14 @@ type Props = {
 };
 
 const Filters: React.FC<Props> = (props) => {
+  const { t } = useTranslation('common');
   const textColor = props.showDay ? 'text-white' : 'text-blue';
   const borderColor = props.showDay ? 'border-white' : 'border-blue';
   return (
     <div className="mt-[70px] flex  flex-col">
       {props.showDay && (
         <h1 className={`${textColor} mb-6 text-[23px] font-semibold`}>
-          Nos horaires de vol
+          {t('filter.title')}
         </h1>
       )}
       <div className="mb-4 flex  flex-row items-center justify-between gap-2 overflow-x-scroll  md:gap-8">
@@ -35,7 +37,7 @@ const Filters: React.FC<Props> = (props) => {
           className={`flex  flex-row items-center gap-4 rounded-[8px] ${borderColor} overflow-y-visible  border-[1px] pl-4`}
         >
           <span className={`w-[150px] text-[14px] ${textColor} md:w-[140px]`}>
-            {props.showDay ? 'Jour de la semaine' : 'Date'}
+            {props.showDay ? t('filter.day') : 'Date'}
           </span>
           {!props.showDay ? (
             <Input
@@ -53,13 +55,13 @@ const Filters: React.FC<Props> = (props) => {
               name="date"
               placeholder={''}
               options={[
-                { label: 'LUNDI', value: 'LUNDI' },
-                { label: 'MARDI', value: 'MARDI' },
-                { label: 'MERCREDI', value: 'MERCREDI' },
-                { label: 'JEUDI', value: 'JEUDI' },
-                { label: 'VENDREDI', value: 'VENDREDI' },
-                { label: 'SAMEDI', value: 'SAMEDI' },
-                { label: 'DIMANCHE', value: 'DIMANCHE' },
+                { label: t('filter.monday'), value: 'LUNDI' },
+                { label: t('filter.tuesday'), value: 'MARDI' },
+                { label: t('filter.wednesday'), value: 'MERCREDI' },
+                { label: t('filter.thursday'), value: 'JEUDI' },
+                { label: t('filter.friday'), value: 'VENDREDI' },
+                { label: t('filter.saturday'), value: 'SAMEDI' },
+                { label: t('filter.sunday'), value: 'DIMANCHE' },
               ]}
               onChange={(e: string) => {
                 props.setData({ ...props.data, date: '', rawDate: e });
@@ -71,7 +73,7 @@ const Filters: React.FC<Props> = (props) => {
         <div
           className={`border-1 flex flex-row items-center gap-4 rounded-[8px] border ${borderColor} pl-4`}
         >
-          <span className={`text-sm ${textColor}`}>Compagnie</span>
+          <span className={`text-sm ${textColor}`}>{t('filter.company')}</span>
           <CompanyInput
             name="company"
             placeholder=" "
@@ -85,9 +87,9 @@ const Filters: React.FC<Props> = (props) => {
         <div
           className={`border-1 flex flex-row items-center gap-4 rounded-[8px] border ${borderColor} pl-4`}
         >
-          <span className={`text-sm ${textColor}`}>Ville de depart</span>
+          <span className={`text-sm ${textColor}`}>{t('filter.depCity')}</span>
           <PlaceInput
-            placeholder={'Goma'}
+            placeholder={'Kin'}
             style="w-[150px]"
             bgColor={`"rounded-[0px] rounded-r-[8px] bg-blue/10 ${textColor}`}
             defaultValue={props?.data?.place_depart?.toString?.()}
@@ -103,9 +105,9 @@ const Filters: React.FC<Props> = (props) => {
         <div
           className={`border-1 flex flex-row items-center gap-4 rounded-[8px] border ${borderColor} pl-4`}
         >
-          <span className={`text-sm ${textColor}`}>Ville d&apos;arriver</span>
+          <span className={`text-sm ${textColor}`}>{t('filter.arrCity')}</span>
           <PlaceInput
-            placeholder={'Kin'}
+            placeholder={'Kan'}
             style="w-[150px] sm:mb-0"
             bgColor={`rounded-[0px] rounded-r-[8px] bg-blue/10 ${textColor} sm:mb-0`}
             defaultValue={props.data?.place_arrival?.toString?.()}

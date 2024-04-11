@@ -1,13 +1,13 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { FlyForm } from '@/components/forms/vol';
 import { Navbar } from '@/navigation/Navbar';
 
 import { Background } from '../background/Background';
-import { useTranslation } from 'next-i18next';
 
 const Hero: React.FC = () => {
-  const {t, i18n} = useTranslation('common'); 
+  const { t } = useTranslation('common');
 
   return (
     <Background color="">
@@ -18,10 +18,11 @@ const Hero: React.FC = () => {
         <Navbar active="acceuil" />
         <div className=" flex flex-col items-center justify-between">
           <h1 className="mt-[15vh] text-center text-[30px] font-bold tracking-widest text-white md:mt-4 lg:text-4xl">
-          {t('hero.title')} <br /> {t('hero.title2')}
+            {t('hero.title')} <br /> {t('hero.title2')}
           </h1>
           <h2 className="mb-[60px] mt-[40px] text-center text-[15px] text-white/80 md:mb-0 md:mt-[15px]  md:text-[15px]">
-            {t('hero.subtitle')}<br /> {t('hero.subtitle2')}
+            {t('hero.subtitle')}
+            <br /> {t('hero.subtitle2')}
           </h2>
         </div>
         <div className="w-full pb-0 md:pb-[60px]">

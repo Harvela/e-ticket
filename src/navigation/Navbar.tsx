@@ -6,6 +6,7 @@ import type { CustomFlowbiteTheme } from 'flowbite-react';
 import { Flowbite, Navbar } from 'flowbite-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 
 import LanguageSwitcher from '@/components/languageSwitcher';
@@ -39,13 +40,14 @@ declare global {
 }
 
 const NavbarGlobal: React.FC<NavbarProps> = (props) => {
+  const { t } = useTranslation('common');
   const [isOpen, setIsOpen] = useState(false);
   const [token, setToken] = useState('');
   const navigation = useRouter();
 
   useEffect(() => {
-    const t = window.localStorage.getItem('token') as string;
-    setToken(t);
+    const ti = window.localStorage.getItem('token') as string;
+    setToken(ti);
   }, []);
 
   return (
@@ -77,16 +79,16 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
           <Navbar.Collapse className={isOpen ? 'block' : 'hidden'}>
             <div className="absolute top-[110px] ml-[5vw] flex w-[80vw] flex-col gap-4  rounded-md bg-white p-5">
               <Link href="/" className="font-semibold text-blue/60">
-                Accueil
+                {t('nav.nav1')}
               </Link>
               <Link href="/schedule" className="font-semibold text-blue/60">
-                Horaire de vol
+                {t('nav.nav2')}
               </Link>
               <Link href="/about" className="font-semibold text-blue/60">
-                A propos de nous
+                {t('nav.nav3')}
               </Link>
               <Link href="/contact" className="font-semibold text-blue/60">
-                Nous contacter
+                {t('nav.nav4')}
               </Link>
               {/* <Link
               activeClass="font-bold border-secondary-900"
@@ -102,7 +104,7 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
                 href="#"
                 className="mt-4 rounded-lg bg-blue px-4 py-1 text-center text-sm font-semibold text-white md:mt-0"
               >
-                Deconnexion
+                {t('nav.nav5')}
               </Link>
             </div>
           </Navbar.Collapse>
@@ -131,7 +133,7 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
                 props.active === 'acceuil' ? 'font-bold text-blue' : ''
               }
             >
-              Accueil
+              {t('nav.nav1')}
             </Link>
             <Link
               href="/schedule"
@@ -139,10 +141,10 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
                 props.active === 'schedule' ? 'font-bold text-blue' : ''
               }
             >
-              Horaire de vol
+              {t('nav.nav2')}
             </Link>
-            <Link href="/about">A propos de nous</Link>
-            <Link href="/contact">Nos contact</Link>
+            <Link href="/about">{t('nav.nav3')}</Link>
+            <Link href="/contact">{t('nav.nav4')}</Link>
           </Navbar.Collapse>
           <Navbar.Collapse className="flex flex-row items-center">
             {/* <Link
@@ -162,7 +164,7 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
               }}
               className="rounded-lg bg-blue px-2 py-1 text-[8px] font-semibold text-white lg:px-4 lg:text-sm"
             >
-              {token ? 'Mes reservations' : 'Se connecter'}
+              {token ? t('nav.reservation') : t('auth.login')}
             </button>
           </Navbar.Collapse>
         </Navbar>

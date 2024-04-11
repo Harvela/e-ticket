@@ -45,6 +45,7 @@
     "book2": "Réserver",
     "bookFlight": "Réserver un vol",
     "firstName": "Prénom",
+    "middleName": "Post-nom",
     "lastName": "Nom",
     "email": "Email",
     "card": "Numéro de carte",
@@ -71,7 +72,11 @@
     "email": "Email",
     "password": "Mot de passe",
     "confirm": "Confirmer le mot de passe",
-    "logout": "Se déconnecter"
+    "logout": "Se déconnecter",
+    "create": "Creer un compte",
+    "noAccount": "Vous n'avez pas de compte?",
+    "forget": "Mot de passe oublie?",
+    "verify": "Verification de vos identifiants"
   },
   "btn": {
     "login": "Se connecter",
@@ -81,5 +86,107 @@
     "cancel": "Annuler",
     "confirm": "Confirmer",
     "back": "Retour"
+  },
+  "schedule": {
+    "schedule": "Nos horaires de vol",
+    "company": "Companie",
+    "plane": "Avion",
+    "flight": "N. Vol",
+    "departure": "Depart",
+    "arrival": "Arrivée",
+    "hour": "Heure",
+    "loading": "Nous chargeons nos horaires"
+  },
+  "about": {
+    "title": "A propos de nous",
+    "cardTitle1": "Qui sommes-nous?",
+    "cardTitle2": "",
+    "cardTitle3": "",
+    "cardContent1": "",
+    "cardContent2": "",
+    "cardContent3": "",
+    "whyTitle": "Pourquoi nous choisir",
+    "whyParagraph": "",
+    "why1": "",
+    "why2": "",
+    "why3": "",
+    "why4": "",
+    "wishTitle": "",
+    "wishParagraph": "",
+    "wishButton": "NOUS CONTACTER"
+  },
+  "reset": {
+    "required": "Le mot de passe est requis",
+    "message": "Le mot de passe doit contenir 8 caractères, dont au moins 1 lettre majuscule, 1 lettre minuscule, 1 caractère spécial, 1 chiffre.",
+    "confirm": "La confirmation du mot de passe est requise",
+    "validateConfirm": "Les mots de passe ne correspondent pas",
+    "error": "Une erreur est survenu lors de la mise A jour de votre mot de passe",
+    "loading": "Mise A jour de votre mot de passe ..."
+  },
+  "ticket": {
+    "title": "Date de reservation",
+    "code": "Code de reservation",
+    "loading": "Chargement du recu de votre reservation ...",
+    "passengerName": "Nom du passager",
+    "passengerNumber": "Numero du passager",
+    "departureAt": "Départ à",
+    "arrivalAt": "Arrivée à",
+    "plane": "Avion",
+    "departure": "Départ",
+    "arrival": "Arrivée",
+    "duration": "Durée",
+    "status": "Statut"
+  },
+  "nav": {
+    "nav1": "Accueil",
+    "nav2": "Horaire de vol",
+    "nav3": "A propos de nous",
+    "nav4": "Nous contacter",
+    "nav5": "Deconnexion",
+    "reservation": "Mes reservations"
+  },
+  "filter": {
+    "title": "Nos horaires de vol",
+    "day": "Jour de la semaine",
+    "monday": "LUNDI",
+    "tuesday": "MARDI",
+    "wednesday": "MERCREDI",
+    "thursday": "JEUDI",
+    "friday": "VENDREDI",
+    "saturday": "SAMEDI",
+    "sunday": "DIMANCHE",
+    "company": "Companie",
+    "depCity": "Ville de départ",
+    "arrCity": "Ville d'arrivée"
+  },
+  "booking": {
+    "step": "Etape",
+    "price": "Prix",
+    "select": "Selectionner",
+    "time": "Temps de vol",
+    "validate": "Validation des informations en cours",
+    "error": "Erreur",
+    "passenger": "PASSAGERS",
+    "return": "Retourner en arriere",
+    "info": "INFORMATIONS PASSAGER N",
+    "continue": "Continuer",
+    "phoneNumber": "N. Telephone",
+    "resume": "RESUME ET PRIX",
+    "payment": "PAIEMENT",
+    "cancel": "Annuler le paiement",
+    "para1": "Nouus allons vous rediriger vers la page de paiement pour finaliser",
+    "para2": "votre reservation. Vous pouvez aussi payer plus tard.",
+    "later": "PAYER PLUS TARD",
+    "pay": "PAYER",
+    "received": "PAIEMENT RECU",
+    "success": "Merci beaucoup pour votre achat, Telecharger ou imprimer votre billet. Vous allez aussi le recevoir par email. Veuillez vous presenter avec lors de votre voyage.",
+    "print": "Imprimer le biller",
+    "paymentLoad": "Chargement des informations sur les vols",
+    "reservationLoad": "Enregistrement de votre reservation, preparation du paiement ..."
+  },
+  "forget": {
+    "success": "Les instruction ont ete envoye dans votre boite email, veuillez les consulter",
+    "error": "une erreur est survenu lors du traitement de votre requette",
+    "loading": "Traitement de votre requette ..."
   }
 }

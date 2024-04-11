@@ -1,6 +1,6 @@
 import { Button, Modal } from 'flowbite-react';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
-import { ArrowLeft } from 'react-feather';
 import { useForm } from 'react-hook-form';
 
 import Input from '@/components/forms/input';
@@ -10,6 +10,7 @@ const PassengerInfoStep: React.FC<{
   onNextStep: () => void;
   onPrevStep: () => void;
 }> = ({ onNextStep, onPrevStep }) => {
+  const { t } = useTranslation('common');
   const { register, handleSubmit, setValue, reset } = useForm<any>();
 
   const [steps, setSteps] = useState(1);
@@ -40,7 +41,7 @@ const PassengerInfoStep: React.FC<{
   return (
     <div className="h-[70vh] p-0 md:p-10">
       <Modal show={!!errors.message} onClose={() => setErrors({})}>
-        <Modal.Header>Erreur</Modal.Header>
+        <Modal.Header>{t('booking.error')}</Modal.Header>
         <Modal.Body>
           <div className="space-y-6">
             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
@@ -59,17 +60,18 @@ const PassengerInfoStep: React.FC<{
       </Modal>
       <div className="flex flex-row justify-between">
         <h2 className="mb-6 text-[14px] uppercase text-blue">
-          ETAPE 2/5 <span className="mx-4">|</span> PASSAGERS
+          {t('booking.step')} 2/5 <span className="mx-4">|</span>{' '}
+          {t('booking.passenger')}
         </h2>
         <button
           onClick={() => onPrevStep()}
           className="ml-auto flex h-[30px] flex-row gap-[5px] rounded-[5px] border-DEFAULT border-blue px-3"
         >
-          <ArrowLeft /> Retourner en arriere
+          {t('booking.return')}
         </button>
       </div>
       <h2 className="mb-6 text-[16px] font-bold uppercase text-blue">
-        INFORMATIONS DU PASSAGER N {currentStep + 1}
+        {t('booking.info')} {currentStep + 1}
       </h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -78,7 +80,7 @@ const PassengerInfoStep: React.FC<{
         <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-3">
           <Input
             name="firstName"
-            label="Nom"
+            label={t('flights.firstName')}
             placeholder="Votre nom"
             style="mb-4 md:mb-0"
             register={register}
@@ -86,7 +88,7 @@ const PassengerInfoStep: React.FC<{
           />
           <Input
             name="familyName"
-            label="Post-nom"
+            label={t('flights.middleName')}
             placeholder="Votre post-nom"
             style="mb-4 md:mb-0"
             register={register}
@@ -94,7 +96,7 @@ const PassengerInfoStep: React.FC<{
           />
           <Input
             name="lastName"
-            label="Prenom"
+            label={t('flights.lastName')}
             placeholder="Votre prenom"
             style="mb-4 md:mb-0"
             register={register}
@@ -118,7 +120,7 @@ const PassengerInfoStep: React.FC<{
 
           <Input
             name="phoneNumber"
-            label="N. de telephone"
+            label={t('booking.phoneNumber')}
             placeholder="votre numero"
             style="mb-4 md:mb-0"
             type="number"
@@ -140,7 +142,7 @@ const PassengerInfoStep: React.FC<{
           className="mt-10 w-full rounded-[8px] bg-blue px-16 py-2 text-sm text-white lg:w-[17%]"
           type="submit"
         >
-          Continuer
+          {t('booking.continue')}
         </button>
       </form>
     </div>

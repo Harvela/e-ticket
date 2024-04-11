@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
@@ -30,6 +31,7 @@ const passwordValidation = {
 };
 
 const RegisterPage: React.FC = () => {
+  const { t } = useTranslation('common');
   const navigation = useRouter();
   const [error, setError] = useState('');
   const mutation = useMutation(registerUser, {
@@ -106,7 +108,7 @@ const RegisterPage: React.FC = () => {
       )}
       <Input
         name="password"
-        label="Mot de passe"
+        label={t('auth.password')}
         placeholder="Example@2024"
         style="mb-1 md:mb-0 w-full"
         register={register}
@@ -122,7 +124,7 @@ const RegisterPage: React.FC = () => {
         className="w-full rounded-[8px] bg-blue px-16 py-2 text-sm text-white"
         type="submit"
       >
-        Se connecter
+        {t('auth.login')}
       </button>
       <p className="text-sm font-semibold text-black">
         Vous avez deja un compte ?
@@ -132,7 +134,7 @@ const RegisterPage: React.FC = () => {
           }}
           className="ml-2 text-blue"
         >
-          Se connecter
+          {t('auth.login')}
         </button>
       </p>
     </form>

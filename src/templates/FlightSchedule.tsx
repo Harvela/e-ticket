@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 
@@ -9,6 +10,7 @@ import { Navbar } from '@/navigation/Navbar';
 import { Background } from '../background/Background';
 
 const FlightSchedule: React.FC = () => {
+  const { t } = useTranslation('common');
   const [filterData, setFilterData] = useState<any>({});
   const { data, isLoading } = useQuery(['flights', { ...filterData }], () =>
     fetchSchedules(filterData),
@@ -16,7 +18,7 @@ const FlightSchedule: React.FC = () => {
 
   return (
     <Background color="">
-      {isLoading && <FullWidthLoading text={'Nous chargeons nos horaires'} />}
+      {isLoading && <FullWidthLoading text={t('schedule.loading')} />}
       <div
         id="home"
         className="flex h-screen flex-col items-center p-4 lg:px-16"
@@ -55,8 +57,8 @@ const FlightSchedule: React.FC = () => {
               <div className="my-4 flex flex-row items-center justify-between rounded-lg bg-white p-4 text-[12px] text-blue md:text-[16px]">
                 <div className="flex flex-row items-center justify-between">
                   <div className="flex flex-col gap-4">
-                    <p>Depart</p>
-                    <p>Arrivee</p>
+                    <p>{t('schedule.departure')}</p>
+                    <p>{t('schedule.arrival')}</p>
                   </div>
                   <div className="mx-6 h-16 w-[2px] bg-blue" />
 
@@ -73,7 +75,7 @@ const FlightSchedule: React.FC = () => {
               </div>
               <div className="flex flex-row items-center justify-between text-white">
                 <p className="mt-1 text-[14px]">
-                  AVION:
+                  {t('schedule.plane')}:
                   <span className="ml-2">
                     {f.attributes.plane.data.attributes.code}
                   </span>
@@ -94,27 +96,27 @@ const FlightSchedule: React.FC = () => {
         <div className="hidden w-full rounded-[10px] md:block">
           <table className="w-full rounded-[10px]">
             <thead className="rounded-[10px]  text-blue">
-              <tr className="rounded-[10px] bg-[#F2F3F4]">
+              <tr className="rounded-[10px] bg-[#F2F3F4] uppercase">
                 <th className=" py-4 pl-5 text-left text-[14px] font-semibold text-blue ">
-                  COMPAGNIE
+                  {t('schedule.company')}
                 </th>
                 <th className=" py-4 pl-5 text-left text-[14px] font-semibold text-blue">
-                  AVION
+                  {t('schedule.plane')}
                 </th>
                 <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue">
-                  N. VOL
+                  {t('schedule.flight')}
                 </th>
                 <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue">
-                  DEPART
+                  {t('schedule.departure')}
                 </th>
                 <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue">
-                  ARRIVEE
+                  {t('schedule.arrival')}
                 </th>
                 <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue">
-                  HEURE DEP.
+                  {t('schedule.hour')} DEP.
                 </th>
                 <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue">
-                  HEURE ARR.
+                  {t('schedule.hour')} ARR.
                 </th>
                 {/* <th className="py-4 pl-5 text-left text-[14px] font-semibold text-blue"></th> */}
               </tr>

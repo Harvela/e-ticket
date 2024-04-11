@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowLeft } from 'react-feather';
 
@@ -11,6 +12,7 @@ const Payment2Step: React.FC<{
   onPrevStep: () => void;
 }> = ({ onNextStep }) => {
   const [loadingText, setLoadingText] = useState('');
+  const { t } = useTranslation('common');
   // const mutation = useMutation(payWithFlexPay, {
   //   onSuccess: () => {
   //     onNextStep();
@@ -68,7 +70,7 @@ const Payment2Step: React.FC<{
             onClick={() => setData('')}
             className="ml-auto flex h-[30px] flex-row gap-[5px] rounded-[5px] border-DEFAULT border-blue px-3 text-red"
           >
-            <ArrowLeft /> Annuler le paiement
+            <ArrowLeft /> {t('booking.cancel')}
           </button>
           <div
             className="w-full grow"
@@ -79,7 +81,8 @@ const Payment2Step: React.FC<{
       )}
       <div className="flex flex-row justify-between">
         <h2 className="mb-6 text-[14px] uppercase text-blue">
-          ETAPE 4/5 <span className="mx-4">|</span> PAIEMENT
+          {t('booking.step')} 4/5 <span className="mx-4">|</span>{' '}
+          {t('booking.payment')}
         </h2>
       </div>
 
@@ -88,9 +91,9 @@ const Payment2Step: React.FC<{
       </p>
 
       <p className="text-md mb-2 text-center text-black md:mb-10">
-        Nouus allons vous rediriger vers la page de paiement pour finaliser
+        {t('booking.para1')}
         <br />
-        votre reservation. Vous pouvez aussi payer plus tard.
+        {t('booking.para2')}
       </p>
 
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4">
@@ -98,13 +101,13 @@ const Payment2Step: React.FC<{
           className="mt-5 rounded-[10px] bg-red px-8 py-2 text-sm text-white"
           onClick={() => onNextStep()}
         >
-          PAYER PLUS TARD
+          {t('booking.later')}
         </button>
         <button
           className="mt-5 rounded-[10px] bg-blue px-8 py-2 text-sm text-white"
           onClick={getPaiementPage}
         >
-          PAYER
+          {t('booking.pay')}
         </button>
       </div>
     </div>

@@ -1,16 +1,16 @@
-import { Base } from '@/templates/Base';
-import { locale } from 'dayjs';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-const Index = (props) => {
+import { Base } from '@/templates/Base';
+
+const Index = (props: any) => {
   console.log(props);
-return <Base />;
-}
+  return <Base />;
+};
 
 export const getStaticProps = async ({ locale }: any) => ({
   props: {
     ...(await serverSideTranslations(locale, ['common'])),
   },
-})
+});
 
 export default Index;

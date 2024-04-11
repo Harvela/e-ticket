@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React, { useRef } from 'react';
 import { LuCheckCircle } from 'react-icons/lu';
 import { useReactToPrint } from 'react-to-print';
@@ -12,6 +13,7 @@ const BookingSuccess: React.FC = () => {
     onBeforePrint: () => setIsPrinting(true),
     onAfterPrint: () => setIsPrinting(false),
   });
+  const { t } = useTranslation('common');
 
   // opacity-0 absolute top-[-20000px]
 
@@ -30,13 +32,11 @@ const BookingSuccess: React.FC = () => {
       </div>
       <h2 className="flex flex-row items-center gap-4 text-xl font-bold text-blue">
         <LuCheckCircle />
-        PAIEMENT RECU
+        {t('booking.received')}
       </h2>
 
       <p className="text-md text-center text-black lg:w-2/5">
-        Merci beaucoup pour votre achat, Telecharger ou imprimer votre billet.
-        Vous allez aussi le recevoir par email. Veuillez vous presenter avec
-        lors de votre voyage.
+        {t('booking.success')}
       </p>
 
       <div className="flex flex-row items-center gap-4 lg:gap-8">
@@ -47,7 +47,7 @@ const BookingSuccess: React.FC = () => {
             localStorage.removeItem('flightData');
           }}
         >
-          Imprimer le biller
+          {t('booking.print')}
         </button>
 
         <a
@@ -55,7 +55,7 @@ const BookingSuccess: React.FC = () => {
           target="_blank"
           className="rounded-[5px] border border-blue px-2 py-1 text-sm text-blue md:rounded-[10px] md:px-8 md:py-2"
         >
-          Se connecter ou creer un compte
+          {t('flight.login')}
         </a>
       </div>
     </div>

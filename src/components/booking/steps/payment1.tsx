@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft } from 'react-feather';
 import { IoIosArrowForward } from 'react-icons/io';
@@ -22,6 +23,7 @@ const Payment1Step: React.FC<{
   const [isPriceOpen, setIsPriceOpen] = useState(false);
   const [ids, setIds] = useState([0]);
   const [dataStored, setDataStored] = useState<any>({});
+  const { t } = useTranslation('common');
 
   const { data } = useQuery(['flights', { ids }], () =>
     fetchSchedules({
@@ -34,7 +36,7 @@ const Payment1Step: React.FC<{
   const [loadingText, setLoadingText] = useState('');
 
   useEffect(() => {
-    setLoadingText('Chargement des informations sur les vols');
+    setLoadingText(t('booking.paymentLoad'));
     const reservation = JSON.parse(localStorage.getItem('reservation') || '{}');
     const flightIds = reservation.flights.map((r: any) => r.id);
     setDataStored(reservation);
@@ -47,9 +49,7 @@ const Payment1Step: React.FC<{
 
   const createReservationMutation = useMutation(createReservation);
   const onCreateReservation = async () => {
-    setLoadingText(
-      'Enregistrement de votre reservation, preparation du paiement ...',
-    );
+    setLoadingText(t('booking.reservationLoad'));
     const d: any = await createReservationMutation.mutateAsync({
       passengers: dataStored.passengers,
       schedules: dataStored.flights.map((f: any) => f.id),
@@ -81,17 +81,18 @@ const Payment1Step: React.FC<{
       </p>
       <div className="flex flex-row justify-between">
         <h2 className="mb-6 text-[14px] uppercase text-blue">
-          ETAPE 3/5 <span className="mx-4">|</span> RESUME ET PRIX
+          {t('booking.step')} 3/5 <span className="mx-4">|</span>{' '}
+          {t('booking.resume')}
         </h2>
         <button
           onClick={() => onPrevStep()}
           className="ml-auto flex h-[30px] flex-row gap-[5px] rounded-[5px] border-DEFAULT border-blue px-3"
         >
-          <ArrowLeft /> Retourner en arriere
+          <ArrowLeft /> {t('booking.return')}
         </button>
       </div>
       <h2 className="mb-8 text-[16px] font-bold uppercase text-blue">
-        PAIEMENT
+        {t('booking.payment')}
       </h2>
       <div className="mb-4 flex flex-col-reverse justify-between gap-8 overflow-y-scroll lg:mb-0 lg:h-[60vh] lg:flex-row">
         <div className="w-full lg:w-[70%]">
@@ -118,7 +119,7 @@ const Payment1Step: React.FC<{
                               }
                             </h4>
                             <p className="text-[12px] font-semibold text-red md:text-[14px]">
-                              Prix - {d.attributes.totalPrice} $
+                              {t('booking.price')} - {d.attributes.totalPrice} $
                             </p>
                           </div>
 
@@ -155,7 +156,7 @@ const Payment1Step: React.FC<{
                             </div>
                           </div>
                           <h4 className="ml-auto mt-4 text-[12px] font-bold text-blue md:text-[14px]">
-                            Temps de vol
+                            {t('booking.time')}
                             <span className="ml-4 text-red">
                               {dayjs(
                                 getTimeOrDate(
@@ -201,7 +202,7 @@ const Payment1Step: React.FC<{
                       <div className="flex flex-col justify-between md:flex-row md:items-center">
                         <div className="flex flex-row items-center gap-4">
                           <p className="text-[12px] text-blue md:text-[14px]">
-                            Nom complet :
+                            {t('flights.firstName')} :
                           </p>
                           <h4 className="text-[14px] font-bold text-blue md:text-[16px]">
                             {p.firstName} {p.lastName}
@@ -263,7 +264,7 @@ const Payment1Step: React.FC<{
               className="rounded-[8px] bg-white px-4 py-1 text-sm font-bold text-blue lg:px-8"
               onClick={onCreateReservation}
             >
-              PAYER
+              {t('booking.pay')}
             </button>
           </div>
         </div>

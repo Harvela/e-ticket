@@ -3,6 +3,7 @@
 import dayjs from 'dayjs';
 import { Button, Modal } from 'flowbite-react';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
@@ -11,14 +12,13 @@ import { SlArrowDown } from 'react-icons/sl';
 
 import { PlaceInput } from '../flight-input/place';
 import Input from './input';
-import { useTranslation } from 'next-i18next';
 
 type VolProps = {
   data: any;
 };
 
 export const FlyForm: React.FC<VolProps> = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const [selectedTab, setSelectedTab] = useState<number>(1);
   const navigation = useRouter();
   const [errors, setErrors] = useState<any>({});

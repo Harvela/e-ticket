@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 import { IoMdArrowDropright } from 'react-icons/io';
 import { useQuery } from 'react-query';
@@ -10,6 +11,7 @@ import { FullWidthLoading } from '@/components/loading/full-width';
 import { Ticket } from '@/components/ticket';
 
 const TicketPage: React.FC<any> = ({ ref }: any) => {
+  const { t } = useTranslation('common');
   const [transaction, setTransaction] = useState<Transaction>();
   const router = useRouter();
 
@@ -40,12 +42,10 @@ const TicketPage: React.FC<any> = ({ ref }: any) => {
 
   return (
     <div id="ticket" className="min-w-[1000px] p-16 text-black" ref={ref}>
-      {isLoading && (
-        <FullWidthLoading text="Chargement du recu de votre reservation ..." />
-      )}
+      {isLoading && <FullWidthLoading text={t('ticket.loading')} />}
       <div>
         <h2 className="flex flex-row items-center gap-2 font-bold uppercase">
-          <span>Date de reservation</span>
+          <span>{t('ticket.title')}</span>
           <IoMdArrowDropright className="size-4 text-black" />
           <span>
             {dayjs(data?.data?.[0]?.attributes?.createdAt).format('DD-MM-YYYY')}
@@ -61,7 +61,7 @@ const TicketPage: React.FC<any> = ({ ref }: any) => {
             <span className="text-md font-bold">FEZA Airline Company</span>
           </p>
           <p>
-            Code de reservation <span>FEZ{transaction?.id}</span>
+            {t('ticket.code')} <span>FEZ{transaction?.id}</span>
           </p>
         </div>
 

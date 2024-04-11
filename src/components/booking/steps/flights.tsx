@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { Spinner } from 'flowbite-react';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft } from 'react-feather';
 import { IoIosArrowForward } from 'react-icons/io';
@@ -14,9 +15,9 @@ import {
 } from '@/components/forms/hooks/data';
 import { FullWidthLoading } from '@/components/loading/full-width';
 import { getTimeOrDate } from '@/utils/format';
-import { useTranslation } from 'next-i18next';
 
 const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
+  const { t } = useTranslation('common');
   const [filterData, setFilterData] = useState<any>({});
   const [currentFlight, setCurrentFlight] = useState<number>(0);
   const [flightData, setFlightData] = useState<any>();
@@ -61,7 +62,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
   const [loadingText, setLoaingText] = useState('');
 
   const checkFlight = async (vol: Flight) => {
-    setLoaingText('Validation des informations en cours');
+    setLoaingText(t('booking.validate'));
     const dataChecked = await mutation.mutateAsync({ id: vol.id });
     setLoaingText('');
     if (
@@ -75,14 +76,14 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
   };
 
   const navigation = useRouter();
-  const {t} = useTranslation('common');
 
   return (
     <div className="flex h-[70vh] flex-col gap-0 p-0 md:p-10">
       {loadingText && <FullWidthLoading text={loadingText} />}
       <div className="flex flex-row justify-between text-[14px] md:text-[16px]">
         <h2 className="mb-4 uppercase text-blue">
-          ETAPE 1/5 <span className="mx-4">|</span> {t('flights.vol-selection')}{' '}
+          {t('booking.step')} 1/5 <span className="mx-4">|</span>{' '}
+          {t('flights.vol-selection')}{' '}
           <span className="font-bold underline">
             {flightData?.[currentFlight]?.date}
           </span>
@@ -179,7 +180,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
 
               <div className="flex flex-row items-center justify-between">
                 <p className="text-[16px] font-semibold text-red">
-                  Prix : {vol.attributes.totalPrice}
+                  {t('booking.price')}: {vol.attributes.totalPrice}
                 </p>
                 <button
                   className="rounded-lg bg-[#B85043] px-4 py-1 text-[14px] text-white"
@@ -200,7 +201,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                     onNextStep();
                   }}
                 >
-                  Selectionner
+                  {t('booking.select')}
                 </button>
               </div>
             </div>
@@ -221,7 +222,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                     }
                   </h4>
                   <p className="text-[14px] font-semibold text-red">
-                    Prix - {vol.attributes.totalPrice} $
+                    {t('booking.price')} - {vol.attributes.totalPrice} $
                   </p>
                 </div>
 
@@ -255,7 +256,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                 </div>
                 <div className="flex flex-row items-center justify-between">
                   <h4 className="text-[14px] font-bold text-blue">
-                    Temps de vol
+                    {t('booking.time')}
                     <span className="ml-4 text-red">
                       {dayjs(
                         getTimeOrDate(
@@ -280,7 +281,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                       checkFlight(vol);
                     }}
                   >
-                    Selectionner
+                    {t('booking.price')}
                   </button>
                 </div>
               </div>

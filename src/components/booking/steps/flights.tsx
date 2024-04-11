@@ -14,6 +14,7 @@ import {
 } from '@/components/forms/hooks/data';
 import { FullWidthLoading } from '@/components/loading/full-width';
 import { getTimeOrDate } from '@/utils/format';
+import { useTranslation } from 'next-i18next';
 
 const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
   const [filterData, setFilterData] = useState<any>({});
@@ -74,13 +75,14 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
   };
 
   const navigation = useRouter();
+  const {t} = useTranslation('common');
 
   return (
     <div className="flex h-[70vh] flex-col gap-0 p-0 md:p-10">
       {loadingText && <FullWidthLoading text={loadingText} />}
       <div className="flex flex-row justify-between text-[14px] md:text-[16px]">
         <h2 className="mb-4 uppercase text-blue">
-          ETAPE 1/5 <span className="mx-4">|</span> Selection de vol pour le{' '}
+          ETAPE 1/5 <span className="mx-4">|</span> {t('flights.vol-selection')}{' '}
           <span className="font-bold underline">
             {flightData?.[currentFlight]?.date}
           </span>
@@ -89,7 +91,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
           onClick={() => navigation.back()}
           className="ml-auto flex h-[30px] flex-row gap-[5px] rounded-[5px] border-DEFAULT border-blue px-1 md:px-3"
         >
-          <ArrowLeft /> Annuler
+          <ArrowLeft /> {t('btn.cancel')}[
         </button>
       </div>
 
@@ -102,21 +104,21 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
       <div className="overflow-y-scroll">
         {isLoading && (
           <div className="flex flex-row gap-5">
-            <p>Recherche des vols ...</p>
+            <p>{t('flights.searching')}</p>
             {<Spinner color="gray" />}
           </div>
         )}
         <p className="text[16px] pb-8 font-semibold text-blue">
-          {data?.meta?.pagination?.total} Vol(s) trouvees{' '}
+          {data?.meta?.pagination?.total} {t('flights.title')}{' '}
         </p>
         {data?.data?.length === 0 && (
           <div className="flex h-[50vh] flex-row items-center justify-center">
-            <p>Aucun vol disponible pour cette date</p>
+            <p>{t('flights.not-found')}</p>
             <button
               className="rounded-[8px] bg-blue px-4 py-1 text-sm text-white"
               onClick={() => navigation.push('/')}
             >
-              Retour
+              {t('btn.back')}
             </button>
           </div>
         )}
@@ -138,7 +140,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                   </p>
                 </div>
                 <p className="text-[16px]">
-                  <span className="mr-2">Vol</span>
+                  <span className="mr-2">{t('flights.title')}</span>
                   00000
                 </p>
               </div>
@@ -146,9 +148,9 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
               <div className="my-4 flex flex-row justify-between rounded-lg bg-blue p-4 text-[12px] text-white md:text-[16px]">
                 <div className="flex flex-row items-center justify-between">
                   <div className="flex flex-col gap-2">
-                    <p>Depart</p>
-                    <p>Arrivee</p>
-                    <p>Avion</p>
+                    <p>{t('flights.from')}</p>
+                    <p>{t('flights.to')}</p>
+                    <p>{t('flights.plane')}</p>
                   </div>
                   <div className="mx-4 h-20 w-[2px] bg-white" />
 

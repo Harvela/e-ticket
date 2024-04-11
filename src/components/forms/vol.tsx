@@ -11,12 +11,14 @@ import { SlArrowDown } from 'react-icons/sl';
 
 import { PlaceInput } from '../flight-input/place';
 import Input from './input';
+import { useTranslation } from 'next-i18next';
 
 type VolProps = {
   data: any;
 };
 
 export const FlyForm: React.FC<VolProps> = () => {
+  const {t} = useTranslation()
   const [selectedTab, setSelectedTab] = useState<number>(1);
   const navigation = useRouter();
   const [errors, setErrors] = useState<any>({});
@@ -100,7 +102,7 @@ export const FlyForm: React.FC<VolProps> = () => {
             onClick={() => setSelectedTab(1)}
           >
             <FaArrowRight />
-            Aller simple
+            {t('flights.oneWay')}
           </button>
           <button
             className={`flex flex-row items-center gap-2 rounded-lg px-4 py-1 text-sm ${
@@ -112,7 +114,7 @@ export const FlyForm: React.FC<VolProps> = () => {
               <FaArrowRight />
               <FaArrowLeft />
             </div>
-            Aller et retour
+            {t('flights.roundTrip')}
           </button>
         </div>
       </div>
@@ -122,7 +124,7 @@ export const FlyForm: React.FC<VolProps> = () => {
       >
         <PlaceInput
           name="origin"
-          label="Vous venez d'ou?"
+          label={t('flights.from')}
           icon={<SlArrowDown />}
           placeholder="Kinshasa"
           onChange={(e: any) => {
@@ -132,7 +134,7 @@ export const FlyForm: React.FC<VolProps> = () => {
         />
         <PlaceInput
           name="destination"
-          label="Vous allez où?"
+          label={t('flights.to')}
           icon={<SlArrowDown />}
           placeholder="Goma"
           onChange={(e: any) => {
@@ -143,7 +145,7 @@ export const FlyForm: React.FC<VolProps> = () => {
         <Input
           name="departureDate"
           type="date"
-          label="Date de départ"
+          label={t('flights.departure')}
           placeholder="Goma"
           style=" lg:pl-4"
           register={register}
@@ -156,7 +158,7 @@ export const FlyForm: React.FC<VolProps> = () => {
           <Input
             name="arrivalDate"
             type="date"
-            label="Date de retour"
+            label={t('flights.return')}
             onChange={(e: any) => {
               setValue('arrivalDate', e);
             }}
@@ -169,7 +171,7 @@ export const FlyForm: React.FC<VolProps> = () => {
         <Input
           name="passengerNumber"
           type="number"
-          label="Nombre de passagers"
+          label={t('flights.passengers')}
           placeholder="Nombre passagers"
           style="lg:pl-4"
           register={register}
@@ -181,7 +183,7 @@ export const FlyForm: React.FC<VolProps> = () => {
           // }}
           type="submit"
         >
-          Rechercher
+          {t('flights.search')}
         </button>
       </form>
     </div>

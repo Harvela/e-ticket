@@ -4,12 +4,15 @@ import React from 'react';
 
 import type { LanguageDescriptor } from './hooks';
 import useLanguageSwitcher from './hooks';
+import { useTranslation } from 'next-i18next';
 
 export type LanguageSwitcherProps = {
   context?: NextPageContext;
 };
 
 export const LanguageSwitcher = ({ context }: LanguageSwitcherProps = {}) => {
+  const {i18n} = useTranslation('common');
+  console.log(i18n.language)
   const { currentLanguage, switchLanguage, languageConfig } =
     useLanguageSwitcher({ context });
 
@@ -29,7 +32,10 @@ export const LanguageSwitcher = ({ context }: LanguageSwitcherProps = {}) => {
             </span>
           ) : (
             <a
-              onClick={switchLanguage(ld.name)}
+              onClick={() => {
+                switchLanguage(ld.name);
+                i18n.changeLanguage(ld.name);
+              }}
               className="mx-3 cursor-pointer text-white hover:underline"
             >
               {ld.title}

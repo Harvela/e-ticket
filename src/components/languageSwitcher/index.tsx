@@ -13,8 +13,7 @@ export type LanguageSwitcherProps = {
 export const LanguageSwitcher = ({ context }: LanguageSwitcherProps = {}) => {
   const { i18n } = useTranslation('common');
   console.log(i18n.language);
-  const { currentLanguage, switchLanguage, languageConfig } =
-    useLanguageSwitcher({ context });
+  const { switchLanguage, languageConfig } = useLanguageSwitcher({ context });
 
   if (!languageConfig) {
     return null;
@@ -24,8 +23,8 @@ export const LanguageSwitcher = ({ context }: LanguageSwitcherProps = {}) => {
     <div className="notranslate  text-center ">
       {languageConfig.languages.map((ld: LanguageDescriptor, _i: number) => (
         <React.Fragment key={`l_s_${ld}`}>
-          {currentLanguage === ld.name ||
-          (currentLanguage === 'auto' &&
+          {i18n.language === ld.name ||
+          (i18n.language === 'auto' &&
             languageConfig.defaultLanguage === ld.name) ? (
             <span className="mx-3 rounded-[5px] bg-primary-200 px-[5px] py-[2px] text-blue">
               {ld.title}

@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 
@@ -10,6 +11,12 @@ import { FullWidthLoading } from '@/components/loading/full-width';
 import { Meta } from '@/layout/Meta';
 import DashboardPage from '@/templates/Dashboard';
 import { AppConfig } from '@/utils/AppConfig';
+
+export const getStaticProps = async ({ locale }: any) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common'])),
+  },
+});
 
 const Dashboard = () => {
   // const { data } = useQuery(['reservations'], () => getReservations());

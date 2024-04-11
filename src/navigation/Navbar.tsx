@@ -71,6 +71,7 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
               className="h-8 rounded-lg bg-white"
               alt="Logo"
             />
+            <span className="pl-5 font-bold text-blue">TAWAJI</span>
           </Navbar.Brand>
           <Navbar.Toggle
             className="border-blue bg-white font-semibold text-blue"
@@ -100,12 +101,15 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
             >
               Traquer mon billet
             </Link> */}
-              <Link
-                href="#"
-                className="mt-4 rounded-lg bg-blue px-4 py-1 text-center text-sm font-semibold text-white md:mt-0"
+              <button
+                onClick={() => {
+                  if (!token) navigation.push('/login');
+                  else navigation.push('/dashboard');
+                }}
+                className="rounded-lg bg-blue px-2 py-1 text-[8px] font-semibold text-white lg:px-4 lg:text-sm"
               >
-                {t('nav.nav5')}
-              </Link>
+                {token ? t('nav.reservation') : t('auth.login')}
+              </button>
             </div>
           </Navbar.Collapse>
         </Navbar>
@@ -125,6 +129,7 @@ const NavbarGlobal: React.FC<NavbarProps> = (props) => {
               className="h-4 rounded-lg bg-white lg:h-8"
               alt="Logo"
             />
+            <span className="pl-5 font-bold text-blue">TAWAJI</span>
           </Navbar.Brand>
           <Navbar.Collapse>
             <Link

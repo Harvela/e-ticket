@@ -157,7 +157,14 @@
     "sunday": "DIMANCHE",
     "company": "Companie",
     "depCity": "Ville de départ",
-    "arrCity": "Ville d'arrivée"
+    "arrCity": "Ville d'arrivée",
+    "LUNDI": "LUNDI",
+    "MARDI": "MARDI",
+    "MERCREDI": "MERCREDI",
+    "JEUDI": "JEUDI",
+    "VENDREDI": "VENDREDI",
+    "SAMEDI": "SAMEDI",
+    "DIMANCHE": "DIMANCHE"
   },
   "booking": {
     "step": "Etape",

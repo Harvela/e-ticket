@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import 'react-datepicker/dist/react-datepicker.css';
 
 import dayjs from 'dayjs';
@@ -73,9 +74,11 @@ const Input: React.FC<Props> = (props: Props) => {
       ) : (
         <DatePicker
           selected={
-            selectedDate || defaultValue
-              ? dayjs(defaultValue || min).toDate()
-              : undefined
+            selectedDate
+              ? dayjs(selectedDate).toDate()
+              : defaultValue
+                ? dayjs(defaultValue || min).toDate()
+                : undefined
           }
           onChange={(date) => {
             setSelectedDate(date);

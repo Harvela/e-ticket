@@ -1,10 +1,17 @@
 import { useRouter } from 'next/router';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect } from 'react';
 
 import { RegisterPage } from '@/templates/Register';
 
 import { Meta } from '../layout/Meta';
 import { AppConfig } from '../utils/AppConfig';
+
+export const getStaticProps = async ({ locale }: any) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common'])),
+  },
+});
 
 const Register = () => {
   const navigation = useRouter();

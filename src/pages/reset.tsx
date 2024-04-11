@@ -1,7 +1,15 @@
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 import { ResetPassword } from '@/templates/Reset';
 
 import { Meta } from '../layout/Meta';
 import { AppConfig } from '../utils/AppConfig';
+
+export const getStaticProps = async ({ locale }: any) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common'])),
+  },
+});
 
 const Reset = () => {
   return (

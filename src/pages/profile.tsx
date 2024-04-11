@@ -1,6 +1,14 @@
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 import { Meta } from '@/layout/Meta';
 import ProfilePage from '@/templates/Profile';
 import { AppConfig } from '@/utils/AppConfig';
+
+export const getStaticProps = async ({ locale }: any) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common'])),
+  },
+});
 
 const Profile = () => {
   return (

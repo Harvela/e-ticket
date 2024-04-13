@@ -7,11 +7,12 @@ import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaWindowClose } from 'react-icons/fa';
 import { SlArrowDown } from 'react-icons/sl';
 
 import { PlaceInput } from '../flight-input/place';
 import Input from './input';
+import { Passenger } from './passenger';
 
 type VolProps = {
   data: any;
@@ -22,7 +23,7 @@ export const FlyForm: React.FC<VolProps> = () => {
   const [selectedTab, setSelectedTab] = useState<number>(1);
   const navigation = useRouter();
   const [errors, setErrors] = useState<any>({});
-
+  const [openDrop, setOpenDrop] = useState<boolean>(false);
   const { register, handleSubmit, setValue, watch } = useForm<any>();
   const onSubmit: SubmitHandler<any> = (data) => {
     console.log(data);
@@ -168,14 +169,43 @@ export const FlyForm: React.FC<VolProps> = () => {
             min={dayjs(watch('departureDate')).format('YYYY-MM-DD')}
           />
         )}
-        <Input
-          name="passengerNumber"
-          type="number"
-          label={t('flights.passengers')}
-          placeholder="Nombre passagers"
-          style="lg:pl-4"
-          register={register}
-        />
+
+        <div className="relative">
+          <span className="mb-2 flex flex-row items-center gap-1 text-[12px] font-semibold text-blue">
+            {t('passengers.passengers')}
+          </span>
+          <button
+            onClick={() => setOpenDrop(!openDrop)}
+            className="flex w-full flex-row items-center rounded-[5px] border-blue/10 bg-blue/5 px-4 py-2 text-[16px] focus:outline-0 md:text-[14px]"
+          >
+            Nombres des passagers{' '}
+            <svg
+              className="ms-3 h-2.5 w-2.5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 4 4 4-4"
+              />
+            </svg>
+          </button>
+          {openDrop && (
+            <div className="absolute bottom-full left-0 flex flex-row rounded-[5px] border border-gray-200 bg-white p-8 shadow-lg">
+              <Passenger />
+              <FaWindowClose
+                onClick={() => setOpenDrop(false)}
+                className="h-6 w-6 text-blue"
+              />
+            </div>
+          )}
+        </div>
+
         <button
           className="mt-6 h-[35px] rounded-[5px] bg-blue px-4 py-[5px] text-sm text-white"
           // onClick={() => {

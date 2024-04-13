@@ -195,5 +195,11 @@
     "success": "Les instruction ont ete envoye dans votre boite email, veuillez les consulter",
     "error": "une erreur est survenu lors du traitement de votre requette",
     "loading": "Traitement de votre requette ..."
+  },
+  "passenger": {
+    "economy": "Economie",
+    "business": "Business",
+    "passengers": "Passagers",
+    "children": "Enfants"
   }
 }

@@ -15,8 +15,6 @@ const TicketItem: React.FC<any> = ({
     () => findTransactions(transactionId),
   );
 
-  console.log('ticket item', data);
-
   const firstReservation = data?.data[0]?.attributes;
   const cities: string[] = [];
   data?.data.forEach((t) => {
@@ -57,6 +55,9 @@ const TicketItem: React.FC<any> = ({
     return `${day} / ${month} / ${year}`;
   };
 
+  const itinerary = `${firstReservation?.schedule.data?.attributes.place_depart
+    .data?.attributes.name} > ${cities.join(' > ')}`;
+
   return (
     <div id="ticket" ref={ref}>
       {isLoading && <Spinner color="success" />}
@@ -64,17 +65,7 @@ const TicketItem: React.FC<any> = ({
         <div>
           <div className="mb-8 w-full flex-row items-center justify-between gap-4 rounded-[8px] bg-blue/5 p-5">
             <div className="lg-grow w-full">
-              <h4 className="text-[14px] font-bold text-blue">
-                {
-                  firstReservation?.schedule.data?.attributes.place_depart.data
-                    ?.attributes.name
-                }{' '}
-                &gt; {cities.join(' > ')} &gt;{' '}
-                {
-                  firstReservation?.schedule.data?.attributes.place_depart.data
-                    ?.attributes.name
-                }
-              </h4>
+              <h4 className="text-[12px] font-bold text-blue">{itinerary}</h4>
 
               <div className="mt-5 flex flex-row items-center justify-between">
                 <p className="text-[14px] font-semibold text-red">

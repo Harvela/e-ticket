@@ -12,7 +12,6 @@ export type LanguageSwitcherProps = {
 
 export const LanguageSwitcher = ({ context }: LanguageSwitcherProps = {}) => {
   const { i18n } = useTranslation('common');
-  console.log(i18n.language);
   const { switchLanguage, languageConfig } = useLanguageSwitcher({ context });
 
   if (!languageConfig) {

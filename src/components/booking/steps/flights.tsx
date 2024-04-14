@@ -40,17 +40,20 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
       ? JSON.parse(currentReservationSt)
       : {};
     if (!currentReservation.flights) currentReservation.flights = [];
-    currentReservation.flights?.push({
-      id: vol.id,
-    });
+    else {
+      // remove duplicates from flights
+      currentReservation.flights = currentReservation.flights.filter(
+        (e: any) => e.id !== vol.id,
+      );
+    }
+    if (!currentReservation.flight?.find((e: any) => e.id === vol.id))
+      currentReservation.flights?.push({
+        id: vol.id,
+      });
 
     localStorage.setItem('reservation', JSON.stringify(currentReservation));
-    console.log(
-      'testing',
-      flightData.length,
-      currentReservation.flights?.length,
-    );
-    if ((currentReservation.flights?.length || 0) === flightData.length)
+
+    if ((currentReservation.flights?.length || 0) >= flightData.length - 1)
       onNextStep();
     else {
       setFilterData(flightData[currentFlight + 1]);
@@ -66,8 +69,9 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
     const dataChecked = await mutation.mutateAsync({ id: vol.id });
     setLoaingText('');
     if (
-      typeof dataChecked.data !== 'undefined' &&
-      dataChecked.data < vol.attributes.plane.data.attributes.placeCount
+      !vol.attributes.plane.data.attributes.placeCount ||
+      (typeof dataChecked.data !== 'undefined' &&
+        dataChecked.data < vol.attributes.plane.data.attributes.placeCount)
     ) {
       onSelected(vol);
     } else {
@@ -80,7 +84,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
   return (
     <div className="flex h-[70vh] flex-col gap-0 p-0 md:p-10">
       {loadingText && <FullWidthLoading text={loadingText} />}
-      <div className="flex flex-row justify-between text-[14px] md:text-[16px]">
+      <div className="flex flex-row justify-between gap-5 text-[14px] md:text-[16px]">
         <h2 className="mb-4 uppercase text-blue">
           {t('booking.step')} 1/5 <span className="mx-4">|</span>{' '}
           {t('flights.vol-selection')}{' '}
@@ -89,10 +93,17 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
           </span>
         </h2>
         <button
-          onClick={() => navigation.back()}
+          onClick={() => {
+            if (currentFlight !== 0) {
+              setCurrentFlight(currentFlight - 1);
+            } else {
+              navigation.back();
+            }
+          }}
           className="ml-auto flex h-[30px] flex-row gap-[5px] rounded-[5px] border-DEFAULT border-blue px-1 md:px-3"
         >
-          <ArrowLeft /> {t('btn.cancel')}[
+          <ArrowLeft />{' '}
+          {currentFlight > 0 ? t('booking.return') : t('btn.cancel')}
         </button>
       </div>
 
@@ -140,14 +151,14 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                     }
                   </p>
                 </div>
-                <p className="text-[16px]">
+                <p className="text-[13px]">
                   <span className="mr-2">{t('flights.title')}</span>
                   00000
                 </p>
               </div>
 
               <div className="my-4 flex flex-row justify-between rounded-lg bg-blue p-4 text-[12px] text-white md:text-[16px]">
-                <div className="flex flex-row items-center justify-between">
+                <div className="flex flex-row items-start justify-between">
                   <div className="flex flex-col gap-2">
                     <p>{t('flights.from')}</p>
                     <p>{t('flights.to')}</p>
@@ -158,47 +169,38 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                   <div className="flex flex-col gap-2">
                     <p>{vol.attributes.place_depart.data.attributes.name}</p>
                     <p>{vol.attributes.place_arrival.data.attributes.name}</p>
-                    <p>{vol.attributes.plane.data.attributes.model}</p>
+                    <p>{vol.attributes.plane.data.attributes.code}</p>
                   </div>
                 </div>
 
-                <div className="mt-1 flex flex-col gap-2">
+                <div className="mt-[0px] flex flex-col gap-2">
                   <p>
-                    {getTimeOrDate(
-                      vol.attributes.time_depart as unknown as string,
-                      filterData?.date,
-                    )}
+                    {
+                      getTimeOrDate(
+                        vol.attributes.time_depart as unknown as string,
+                        filterData?.date,
+                      )?.split(' ')[1]
+                    }
                   </p>
                   <p>
-                    {getTimeOrDate(
-                      vol.attributes.time_arrival as unknown as string,
-                      filterData?.date,
-                    )}
+                    {
+                      getTimeOrDate(
+                        vol.attributes.time_arrival as unknown as string,
+                        filterData?.date,
+                      ).split(' ')[1]
+                    }
                   </p>
                 </div>
               </div>
 
               <div className="flex flex-row items-center justify-between">
                 <p className="text-[16px] font-semibold text-red">
-                  {t('booking.price')}: {vol.attributes.totalPrice}
+                  {t('booking.price')}: {vol.attributes.totalPrice} $
                 </p>
                 <button
                   className="rounded-lg bg-[#B85043] px-4 py-1 text-[14px] text-white"
                   onClick={() => {
-                    const currentReservationSt =
-                      localStorage.getItem('reservation');
-                    const currentReservation = currentReservationSt
-                      ? JSON.parse(currentReservationSt)
-                      : {};
-                    currentReservation.flights?.push({
-                      id: vol.id,
-                    });
-                    console.log(currentReservation);
-                    localStorage.setItem(
-                      'reservation',
-                      JSON.stringify(currentReservation),
-                    );
-                    onNextStep();
+                    checkFlight(vol);
                   }}
                 >
                   {t('booking.select')}
@@ -281,7 +283,7 @@ const Flights: React.FC<{ onNextStep: () => void }> = ({ onNextStep }) => {
                       checkFlight(vol);
                     }}
                   >
-                    {t('booking.price')}
+                    {t('booking.select')}
                   </button>
                 </div>
               </div>

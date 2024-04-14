@@ -310,7 +310,6 @@ export const payWithFlexPay = async (transactionId: number) => {
   const response = await axios.post(`/api/transactions/pay/${transactionId}`, {
     transactionId,
   });
-  console.log(response);
   return response;
 };
 
@@ -411,9 +410,10 @@ export const findAllTransactions = async (date?: Date) => {
       'filters[createdAt][$lt]': dayjs(date || new Date(2200, 1, 1))
         .add(1, 'day')
         .toISOString(),
+      'sort[0]': 'createdAt:DESC',
     },
   });
-  console.log(response);
+
   return response.data as Response<Transaction>;
 };
 

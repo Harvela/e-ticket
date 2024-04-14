@@ -195,5 +195,11 @@
     "success": "Instructions have been sent to your email, please check them",
     "error": "An error occurred while processing your request",
     "loading": "Processing your request..."
+  },
+  "passenger": {
+    "economy": "Econom",
+    "business": "Business",
+    "passengers": "Passengers",
+    "children": "Children"
   }
 }

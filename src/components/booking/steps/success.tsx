@@ -7,11 +7,11 @@ import { TicketPage } from '@/templates/Ticket';
 
 const BookingSuccess: React.FC = () => {
   const componentRef = useRef<any>();
-  const [isPrinting, setIsPrinting] = React.useState(false);
+  const [isPrinting] = React.useState(false);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-    onBeforePrint: () => setIsPrinting(true),
-    onAfterPrint: () => setIsPrinting(false),
+    // onBeforePrint: () => setIsPrinting(true),
+    // onAfterPrint: () => setIsPrinting(false),
   });
   const { t } = useTranslation('common');
 

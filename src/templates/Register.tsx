@@ -71,7 +71,7 @@ const RegisterPage: React.FC = () => {
       )}
       <img
         src="/assets/images/home/logo.png"
-        className="mb-4 h-8 rounded-lg bg-white"
+        className="mb-4 h-20 rounded-lg bg-white"
         alt="Logo"
       />
       {error && (
@@ -133,6 +133,7 @@ const RegisterPage: React.FC = () => {
             navigation.push('/login');
           }}
           className="ml-2 text-blue"
+          type="button"
         >
           {t('auth.login')}
         </button>

@@ -26,7 +26,7 @@ const Filters: React.FC<Props> = (props) => {
   const textColor = props.showDay ? 'text-white' : 'text-blue';
   const borderColor = props.showDay ? 'border-white' : 'border-blue';
   return (
-    <div className="mt-[70px] flex  flex-col">
+    <div className="mt-[20px] flex flex-col  md:mt-[70px]">
       {props.showDay && (
         <h1 className={`${textColor} mb-6 text-[23px] font-semibold`}>
           {t('filter.title')}
@@ -73,20 +73,6 @@ const Filters: React.FC<Props> = (props) => {
         <div
           className={`border-1 flex flex-row items-center gap-4 rounded-[8px] border ${borderColor} pl-4`}
         >
-          <span className={`text-sm ${textColor}`}>{t('filter.company')}</span>
-          <CompanyInput
-            name="company"
-            placeholder=" "
-            onChange={(e: string) => {
-              props.setData({ ...props.data, company: e });
-            }}
-            style="w-[150px]"
-            bgColor={`"rounded-[0px] rounded-r-[8px] bg-blue/10 ${textColor}`}
-          />
-        </div>
-        <div
-          className={`border-1 flex flex-row items-center gap-4 rounded-[8px] border ${borderColor} pl-4`}
-        >
           <span className={`text-sm ${textColor}`}>{t('filter.depCity')}</span>
           <PlaceInput
             placeholder={'Kinshasa'}
@@ -119,6 +105,20 @@ const Filters: React.FC<Props> = (props) => {
                 place_arrival: Number.parseInt(e, 10),
               });
             }}
+          />
+        </div>
+        <div
+          className={`border-1 flex flex-row items-center gap-4 rounded-[8px] border ${borderColor} pl-4`}
+        >
+          <span className={`text-sm ${textColor}`}>{t('filter.company')}</span>
+          <CompanyInput
+            name="company"
+            placeholder=" "
+            onChange={(e: string) => {
+              props.setData({ ...props.data, company: e });
+            }}
+            style="w-[150px]"
+            bgColor={`"rounded-[0px] rounded-r-[8px] bg-blue/10 ${textColor}`}
           />
         </div>
       </div>

@@ -64,7 +64,13 @@ const PassengerInfoStep: React.FC<{
           {t('booking.passenger')}
         </h2>
         <button
-          onClick={() => onPrevStep()}
+          onClick={() => {
+            if (currentStep === 0) {
+              onPrevStep();
+            } else {
+              setCurrentStep(currentStep - 1);
+            }
+          }}
           className="ml-auto flex h-[30px] flex-row gap-[5px] rounded-[5px] border-DEFAULT border-blue px-3"
         >
           {t('booking.return')}

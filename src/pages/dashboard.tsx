@@ -40,8 +40,6 @@ const Dashboard = () => {
       localStorage.getItem('transactions') || '[]',
     );
 
-    console.log(transactions);
-
     if (transactions.length) {
       mutation.mutate(
         transactions.filter((d: any) => d?.id).map((d: any) => d.id),

@@ -12,7 +12,6 @@ export const CompanyInput: React.FC<PlaceInputProps> = (props) => {
   const { data } = useQuery(['companies', { search }], () =>
     fetchCompanies(search),
   );
-  console.log(data?.data[0]?.attributes);
   // return react select
   return (
     <Select

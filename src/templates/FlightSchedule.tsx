@@ -42,8 +42,6 @@ const FlightSchedule: React.FC = () => {
   ''.substring(''.lastIndexOf(':'));
 
   const groupedData = groupBy();
-  console.log(groupedData);
-
   return (
     <Background color="">
       {isLoading && <FullWidthLoading text={t('schedule.loading')} />}

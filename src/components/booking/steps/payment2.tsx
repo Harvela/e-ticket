@@ -52,7 +52,6 @@ const Payment2Step: React.FC<{
       });
       setData(res.data);
       // ref?.current?.setAttribute('innerHTML', res.data);
-      console.log(res);
     } catch (error) {
       console.log(error);
     }

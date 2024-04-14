@@ -36,8 +36,6 @@ const TicketPage: React.FC<any> = ({ ref }: any) => {
     () => findTransactions(transaction?.id?.toString()),
   );
 
-  console.log(data, transaction, 'w');
-
   if (!data) return null;
 
   return (

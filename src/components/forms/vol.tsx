@@ -25,9 +25,14 @@ export const FlyForm: React.FC<VolProps> = () => {
   const [errors, setErrors] = useState<any>({});
   const [openDrop, setOpenDrop] = useState<boolean>(false);
   const { register, handleSubmit, setValue, watch } = useForm<any>();
+  const [passengerInfo, setPassengerInfo] = useState<any>({});
   const onSubmit: SubmitHandler<any> = (data) => {
-    console.log(data);
-    if (!data.origin || !data.destination || !data.departureDate) {
+    if (
+      !data.origin ||
+      !data.destination ||
+      !data.departureDate ||
+      !(passengerInfo.adult || passengerInfo.children)
+    ) {
       setErrors({ message: 'Veuillez completer tous les champs' });
       return;
     }
@@ -46,7 +51,16 @@ export const FlyForm: React.FC<VolProps> = () => {
       });
     localStorage.setItem(
       'reservation',
-      JSON.stringify({ params: { ...data }, flights: [], passengers: [] }),
+      JSON.stringify({
+        params: {
+          ...data,
+          passengerNumber:
+            (passengerInfo.adult || 0) + (passengerInfo.children || 0),
+        },
+        flights: [],
+        passengers: [],
+        passengerInfo,
+      }),
     );
     localStorage.setItem('flightData', JSON.stringify(flightData));
     navigation.push(
@@ -69,9 +83,6 @@ export const FlyForm: React.FC<VolProps> = () => {
   // const onSubmit = (data: any) => {
   //   mutation.mutate(data);
   // };
-
-  console.log(watch('departureDate'));
-
   return (
     <div className="w-full">
       <Modal show={!!errors.message} onClose={() => setErrors({})}>
@@ -176,9 +187,10 @@ export const FlyForm: React.FC<VolProps> = () => {
           </span>
           <button
             onClick={() => setOpenDrop(!openDrop)}
+            type="button"
             className="flex w-full flex-row items-center rounded-[5px] border-blue/10 bg-blue/5 px-4 py-2 text-[16px] focus:outline-0 md:text-[14px]"
           >
-            Nombres des passagers{' '}
+            {t('booking.passenger')}
             <svg
               className="ms-3 h-2.5 w-2.5"
               aria-hidden="true"
@@ -197,7 +209,11 @@ export const FlyForm: React.FC<VolProps> = () => {
           </button>
           {openDrop && (
             <div className="absolute bottom-full left-0 flex flex-row rounded-[5px] border border-gray-200 bg-white p-8 shadow-lg">
-              <Passenger />
+              <Passenger
+                onPassengerChange={(adult, children, classe) => {
+                  setPassengerInfo({ adult, children, classe });
+                }}
+              />
               <FaWindowClose
                 onClick={() => setOpenDrop(false)}
                 className="h-6 w-6 text-blue"

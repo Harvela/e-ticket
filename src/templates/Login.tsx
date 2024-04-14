@@ -25,7 +25,6 @@ const LoginPage: React.FC = () => {
   });
   const { register, handleSubmit } = useForm();
   const onSubmit = (data: any) => {
-    console.log(data);
     mutation.mutate(data);
   };
 
@@ -37,7 +36,7 @@ const LoginPage: React.FC = () => {
       {mutation.isLoading && <FullWidthLoading text={t('auth.verify')} />}
       <img
         src="/assets/images/home/logo.png"
-        className="mb-4 h-8 rounded-lg bg-white"
+        className="mb-4 h-20 rounded-lg bg-white"
         alt="Logo"
       />
       {error && (
@@ -66,6 +65,7 @@ const LoginPage: React.FC = () => {
           navigation.push('/forget');
         }}
         className="w-full text-end text-sm font-semibold text-blue"
+        type="button"
       >
         {t('auth.forget')}
       </button>
@@ -82,6 +82,7 @@ const LoginPage: React.FC = () => {
             navigation.push('/register');
           }}
           className="ml-2 text-blue"
+          type="button"
         >
           {t('auth.create')}
         </button>

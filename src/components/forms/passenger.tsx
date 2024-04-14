@@ -1,15 +1,28 @@
 'use client';
 
 import { useTranslation } from 'next-i18next';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaRegPlusSquare } from 'react-icons/fa';
 import { FaRegSquareMinus } from 'react-icons/fa6';
 
-export const Passenger = () => {
+export const Passenger: React.FC<{
+  onPassengerChange?: (
+    adults: number,
+    children: number,
+    classe: string,
+  ) => void;
+}> = (props) => {
   const { t } = useTranslation();
   const [selectedTab, setSelectedTab] = useState<number>(1);
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
+  useEffect(() => {
+    props.onPassengerChange?.(
+      adults,
+      children,
+      selectedTab === 1 ? 'economy' : 'business',
+    );
+  }, [selectedTab, adults, children]);
   return (
     <div className="mt-4">
       <div className="w-full">

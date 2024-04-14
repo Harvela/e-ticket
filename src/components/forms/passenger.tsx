@@ -33,20 +33,22 @@ export const Passenger: React.FC<{
           <button
             className={`flex flex-row items-center gap-2 rounded-[5px] px-4 py-1 ${
               selectedTab === 1
-                ? 'border-[2px] border-blue font-semibold text-blue'
+                ? 'border-[2px] border-blue text-[14px] font-semibold text-blue'
                 : 'text-[14px] text-black/80'
             }`}
             onClick={() => setSelectedTab(1)}
+            type="button"
           >
             {t('passenger.economy')}
           </button>
           <button
             className={`flex flex-row items-center gap-2 rounded-[5px] px-4 py-1 ${
               selectedTab === 2
-                ? 'border-[2px] border-blue font-semibold text-blue'
+                ? 'border-[2px] border-blue text-[14px] font-semibold text-blue'
                 : 'text-[14px] text-black/80'
             }`}
             onClick={() => setSelectedTab(2)}
+            type="button"
           >
             {t('passenger.business')}
           </button>

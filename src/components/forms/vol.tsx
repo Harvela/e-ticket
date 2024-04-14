@@ -183,14 +183,15 @@ export const FlyForm: React.FC<VolProps> = () => {
 
         <div className="relative">
           <span className="mb-2 flex flex-row items-center gap-1 text-[12px] font-semibold text-blue">
-            {t('passengers.passengers')}
+            {t('passenger.passengers')}
           </span>
           <button
             onClick={() => setOpenDrop(!openDrop)}
             type="button"
             className="flex w-full flex-row items-center rounded-[5px] border-blue/10 bg-blue/5 px-4 py-2 text-[16px] focus:outline-0 md:text-[14px]"
           >
-            {t('booking.passenger')}
+            {(passengerInfo.adult || 0) + (passengerInfo.children || 0)} -{' '}
+            {[passengerInfo.classe]}
             <svg
               className="ms-3 h-2.5 w-2.5"
               aria-hidden="true"

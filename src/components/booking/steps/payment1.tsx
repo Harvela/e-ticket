@@ -55,6 +55,7 @@ const Payment1Step: React.FC<{
       schedules: dataStored.flights.map((f: any) => f.id),
       dates: flightData?.map?.((f: any) => f.date) || [],
       totalPrice: totalPrice.toString(),
+      classe: dataStored.passengerInfo.classe,
     });
     const transactions = JSON.parse(
       localStorage.getItem('transactions') || '[]',

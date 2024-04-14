@@ -194,6 +194,7 @@ interface CreateReservationProps {
   schedules: any[];
   dates: any[];
   totalPrice: string;
+  classe: string;
 }
 
 export const createReservation = async (data: CreateReservationProps) => {

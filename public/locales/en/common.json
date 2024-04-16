@@ -185,9 +185,9 @@
     "para2": "your reservation. You can also pay later.",
     "later": "PAY LATER",
     "pay": "PAY",
-    "received": "PAYMENT RECEIVED",
-    "success": "Thank you very much for your purchase. Download or print your ticket. You will also receive it by email. Please present it during your trip.",
-    "print": "Print Ticket",
+    "received": "BOOKING DONE !",
+    "success": "Thank you very much for your booking. Download or print your booking proof. You will also receive it by email. Please present it during your trip.",
+    "print": "Print the booking proof",
     "paymentLoad": "Loading flight information",
     "reservationLoad": "Recording your reservation, preparing payment..."
   },

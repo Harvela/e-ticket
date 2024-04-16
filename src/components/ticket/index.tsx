@@ -8,7 +8,7 @@ import { getTimeOrDate } from '@/utils/format';
 
 import type { Reservation } from '../forms/hooks/data';
 
-const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
+const Ticket: React.FC<{ ticket: Reservation; paid?: boolean }> = ({ ticket, paid }) => {
   const { t } = useTranslation('common');
   return (
     <div className="mt-[30px] text-black">
@@ -71,7 +71,7 @@ const Ticket: React.FC<{ ticket: Reservation }> = ({ ticket }) => {
             )}{' '}
             minutes
           </p>
-          <p className="text-sm">{t('ticket.status')}: Confirme</p>
+          <p className="text-sm">{t('ticket.status')}: {paid ? 'PAYEE' : "EN ATTENTE DE PAIEMENT"}</p>
         </div>
 
         <div className="flex w-[70%] flex-row border-2 border-blue/10">

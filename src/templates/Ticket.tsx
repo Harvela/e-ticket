@@ -74,7 +74,7 @@ const TicketPage: React.FC<any> = ({ ref }: any) => {
 
       <div className="w-full">
         {data?.data?.map?.((ticket, index) => (
-          <Ticket key={`ticket-${index}`} ticket={ticket} />
+          <Ticket key={`ticket-${index}`} ticket={ticket} paid={transaction?.attributes.paid} />
         ))}
       </div>
     </div>

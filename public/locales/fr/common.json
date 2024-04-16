@@ -185,9 +185,9 @@
     "para2": "votre reservation. Vous pouvez aussi payer plus tard.",
     "later": "PAYER PLUS TARD",
     "pay": "PAYER",
-    "received": "PAIEMENT RECU",
-    "success": "Merci beaucoup pour votre achat, Telecharger ou imprimer votre billet. Vous allez aussi le recevoir par email. Veuillez vous presenter avec lors de votre voyage.",
-    "print": "Imprimer le biller",
+    "received": "RESERVATION REUSSIE !",
+    "success": "Merci beaucoup pour votre reservation, Telecharger ou imprimer votre reservation. Vous allez aussi le recevoir par email. Veuillez vous presenter avec lors de votre voyage.",
+    "print": "Imprimer la reservation",
     "paymentLoad": "Chargement des informations sur les vols",
     "reservationLoad": "Enregistrement de votre reservation, preparation du paiement ..."
   },

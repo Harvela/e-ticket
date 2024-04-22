@@ -95,7 +95,7 @@ const AboutPage: React.FC = () => {
       </div>
 
       <div className="my-4 w-[90%] p-4 md:my-16 md:px-16">
-        <div className="flex flex-col justify-between rounded-lg bg-[#EAF0F0]/50 p-8 md:flex-row md:items-center md:p-16">
+        <div className="flex flex-col justify-between rounded-lg bg-[#EAF0F0]/50 p-8 md:flex-row md:items-center md:px-16 md:py-10">
           <div className="w-full md:w-[70%]">
             <h2 className="mb-8 text-2xl font-semibold text-blue">
               {t('about.wishTitle')}

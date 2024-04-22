@@ -100,19 +100,19 @@
   "about": {
     "title": "A propos de nous",
     "cardTitle1": "Qui sommes-nous?",
-    "cardTitle2": "",
-    "cardTitle3": "",
-    "cardContent1": "",
-    "cardContent2": "",
-    "cardContent3": "",
+    "cardTitle2": "Comment pouvons-nous vous aider?",
+    "cardTitle3": "C'est quoi notre specialité?",
+    "cardContent1": "Bienvenue chez Tawaji Travel, votre première agence de réservation de vols située au cœur de Lubumbashi, en République démocratique du Congo. Créé en 2024, nous sommes spécialisés dans la fourniture de services de réservation de vols pratiques et efficaces adaptés aux divers besoins de nos clients à travers la RDC",
+    "cardContent2": "Que vous voyagiez pour affaires ou pour le plaisir, notre équipe dévouée s'engage à garantir que votre expérience de voyage se déroule sans problème et sans tracas.",
+    "cardContent3": "En mettant l'accent sur un service personnalisé et une attention aux détails, Tawaji Travel est votre partenaire de confiance pour tous vos besoins de voyage aérien à l'intérieur et autour de la République démocratique du Congo.",
     "whyTitle": "Pourquoi nous choisir",
-    "whyParagraph": "",
-    "why1": "",
-    "why2": "",
-    "why3": "",
-    "why4": "",
-    "wishTitle": "",
-    "wishParagraph": "",
+    "whyParagraph": "Laissez-nous vous aider à atteindre de nouveaux sommets avec facilité et confort",
+    "why1": "Réservation de vol fiable",
+    "why2": "Options de réservation flexibles",
+    "why3": "Service client exceptionnel",
+    "why4": "Opérations de paiement sécurisées",
+    "wishTitle": "Vous souhaitez en savoir plus? ",
+    "wishParagraph": "Que vous voyagiez pour affaires ou pour le plaisir à l'intérieur et autour de la République démocratique du Congo, notre équipe dévouée s'engage à garantir que votre expérience de voyage se déroule sans problème et sans tracas",
     "wishButton": "NOUS CONTACTER"
   },
   "reset": {
@@ -201,5 +201,9 @@
     "business": "Business",
     "passengers": "Passagers",
     "children": "Enfants"
+  },
+  "contact": {
+    "name": "Nom complet",
+    "btn": "Envoyer"
   }
 }

@@ -98,21 +98,21 @@
     "loading": "Loading our schedules"
   },
   "about": {
-    "title": "About Us",
+    "title": "About us",
     "cardTitle1": "Who Are We?",
-    "cardTitle2": "",
-    "cardTitle3": "",
-    "cardContent1": "",
-    "cardContent2": "",
-    "cardContent3": "",
+    "cardTitle2": "How can we help you?",
+    "cardTitle3": "What is our specialty?",
+    "cardContent1": "Welcome to Tawaji Travel, your premier flight booking agency located in the heart of Lubumbashi, Democratic Republic of Congo. Established in 2024, we specialize in providing convenient and efficient flight booking services tailored to the diverse needs of our clients across the DRC",
+    "cardContent2": "Whether you're flying for business or pleasure, our dedicated team is committed to ensuring your travel experience is smooth and hassle-free.",
+    "cardContent3": "With a focus on personalized service and attention to detail, Tawaji Travel is your trusted partner for all your air travel needs within and around the Democratic Republic of Congo",
     "whyTitle": "Why Choose Us",
-    "whyParagraph": "",
-    "why1": "",
-    "why2": "",
-    "why3": "",
-    "why4": "",
-    "wishTitle": "",
-    "wishParagraph": "",
+    "whyParagraph": "Let us help you soar to new heights with ease and comfort.",
+    "why1": "Reliable Flight Booking",
+    "why2": "Flexible Booking Options",
+    "why3": "Exceptional Customer Service",
+    "why4": "Secure Payment Transactions",
+    "wishTitle": "Want to know more?",
+    "wishParagraph": "Whether you are traveling for business or pleasure in and around the Democratic Republic of Congo, our dedicated team is committed to ensuring that your travel experience is smooth and hassle-free",
     "wishButton": "CONTACT US"
   },
   "reset": {
@@ -197,9 +197,13 @@
     "loading": "Processing your request..."
   },
   "passenger": {
-    "economy": "Econom",
+    "economy": "Economy",
     "business": "Business",
     "passengers": "Passengers",
     "children": "Children"
+  },
+  "contact": {
+    "name": "Fullname",
+    "btn": "Send"
   }
 }

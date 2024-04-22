@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FaMapMarkerAlt } from 'react-icons/fa';
@@ -9,6 +10,7 @@ import { Navbar } from '@/navigation/Navbar';
 
 const ContactPage: React.FC = () => {
   const { register } = useForm();
+  const { t } = useTranslation('common');
 
   return (
     <div id="contact" className="justify-cente m-8 flex flex-col items-center">
@@ -16,10 +18,10 @@ const ContactPage: React.FC = () => {
 
       <div className=" m-auto mt-14 flex h-[75vh] w-full flex-col items-center justify-between rounded-lg bg-white md:flex-row">
         <form className="m-auto w-full p-8 md:w-2/5 md:px-16 md:py-4">
-          <h2 className="mb-8 text-2xl font-semibold text-blue">Suggestion</h2>
+          <h2 className="mb-8 text-2xl font-semibold text-blue">Suggestions</h2>
           <Input
             name="name"
-            label="Nom"
+            label={t('contact.name')}
             placeholder="Murhula Metre Lemoisson"
             style="mb-4 md:mb-6 w-full"
             register={register}
@@ -42,7 +44,7 @@ const ContactPage: React.FC = () => {
             className="w-full rounded-[8px] bg-blue px-16 py-2 text-sm text-white md:w-[50%]"
             type="submit"
           >
-            Envoyer
+            {t('contact.btn')}
           </button>
         </form>
 

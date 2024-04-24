@@ -24,11 +24,17 @@ export const FlyForm: React.FC<VolProps> = () => {
   const [selectedTab, setSelectedTab] = useState<number>(1);
   const navigation = useRouter();
   const [errors, setErrors] = useState<any>({});
-  const [openDrop, setOpenDrop] = useState<boolean>(false);
+  // const [openDrop, setOpenDrop] = useState<boolean>(false);
   const { register, handleSubmit, setValue, watch } = useForm<any>();
-  const [passengerInfo, setPassengerInfo] = useState<any>({});
-
+  // const [passengerInfo, setPassengerInfo] = useState<any>({});
   const [steps, setSteps] = useState<number>(1);
+  const [openDropStates, setOpenDropStates] = useState<boolean[]>(
+    Array.from({ length: steps }, () => false),
+  );
+  const [passengerInfoArray, setPassengerInfoArray] = useState<any[]>(
+    Array.from({ length: steps }, () => ({})),
+  );
+
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [flightInfo, setFlightInfo] = useState<any>([]);
 
@@ -37,7 +43,10 @@ export const FlyForm: React.FC<VolProps> = () => {
       !data.origin ||
       !data.destination ||
       !data.departureDate ||
-      !(passengerInfo.adult || passengerInfo.children)
+      !(
+        passengerInfoArray[currentStep]?.adult ||
+        passengerInfoArray[currentStep]?.children
+      )
     ) {
       setErrors({ message: 'Veuillez completer tous les champs' });
       return;
@@ -72,11 +81,12 @@ export const FlyForm: React.FC<VolProps> = () => {
         params: {
           ...data,
           passengerNumber:
-            (passengerInfo.adult || 0) + (passengerInfo.children || 0),
+            (passengerInfoArray[currentStep]?.adult || 0) +
+            (passengerInfoArray[currentStep]?.children || 0),
         },
         flights: [],
         passengers: [],
-        passengerInfo,
+        passengerInfoArray,
       }),
     );
     localStorage.setItem('flightData', JSON.stringify(flightData));
@@ -134,136 +144,184 @@ export const FlyForm: React.FC<VolProps> = () => {
             </div>
             {t('flights.roundTrip')}
           </button>
+          <button
+            className={`flex flex-row items-center gap-2 rounded-lg px-4 py-1 text-sm ${
+              selectedTab === 3 ? 'bg-blue text-white' : 'bg-gray-200'
+            }`}
+            onClick={() => setSelectedTab(3)}
+          >
+            <div className="flex flex-row items-center">
+              <FaArrowRight />
+              <FaArrowLeft />
+            </div>
+            Multi-city
+          </button>
         </div>
       </div>
-      {stepArray.map((flight: any, index: number) => (
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          key={`flight-${index}`}
-          className="grid grid-cols-1 items-center justify-between gap-4 rounded-b-[15px] bg-[#EAF0F0] p-4 md:flex md:flex-row md:justify-evenly md:pt-4 lg:flex lg:flex-row lg:rounded-r-[15px] lg:px-4 lg:pt-4"
-        >
-          <PlaceInput
-            name="origin"
-            label={t('flights.from')}
-            icon={<SlArrowDown />}
-            placeholder="Kinshasa"
-            onChange={(e: any) => {
-              setValue('origin', e);
-            }}
-            excludedOptions={[watch('destination')]}
-            defaultValue={flightInfo[flight]?.place_arrival}
-            disabled={index !== currentStep}
-          />
-          <PlaceInput
-            name="destination"
-            label={t('flights.to')}
-            icon={<SlArrowDown />}
-            placeholder="Kolwezi"
-            onChange={(e: any) => {
-              setValue('destination', e);
-            }}
-            excludedOptions={[watch('origin')]}
-            defaultValue={flightInfo[flight]?.place_depart}
-            disabled={index !== currentStep}
-          />
-          <Input
-            name="departureDate"
-            type="date"
-            label={t('flights.departure')}
-            placeholder="Goma"
-            style=" lg:pl-4"
-            register={register}
-            min={dayjs().format('YYYY-MM-DD')}
-            onChange={(e: any) => {
-              setValue('departureDate', e);
-            }}
-            defaultValue={flightInfo[flight]?.date}
-            disabled={index !== currentStep}
-          />
-          {selectedTab === 2 && (
-            <Input
-              name="arrivalDate"
-              type="date"
-              label={t('flights.return')}
+      <div className="rounded-b-[15px] bg-[#EAF0F0] p-4 lg:rounded-r-[15px] lg:px-4">
+        {stepArray.map((flight: any, index: number) => (
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            key={`flight-${index}`}
+            className="grid grid-cols-1 items-center justify-between gap-4 md:flex md:flex-row md:justify-evenly md:pt-4 lg:flex lg:flex-row lg:pt-6"
+          >
+            <PlaceInput
+              name="origin"
+              label={t('flights.from')}
+              icon={<SlArrowDown />}
+              placeholder="Kinshasa"
               onChange={(e: any) => {
-                setValue('arrivalDate', e);
+                setValue('origin', e);
               }}
-              placeholder="Goma"
-              style="lg:pl-4"
-              register={register}
-              min={dayjs(watch('departureDate')).format('YYYY-MM-DD')}
+              // excludedOptions={[watch('destination')]}
+              defaultValue={flightInfo[flight]?.place_arrival}
+              disabled={index !== currentStep}
             />
-          )}
+            <PlaceInput
+              name="destination"
+              label={t('flights.to')}
+              icon={<SlArrowDown />}
+              placeholder="Kolwezi"
+              onChange={(e: any) => {
+                setValue('destination', e);
+              }}
+              // excludedOptions={[watch('origin')]}
+              defaultValue={flightInfo[flight]?.place_depart}
+              disabled={index !== currentStep}
+            />
+            <Input
+              name="departureDate"
+              type="date"
+              label={t('flights.departure')}
+              placeholder="Goma"
+              style=" lg:pl-4"
+              register={register}
+              min={dayjs().format('YYYY-MM-DD')}
+              onChange={(e: any) => {
+                setValue('departureDate', e);
+              }}
+              defaultValue={flightInfo[flight]?.date}
+              disabled={index !== currentStep}
+            />
+            {selectedTab === 2 && (
+              <Input
+                name="arrivalDate"
+                type="date"
+                label={t('flights.return')}
+                onChange={(e: any) => {
+                  setValue('arrivalDate', e);
+                }}
+                placeholder="Goma"
+                style="lg:pl-4"
+                register={register}
+                min={dayjs(watch('departureDate')).format('YYYY-MM-DD')}
+              />
+            )}
 
-          <div className="relative">
-            <span className="mb-2 flex flex-row items-center gap-1 text-[12px] font-semibold text-blue">
-              {t('passenger.passengers')}
-            </span>
-            <button
-              onClick={() => setOpenDrop(!openDrop)}
-              type="button"
-              className="flex w-full flex-row items-center rounded-[5px] border-blue/10 bg-blue/5 px-4 py-2 text-[16px] focus:outline-0 md:text-[14px]"
-            >
-              {(passengerInfo.adult || 0) + (passengerInfo.children || 0)} -{' '}
-              {[passengerInfo.classe]}
-              <svg
-                className="ms-3 h-2.5 w-2.5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
+            <div className="relative">
+              <span className="mb-2 flex flex-row items-center gap-1 text-[12px] font-semibold text-blue">
+                {t('passenger.passengers')}
+              </span>
+              <button
+                onClick={() => {
+                  const updatedStates = [...openDropStates];
+                  updatedStates[index] = !updatedStates[index];
+                  setOpenDropStates(updatedStates);
+                }}
+                type="button"
+                className="flex w-full flex-row items-center rounded-[5px] border-blue/10 bg-blue/5 px-4 py-2 text-[16px] focus:outline-0 md:text-[14px]"
               >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m1 1 4 4 4-4"
-                />
-              </svg>
-            </button>
-            {openDrop && (
-              <div className="absolute bottom-full left-0 flex flex-row rounded-[5px] border border-gray-200 bg-white p-8 shadow-lg">
-                <Passenger
-                  onPassengerChange={(adult, children, classe) => {
-                    setPassengerInfo({ adult, children, classe });
+                {/* {(passengerInfo.adult || 0) + (passengerInfo.children || 0)} -{' '}
+                {[passengerInfo.classe]} */}
+                {(passengerInfoArray[index]?.adult || 0) +
+                  (passengerInfoArray[index]?.children || 0)}{' '}
+                - {[passengerInfoArray[index]?.classe]}
+                <svg
+                  className="ms-3 h-2.5 w-2.5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </button>
+              {openDropStates[index] && (
+                <div className="absolute bottom-full left-0 flex flex-row rounded-[5px] border border-gray-200 bg-white p-8 shadow-lg">
+                  <Passenger
+                    onPassengerChange={(adult, children, classe) => {
+                      // setPassengerInfo({ adult, children, classe });
+                      const updatedPassengerInfoArray = [...passengerInfoArray];
+                      updatedPassengerInfoArray[index] = {
+                        adult,
+                        children,
+                        classe,
+                      };
+                      setPassengerInfoArray(updatedPassengerInfoArray);
+                    }}
+                  />
+                  <FaWindowClose
+                    onClick={() => {
+                      const updatedStates = [...openDropStates];
+                      updatedStates[index] = false;
+                      setOpenDropStates(updatedStates);
+                    }}
+                    className="h-6 w-6 text-blue"
+                  />
+                </div>
+              )}
+            </div>
+
+            {selectedTab === 3 && (
+              <div className="flex flex-row items-center gap-4">
+                <PlusSquare
+                  className="mt-5 h-[24px] w-[24px] text-blue"
+                  onClick={() => {
+                    setSteps(steps + 1);
+                    setCurrentStep(currentStep + 1);
                   }}
                 />
-                <FaWindowClose
-                  onClick={() => setOpenDrop(false)}
-                  className="h-6 w-6 text-blue"
-                />
+                {index !== 0 && (
+                  <Trash
+                    className="mt-5 h-[24px] w-[24px] text-red"
+                    onClick={() => {
+                      setSteps(steps - 1);
+                      setCurrentStep(currentStep - 1);
+                    }}
+                  />
+                )}
               </div>
             )}
-          </div>
-          <PlusSquare
-            className="mt-5 h-[24px] w-[24px] text-blue"
-            onClick={() => {
-              setSteps(steps + 1);
-              setCurrentStep(currentStep + 1);
-            }}
-          />
-          {index !== 0 && (
-            <Trash
-              className="mt-5 h-[24px] w-[24px] text-blue"
-              onClick={() => {
-                setSteps(steps + 1);
-                setCurrentStep(currentStep + 1);
-              }}
-            />
-          )}
 
-          <button
-            className="mt-6 h-[35px] rounded-[5px] bg-blue px-4 py-[5px] text-sm text-white"
-            // onClick={() => {
-            //   navigation.push('/reservation');
-            // }}
-            type="submit"
-          >
-            {t('flights.search')}
-          </button>
-        </form>
-      ))}
+            {/* {selectedTab === 1 && (
+              <button
+                className="mt-6 h-[35px] rounded-[5px] bg-blue px-4 py-[5px] text-sm text-white"
+                // onClick={() => {
+                //   navigation.push('/reservation');
+                // }}
+                type="submit"
+              >
+                {t('flights.search')}
+              </button>
+            )} */}
+
+            {index === steps - 1 && (
+              <button
+                className="mt-6 h-[35px] rounded-[5px] bg-blue px-4 py-[5px] text-sm text-white"
+                type="submit"
+              >
+                {t('flights.search')}
+              </button>
+            )}
+          </form>
+        ))}
+      </div>
     </div>
   );
 };

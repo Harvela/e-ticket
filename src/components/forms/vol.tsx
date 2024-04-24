@@ -24,13 +24,9 @@ export const FlyForm: React.FC<VolProps> = () => {
   const [selectedTab, setSelectedTab] = useState<number>(1);
   const navigation = useRouter();
   const [errors, setErrors] = useState<any>({});
-  // const [openDrop, setOpenDrop] = useState<boolean>(false);
   const { register, handleSubmit, setValue, watch } = useForm<any>();
-  // const [passengerInfo, setPassengerInfo] = useState<any>({});
   const [steps, setSteps] = useState<number>(1);
-  const [openDropStates, setOpenDropStates] = useState<boolean[]>(
-    Array.from({ length: steps }, () => false),
-  );
+  const [openDropIndex, setOpenDropIndex] = useState<number | null>(null);
   const [passengerInfoArray, setPassengerInfoArray] = useState<any[]>(
     Array.from({ length: steps }, () => ({})),
   );
@@ -173,8 +169,11 @@ export const FlyForm: React.FC<VolProps> = () => {
               onChange={(e: any) => {
                 setValue('origin', e);
               }}
-              // excludedOptions={[watch('destination')]}
-              defaultValue={flightInfo[flight]?.place_arrival}
+              defaultValue={
+                index === 0
+                  ? flightInfo[flight]?.place_arrival
+                  : flightInfo[flight - 1]?.place_depart
+              }
               disabled={index !== currentStep}
             />
             <PlaceInput
@@ -185,7 +184,6 @@ export const FlyForm: React.FC<VolProps> = () => {
               onChange={(e: any) => {
                 setValue('destination', e);
               }}
-              // excludedOptions={[watch('origin')]}
               defaultValue={flightInfo[flight]?.place_depart}
               disabled={index !== currentStep}
             />
@@ -224,15 +222,11 @@ export const FlyForm: React.FC<VolProps> = () => {
               </span>
               <button
                 onClick={() => {
-                  const updatedStates = [...openDropStates];
-                  updatedStates[index] = !updatedStates[index];
-                  setOpenDropStates(updatedStates);
+                  setOpenDropIndex(openDropIndex === index ? null : index);
                 }}
                 type="button"
                 className="flex w-full flex-row items-center rounded-[5px] border-blue/10 bg-blue/5 px-4 py-2 text-[16px] focus:outline-0 md:text-[14px]"
               >
-                {/* {(passengerInfo.adult || 0) + (passengerInfo.children || 0)} -{' '}
-                {[passengerInfo.classe]} */}
                 {(passengerInfoArray[index]?.adult || 0) +
                   (passengerInfoArray[index]?.children || 0)}{' '}
                 - {[passengerInfoArray[index]?.classe]}
@@ -252,11 +246,10 @@ export const FlyForm: React.FC<VolProps> = () => {
                   />
                 </svg>
               </button>
-              {openDropStates[index] && (
+              {openDropIndex === index && (
                 <div className="absolute bottom-full left-0 flex flex-row rounded-[5px] border border-gray-200 bg-white p-8 shadow-lg">
                   <Passenger
                     onPassengerChange={(adult, children, classe) => {
-                      // setPassengerInfo({ adult, children, classe });
                       const updatedPassengerInfoArray = [...passengerInfoArray];
                       updatedPassengerInfoArray[index] = {
                         adult,
@@ -268,9 +261,7 @@ export const FlyForm: React.FC<VolProps> = () => {
                   />
                   <FaWindowClose
                     onClick={() => {
-                      const updatedStates = [...openDropStates];
-                      updatedStates[index] = false;
-                      setOpenDropStates(updatedStates);
+                      setOpenDropIndex(null);
                     }}
                     className="h-6 w-6 text-blue"
                   />
@@ -278,42 +269,32 @@ export const FlyForm: React.FC<VolProps> = () => {
               )}
             </div>
 
-            {selectedTab === 3 && (
-              <div className="flex flex-row items-center gap-4">
-                <PlusSquare
-                  className="mt-5 h-[24px] w-[24px] text-blue"
-                  onClick={() => {
-                    setSteps(steps + 1);
-                    setCurrentStep(currentStep + 1);
-                  }}
-                />
-                {index !== 0 && (
-                  <Trash
-                    className="mt-5 h-[24px] w-[24px] text-red"
-                    onClick={() => {
-                      setSteps(steps - 1);
-                      setCurrentStep(currentStep - 1);
-                    }}
-                  />
-                )}
-              </div>
+            {selectedTab === 3 && index === steps - 1 && (
+              <PlusSquare
+                className="mt-5 h-[24px] w-[24px] text-blue"
+                onClick={() => {
+                  setSteps(steps + 1);
+                  setCurrentStep(currentStep + 1);
+                }}
+              />
             )}
 
-            {/* {selectedTab === 1 && (
-              <button
-                className="mt-6 h-[35px] rounded-[5px] bg-blue px-4 py-[5px] text-sm text-white"
-                // onClick={() => {
-                //   navigation.push('/reservation');
-                // }}
-                type="submit"
-              >
-                {t('flights.search')}
-              </button>
-            )} */}
+            {selectedTab === 3 && index >= 0 && index !== steps - 1 && (
+              <Trash
+                className="mt-5 h-[24px] w-[24px] text-red"
+                onClick={() => {
+                  setSteps(steps - 1);
+                  setCurrentStep(currentStep - 1);
+                }}
+              />
+            )}
 
             {index === steps - 1 && (
               <button
                 className="mt-6 h-[35px] rounded-[5px] bg-blue px-4 py-[5px] text-sm text-white"
+                onClick={() => {
+                  navigation.push('/reservation');
+                }}
                 type="submit"
               >
                 {t('flights.search')}
